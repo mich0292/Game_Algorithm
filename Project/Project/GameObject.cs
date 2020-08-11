@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+namespace Project
+{
+    public abstract class GameObject
+    {
+        public int health;
+        public float speed;
+        public Vector2 position; 
+        public Vector2 direction;
+        public float orientation;
+
+        public abstract void Initialize();
+        public abstract void Update(GameTime gameTime);
+        public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+    }
+}
