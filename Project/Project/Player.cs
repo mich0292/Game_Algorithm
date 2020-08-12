@@ -23,18 +23,19 @@ namespace Project
             fireTime = 0f;  //in miliseconds
             missileTime = 0f;
             missileRate = 10f;
-            //initialize texture here!!
+            speed = 100.0f;
+            texture = Game1.assets["player"];
         }
 
         public override void Update(GameTime gameTime)
-        {
+        {            
             KeyboardState keyboard = Keyboard.GetState();
 
             //moving the player
             if (keyboard.IsKeyDown(Keys.Up))
-                position.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;                
             else if(keyboard.IsKeyDown(Keys.Down))
-                position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                position.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             else if (keyboard.IsKeyDown(Keys.Left))
                 position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             else if (keyboard.IsKeyDown(Keys.Right))

@@ -12,7 +12,9 @@ namespace Project
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public static List<GameObject> gameObject;
+
+        public static Dictionary<string, Texture2D> assets = new Dictionary<string, Texture2D>();
+        public static List<GameObject> gameObject = new List<GameObject>();
 
         public Game1()
         {
@@ -29,7 +31,7 @@ namespace Project
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -43,6 +45,15 @@ namespace Project
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            //Load content here
+            assets.Add("player", Content.Load<Texture2D>("Player"));
+
+            gameObject.Add(new Player());
+
+            foreach (GameObject obj in gameObject)
+                obj.Initialize();
+
         }
 
         /// <summary>
@@ -65,6 +76,8 @@ namespace Project
                 Exit();
 
             // TODO: Add your update logic here
+            foreach (GameObject obj in gameObject)
+                obj.Update(gameTime);
 
             base.Update(gameTime);
         }
