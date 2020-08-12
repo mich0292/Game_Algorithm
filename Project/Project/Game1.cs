@@ -78,7 +78,12 @@ namespace Project
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
 
+            foreach(GameObject obj in gameObject)
+                obj.Draw(spriteBatch, gameTime);
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

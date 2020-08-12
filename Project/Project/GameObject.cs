@@ -16,6 +16,9 @@ namespace Project
         public Vector2 position; 
         public Vector2 direction;
         public float orientation;
+        public float fireRate;
+        public float fireTime;
+        public Texture2D texture;
 
         public abstract void Initialize();
         public abstract void Update(GameTime gameTime);
