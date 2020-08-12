@@ -16,28 +16,42 @@ namespace Project
             //initialize all the variables
             health = 1;
             speed = 100.0f;
-
-
+            fireTime = 0f;
+            fireRate = 100.0f;
         }
 
         public override void Update(GameTime gameTime)
         {
-            //Kinematic Seek 
+            KinematicSeek(gameTime);
+            LineOfSight(gameTime);
+        }
+
+        //Reference from notes Lecture 3
+        public void KinematicSeek(GameTime gameTime)
+        {            
             Vector2 velocity = Player.player.position - position;
             velocity.Normalize();
 
             velocity *= speed;
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Orientation(velocity);
+            Orientation(velocity);            
+        }
 
-            //line of sight
+        public void LineOfSight(GameTime gameTime)
+        {
+            if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
+            {
+                fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            throw new NotImplementedException();
+            spriteBatch.Draw(texture, position,
+                origin: new Vector2(texture.Width / 2.0f, texture.Height / 2.0f));
         }
 
+        //Reference from notes Lecture 3, part of kinematic seek
         public void Orientation(Vector2 velocity)
         {
             orientation = (float)Math.Atan2(velocity.Y, velocity.X);
