@@ -14,7 +14,10 @@ namespace Project
         SpriteBatch spriteBatch;
 
         public static Dictionary<string, Texture2D> assets = new Dictionary<string, Texture2D>();
-        public static List<GameObject> gameObject = new List<GameObject>();
+        public static GameObject player = new Player();
+        public static List<GameObject> playerBulletList = new List<GameObject>();
+        public static List<GameObject> enemyList = new List<GameObject>();
+        public static List<GameObject> enemyBulletList = new List<GameObject>();
 
         public Game1()
         {
@@ -48,12 +51,9 @@ namespace Project
 
             //Load content here
             assets.Add("player", Content.Load<Texture2D>("Player"));
+            assets.Add("bullet", Content.Load<Texture2D>("bullet"));
 
-            gameObject.Add(new Player());
-
-            foreach (GameObject obj in gameObject)
-                obj.Initialize();
-
+            player.Initialize();
         }
 
         /// <summary>
@@ -76,8 +76,9 @@ namespace Project
                 Exit();
 
             // TODO: Add your update logic here
-            foreach (GameObject obj in gameObject)
-                obj.Update(gameTime);
+            player.Update(gameTime);
+            foreach (GameObject bullet in playerBulletList)
+                bullet.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -93,11 +94,70 @@ namespace Project
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            foreach(GameObject obj in gameObject)
-                obj.Draw(spriteBatch, gameTime);
+            player.Draw(spriteBatch, gameTime);
+            foreach (GameObject bullet in playerBulletList)
+                bullet.Draw(spriteBatch, gameTime);
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void DetectCollision()
+        {
+            //detect collision between player and enemy
+            for(int i = 0; i < enemyList.Count; i++)
+            {
+                if (player.position.X < enemyList[i].position.X + enemyList[i].texture.Width &&
+                    player.position.X + player.texture.Width > enemyList[i].position.X &&
+                    player.position.Y < enemyList[i].position.Y + enemyList[i].texture.Height &&
+                    player.position.Y + player.texture.Height > enemyList[i].position.Y)
+                {
+                    player.health--;
+                    enemyList[i].health--;
+
+                    if(player.health <= 0)
+                    {
+                        //player lose
+                        //proceed to lose menu
+                    }
+
+                    if(enemyList[i].health <= 0)
+                        enemyList.Remove(enemyList[i]);
+
+                    break;
+                }
+            }
+
+            //detect collision between player bullet and enemy
+            for(int i = 0; i < enemyList.Count; i++)
+            {
+                for(int j = 0; j < playerBulletList.Count; j++)
+                {
+
+                }
+            }
+
+            //detect collision between enemy bullet and player
+            for (int i = 0; i < enemyBulletList.Count; i++)
+            {
+                if (player.position.X < enemyBulletList[i].position.X + enemyBulletList[i].texture.Width &&
+                    player.position.X + player.texture.Width > enemyBulletList[i].position.X &&
+                    player.position.Y < enemyBulletList[i].position.Y + enemyBulletList[i].texture.Height &&
+                    player.position.Y + player.texture.Height > enemyBulletList[i].position.Y)
+                {
+                    player.health--;
+
+                    if (player.health <= 0)
+                    {
+                        //player lose
+                        //proceed to lose menu
+                    }
+
+                    enemyBulletList.Remove(enemyBulletList[i]);
+
+                    break;
+                }
+            }
         }
     }
 }

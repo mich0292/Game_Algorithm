@@ -29,7 +29,7 @@ namespace Project
         //Reference from notes Lecture 3
         public void KinematicSeek(GameTime gameTime)
         {            
-            Vector2 velocity = Player.player.position - position;
+            Vector2 velocity = Game1.player.position - position;
             velocity.Normalize();
 
             velocity *= speed;

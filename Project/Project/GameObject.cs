@@ -18,6 +18,7 @@ namespace Project
         public float orientation;
         public float fireRate;
         public float fireTime;
+        public string name;
         public Texture2D texture;
 
         public abstract void Initialize();

@@ -11,19 +11,19 @@ namespace Project
 {
     class Player:GameObject
     {
-        public static Player player;
         private float missileTime; //in seconds
         private float missileRate; //in seconds
 
         public override void Initialize()
         {
             //initialize all the variables
-            player = this;
+            health = 5;
             fireRate = 100f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             missileTime = 0f;
             missileRate = 10f;
             speed = 100.0f;
+            name = "player";
             texture = Game1.assets["player"];
         }
 
@@ -45,6 +45,8 @@ namespace Project
             if(keyboard.IsKeyDown(Keys.Space) && gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
+                Game1.playerBulletList.Add(new Bullet());
+                Game1.playerBulletList[Game1.playerBulletList.Count - 1].Initialize();
             }
 
             //player fire missile
