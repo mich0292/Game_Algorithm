@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Project
 {
-    class Player:GameObject
+    public class Player : GameObject
     {
         private float missileTime; //in seconds
         private float missileRate; //in seconds
@@ -18,13 +18,15 @@ namespace Project
         {
             //initialize all the variables
             health = 5;
-            fireRate = 100f; //in miliseconds
+            fireRate = 200f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             missileTime = 0f;
             missileRate = 10f;
             speed = 100.0f;
             name = "player";
             texture = Game1.assets["player"];
+            position.X = Game1.window.ClientBounds.Width / 2;
+            position.Y = Game1.window.ClientBounds.Height / 2;
         }
 
         public override void Update(GameTime gameTime)
@@ -32,20 +34,20 @@ namespace Project
             KeyboardState keyboard = Keyboard.GetState();
 
             //moving the player
-            if (keyboard.IsKeyDown(Keys.Up))
+            if (keyboard.IsKeyDown(Keys.Up) && position.Y > 0 + texture.Height/2)
                 position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;                
-            else if(keyboard.IsKeyDown(Keys.Down))
+            else if(keyboard.IsKeyDown(Keys.Down) && position.Y < Game1.window.ClientBounds.Height - texture.Height / 2)
                 position.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            else if (keyboard.IsKeyDown(Keys.Left))
+            else if (keyboard.IsKeyDown(Keys.Left) && position.X > 0 + texture.Width / 2)
                 position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            else if (keyboard.IsKeyDown(Keys.Right))
+            else if (keyboard.IsKeyDown(Keys.Right) && position.X < Game1.window.ClientBounds.Width - texture.Width / 2)
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             //player fire bullet
             if(keyboard.IsKeyDown(Keys.Space) && gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
-                Game1.playerBulletList.Add(new Bullet());
+                Game1.playerBulletList.Add(new PlayerBullet());
                 Game1.playerBulletList[Game1.playerBulletList.Count - 1].Initialize();
             }
 

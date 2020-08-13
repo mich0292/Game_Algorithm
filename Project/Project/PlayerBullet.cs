@@ -8,20 +8,23 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project
 {
-    class Bullet : GameObject
+    public class PlayerBullet : GameObject
     {
         public override void Initialize()
         {
             //initialize all the variables
             speed = 100.0f;
-            name = "bullet";
+            name = "playerBullet";
             position = Game1.player.position;
-            texture = Game1.assets["bullet"];
+            texture = Game1.assets["playerBullet"];
         }
 
         public override void Update(GameTime gameTime)
         {
             position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if(position.X > Game1.window.ClientBounds.Width || position.X < 0 || position.Y > Game1.window.ClientBounds.Height || position.Y < 0)
+                Game1.playerBulletList.Remove(this);                
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

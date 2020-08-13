@@ -14,15 +14,19 @@ namespace Project
         SpriteBatch spriteBatch;
 
         public static Dictionary<string, Texture2D> assets = new Dictionary<string, Texture2D>();
-        public static GameObject player = new Player();
+        public static Player player = new Player();
         public static List<GameObject> playerBulletList = new List<GameObject>();
         public static List<GameObject> enemyList = new List<GameObject>();
         public static List<GameObject> enemyBulletList = new List<GameObject>();
+        public static List<Missile> missileList = new List<Missile>();
+        public static GameWindow window;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            window = this.Window;
         }
 
         /// <summary>
@@ -51,7 +55,7 @@ namespace Project
 
             //Load content here
             assets.Add("player", Content.Load<Texture2D>("Player"));
-            assets.Add("bullet", Content.Load<Texture2D>("bullet"));
+            assets.Add("playerBullet", Content.Load<Texture2D>("bullet"));
 
             player.Initialize();
         }
@@ -76,9 +80,26 @@ namespace Project
                 Exit();
 
             // TODO: Add your update logic here
+
+            //update player
             player.Update(gameTime);
-            foreach (GameObject bullet in playerBulletList)
-                bullet.Update(gameTime);
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Update(gameTime);
+            //update player bullet
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Update(gameTime);
+            //update enemy bullet
+            for (int i = 0; i < enemyBulletList.Count; i++)
+                enemyBulletList[i].Update(gameTime);
+            //update enemy 
+            for (int i = 0; i < enemyList.Count; i++)
+                enemyList[i].Update(gameTime);
+            //update missile
+            for (int i = 0; i < missileList.Count; i++)
+                missileList[i].Update(gameTime);
+
+            //detect collision
+            DetectCollision();
 
             base.Update(gameTime);
         }
@@ -93,10 +114,20 @@ namespace Project
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-
+            //draw player
             player.Draw(spriteBatch, gameTime);
-            foreach (GameObject bullet in playerBulletList)
-                bullet.Draw(spriteBatch, gameTime);
+            //draw player bullet
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Draw(spriteBatch, gameTime);
+            //draw enemy bullet
+            for (int i = 0; i < enemyBulletList.Count; i++)
+                enemyBulletList[i].Draw(spriteBatch, gameTime);
+            //draw enemy 
+            for (int i = 0; i < enemyList.Count; i++)
+                enemyList[i].Draw(spriteBatch, gameTime);
+            //draw missile
+            for (int i = 0; i < missileList.Count; i++)
+                missileList[i].Draw(spriteBatch, gameTime);
 
             spriteBatch.End();
             base.Draw(gameTime);
@@ -133,7 +164,20 @@ namespace Project
             {
                 for(int j = 0; j < playerBulletList.Count; j++)
                 {
+                    if (enemyList[i].position.X < playerBulletList[i].position.X + playerBulletList[i].texture.Width &&
+                    enemyList[i].position.X + enemyList[i].texture.Width > playerBulletList[i].position.X &&
+                    enemyList[i].position.Y < playerBulletList[i].position.Y + playerBulletList[i].texture.Height &&
+                    enemyList[i].position.Y + enemyList[i].texture.Height > playerBulletList[i].position.Y)
+                    {
+                        enemyList[i].health--;
 
+                        if (enemyList[i].health <= 0)
+                            enemyList.Remove(enemyList[i]);
+
+                        playerBulletList.Remove(playerBulletList[i]);
+
+                        break;
+                    }
                 }
             }
 
@@ -156,6 +200,31 @@ namespace Project
                     enemyBulletList.Remove(enemyBulletList[i]);
 
                     break;
+                }
+            }
+
+            //detect collision between missile and target
+            for (int i = 0; i < missileList.Count; i++)
+            {
+                for (int j = 0; j < enemyList.Count; j++)
+                {
+                    if (object.ReferenceEquals(missileList[i].target, enemyList[j]))
+                    {
+                        if (missileList[i].position.X < enemyList[j].position.X + enemyList[j].texture.Width &&
+                            missileList[i].position.X + missileList[i].texture.Width > enemyList[j].position.X &&
+                            missileList[i].position.Y < enemyList[j].position.Y + enemyList[j].texture.Height &&
+                            missileList[i].position.Y + missileList[i].texture.Height > enemyList[j].position.Y)
+                        {
+                            enemyList[j].health -= 3;
+                            if (enemyList[j].health <= 0)
+                                enemyList.Remove(enemyList[j]);
+
+                            missileList[i].target = null;
+                            missileList.Remove(missileList[i]);
+
+                            break;
+                        }
+                    }
                 }
             }
         }
