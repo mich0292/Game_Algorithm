@@ -3,13 +3,24 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
+// SceneManagement -> https://community.monogame.net/t/switch-scenes-in-monogame/2605/2
+
 namespace Project
 {
+    enum GameState
+    {
+        MainMenu,
+        Gameplay,
+        GameOver,
+    }
+
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
     {
+        GameState _state;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -39,7 +50,6 @@ namespace Project
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
-            this.Components.Add(new Menu(this));
             base.Initialize();
         }
 
@@ -82,27 +92,21 @@ namespace Project
 
             // TODO: Add your update logic here
 
-            //update player
-            player.Update(gameTime);
-            for (int i = 0; i < playerBulletList.Count; i++)
-                playerBulletList[i].Update(gameTime);
-            //update player bullet
-            for (int i = 0; i < playerBulletList.Count; i++)
-                playerBulletList[i].Update(gameTime);
-            //update enemy bullet
-            for (int i = 0; i < enemyBulletList.Count; i++)
-                enemyBulletList[i].Update(gameTime);
-            //update enemy 
-            for (int i = 0; i < enemyList.Count; i++)
-                enemyList[i].Update(gameTime);
-            //update missile
-            for (int i = 0; i < missileList.Count; i++)
-                missileList[i].Update(gameTime);
-
-            //detect collision
-            DetectCollision();
-
             base.Update(gameTime);
+
+            switch (_state)
+            {
+                case GameState.MainMenu:
+                    UpdateMainMenu(gameTime);
+                    break;
+                case GameState.Gameplay:
+                    UpdateGameplay(gameTime);
+                    break;
+                case GameState.GameOver:
+                    UpdateGameOver(gameTime);
+                    break;
+
+            }
         }
 
         /// <summary>
@@ -111,27 +115,19 @@ namespace Project
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            //draw player
-            player.Draw(spriteBatch, gameTime);
-            //draw player bullet
-            for (int i = 0; i < playerBulletList.Count; i++)
-                playerBulletList[i].Draw(spriteBatch, gameTime);
-            //draw enemy bullet
-            for (int i = 0; i < enemyBulletList.Count; i++)
-                enemyBulletList[i].Draw(spriteBatch, gameTime);
-            //draw enemy 
-            for (int i = 0; i < enemyList.Count; i++)
-                enemyList[i].Draw(spriteBatch, gameTime);
-            //draw missile
-            for (int i = 0; i < missileList.Count; i++)
-                missileList[i].Draw(spriteBatch, gameTime);
-
-            spriteBatch.End();
             base.Draw(gameTime);
+            switch (_state)
+            {
+                case GameState.MainMenu:
+                    DrawMainMenu(gameTime);
+                    break;
+                case GameState.Gameplay:
+                    DrawGameplay(gameTime);
+                    break;
+                case GameState.GameOver:
+                    DrawGameOver(gameTime);
+                    break;
+            }    
         }
 
         public void DetectCollision()
@@ -228,6 +224,80 @@ namespace Project
                     }
                 }
             }
+        }
+
+        void UpdateMainMenu(GameTime deltaTime)
+        {
+            KeyboardState keyboard = Keyboard.GetState();
+            if (keyboard.IsKeyDown(Keys.Up)) { _state = GameState.Gameplay; }
+        }
+
+        void UpdateGameplay(GameTime deltaTime)
+        {
+            //update player
+            player.Update(deltaTime);
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Update(deltaTime);
+            //update player bullet
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Update(deltaTime);
+            //update enemy bullet
+            for (int i = 0; i < enemyBulletList.Count; i++)
+                enemyBulletList[i].Update(deltaTime);
+            //update enemy 
+            for (int i = 0; i < enemyList.Count; i++)
+                enemyList[i].Update(deltaTime);
+            //update missile
+            for (int i = 0; i < missileList.Count; i++)
+                missileList[i].Update(deltaTime);
+
+            //detect collision
+            DetectCollision();
+
+            if (!Player.playerAlive)
+            {
+                _state = GameState.GameOver;
+            }
+
+        }
+
+        void UpdateGameOver(GameTime deltaTime)
+        {
+
+        }
+
+        void DrawMainMenu(GameTime deltaTime)
+        {
+            GraphicsDevice.Clear(Color.Coral);   
+        }
+
+        void DrawGameplay(GameTime deltaTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            //draw player
+            player.Draw(spriteBatch, deltaTime);
+            //draw player bullet
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Draw(spriteBatch, deltaTime);
+            //draw enemy bullet
+            for (int i = 0; i < enemyBulletList.Count; i++)
+                enemyBulletList[i].Draw(spriteBatch, deltaTime);
+            //draw enemy 
+            for (int i = 0; i < enemyList.Count; i++)
+                enemyList[i].Draw(spriteBatch, deltaTime);
+            //draw missile
+            for (int i = 0; i < missileList.Count; i++)
+                missileList[i].Draw(spriteBatch, deltaTime);
+
+            spriteBatch.End();
+        }
+
+        void DrawGameOver(GameTime deltaTime)
+        {
+            GraphicsDevice.Clear(Color.AntiqueWhite);
         }
     }
 }

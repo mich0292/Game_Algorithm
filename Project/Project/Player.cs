@@ -13,6 +13,7 @@ namespace Project
     {
         private float missileTime; //in seconds
         private float missileRate; //in seconds
+        public static bool playerAlive = true;
 
         public override void Initialize()
         {
@@ -56,6 +57,9 @@ namespace Project
             {
                 missileTime = (float)gameTime.TotalGameTime.TotalSeconds + missileRate;
             }
+
+            //Check whether the player is dead to end the game
+            if (health <= 0) { playerAlive = false;  }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
