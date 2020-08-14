@@ -18,11 +18,11 @@ namespace Project
         {
             //initialize all the variables
             health = 5;
-            fireRate = 200f; //in miliseconds
+            fireRate = 150f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             missileTime = 0f;
             missileRate = 10f;
-            speed = 100.0f;
+            speed = 300.0f;
             name = "player";
             texture = Game1.assets["player"];
             position.X = Game1.window.ClientBounds.Width / 2;

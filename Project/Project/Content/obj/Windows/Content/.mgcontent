@@ -4,8 +4,8 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/bullet.png</File>
-    <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/Player.png</File>
+    <File>D:/GameAlgorithm/Project/Project/Content/bullet.png</File>
+    <File>D:/GameAlgorithm/Project/Project/Content/Player.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
