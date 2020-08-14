@@ -34,7 +34,7 @@ namespace Project
         public static GameWindow window;
 
         public Menu menu;
-        public bool add = false;
+        public bool called = false;
 
         public Game1()
         {
@@ -125,7 +125,12 @@ namespace Project
             switch (_state)
             {
                 case GameState.MainMenu:
-                    DrawMainMenu(gameTime);                        
+                    if (!called)
+                    {
+                        DrawMainMenu(gameTime);
+                        called = true;
+                    }
+                                       
                     break;
                 case GameState.Gameplay:
                     this.Components.Remove(menu);
@@ -275,8 +280,7 @@ namespace Project
 
         void DrawMainMenu(GameTime deltaTime)
         {
-            //GraphicsDevice.Clear(Color.Coral);   
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Coral);   
         }
 
         void DrawGameplay(GameTime deltaTime)
