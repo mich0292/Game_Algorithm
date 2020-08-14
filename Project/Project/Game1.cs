@@ -39,6 +39,7 @@ namespace Project
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
+            this.Components.Add(new Menu(this));
             base.Initialize();
         }
 
