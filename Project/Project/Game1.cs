@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using MonoGame.UI.Forms;
 
 // SceneManagement -> https://community.monogame.net/t/switch-scenes-in-monogame/2605/2
 
@@ -32,12 +33,16 @@ namespace Project
         public static List<Missile> missileList = new List<Missile>();
         public static GameWindow window;
 
+        public Menu menu;
+        public bool add = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             window = this.Window;
+            menu = new Menu(this);
         }
 
         /// <summary>
@@ -50,6 +55,7 @@ namespace Project
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
+            this.Components.Add(menu);
             base.Initialize();
         }
 
@@ -119,9 +125,10 @@ namespace Project
             switch (_state)
             {
                 case GameState.MainMenu:
-                    DrawMainMenu(gameTime);
+                    DrawMainMenu(gameTime);                        
                     break;
                 case GameState.Gameplay:
+                    this.Components.Remove(menu);
                     DrawGameplay(gameTime);
                     break;
                 case GameState.GameOver:
@@ -268,7 +275,8 @@ namespace Project
 
         void DrawMainMenu(GameTime deltaTime)
         {
-            GraphicsDevice.Clear(Color.Coral);   
+            //GraphicsDevice.Clear(Color.Coral);   
+            GraphicsDevice.Clear(Color.CornflowerBlue);
         }
 
         void DrawGameplay(GameTime deltaTime)

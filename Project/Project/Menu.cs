@@ -10,7 +10,7 @@ using MonoGame.UI.Forms;
 
 namespace Project
 {
-    class Menu : ControlManager
+    public class Menu : ControlManager
     {
         public Menu(Game game) : base(game)
         {
@@ -48,7 +48,7 @@ namespace Project
 
         private void QuitGame(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("hihi");
+            System.Environment.Exit(1);
         }
     }
 }
