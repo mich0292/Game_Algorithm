@@ -43,7 +43,7 @@ namespace Project
 
         private void StartGame(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("blabla");
+            Game1._state = GameState.Gameplay;
         }
 
         private void QuitGame(object sender, EventArgs e)
