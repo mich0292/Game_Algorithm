@@ -4,13 +4,19 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/asteroid.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/bullet.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/defaultFont.spritefont</File>
+    <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/exit.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/Player.png</File>
+    <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/start3.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>start.png</File>
   </DestFiles>
 </SourceFileCollection>

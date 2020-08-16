@@ -40,6 +40,8 @@ namespace Project
         //public Menu menu;
         private Button startButton;
         private Button endButton;
+        private float counter;
+        private float collisionTime;
 
 
         public Game1()
@@ -64,6 +66,8 @@ namespace Project
 
             screenWidth = graphics.GraphicsDevice.Viewport.Width; // or Window.ClientBounds.Width
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
+            counter = 0;
+            collisionTime = 0;
         }
 
         /// <summary>
@@ -82,7 +86,7 @@ namespace Project
             assets.Add("playerBullet", Content.Load<Texture2D>("bullet"));
             assets.Add("startButton", Content.Load<Texture2D>("start"));
             assets.Add("endButton", Content.Load<Texture2D>("exit"));
-
+            assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             player.Initialize();
         }
 
@@ -145,7 +149,7 @@ namespace Project
             }    
         }
 
-        public void DetectCollision()
+        public void DetectCollision(GameTime gameTime)
         {
             //detect collision between player and enemy
             for(int i = 0; i < enemyList.Count; i++)
@@ -153,10 +157,12 @@ namespace Project
                 if (player.position.X < enemyList[i].position.X + enemyList[i].texture.Width &&
                     player.position.X + player.texture.Width > enemyList[i].position.X &&
                     player.position.Y < enemyList[i].position.Y + enemyList[i].texture.Height &&
-                    player.position.Y + player.texture.Height > enemyList[i].position.Y)
+                    player.position.Y + player.texture.Height > enemyList[i].position.Y &&
+                    gameTime.TotalGameTime.TotalSeconds > collisionTime)
                 {
                     player.health--;
                     enemyList[i].health--;
+                    collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 5;
 
                     if(player.health <= 0)
                     {
@@ -166,6 +172,7 @@ namespace Project
 
                     if(enemyList[i].health <= 0)
                         enemyList.Remove(enemyList[i]);
+                        
 
                     break;
                 }
@@ -176,18 +183,17 @@ namespace Project
             {
                 for(int j = 0; j < playerBulletList.Count; j++)
                 {
-                    if (enemyList[i].position.X < playerBulletList[i].position.X + playerBulletList[i].texture.Width &&
-                    enemyList[i].position.X + enemyList[i].texture.Width > playerBulletList[i].position.X &&
-                    enemyList[i].position.Y < playerBulletList[i].position.Y + playerBulletList[i].texture.Height &&
-                    enemyList[i].position.Y + enemyList[i].texture.Height > playerBulletList[i].position.Y)
+                    if (enemyList[i].position.X < playerBulletList[j].position.X + playerBulletList[j].texture.Width &&
+                    enemyList[i].position.X + enemyList[i].texture.Width > playerBulletList[j].position.X &&
+                    enemyList[i].position.Y < playerBulletList[j].position.Y + playerBulletList[j].texture.Height &&
+                    enemyList[i].position.Y + enemyList[i].texture.Height > playerBulletList[j].position.Y)
                     {
                         enemyList[i].health--;
 
                         if (enemyList[i].health <= 0)
-                            enemyList.Remove(enemyList[i]);
+                            enemyList.Remove(enemyList[i]);                            
 
-                        playerBulletList.Remove(playerBulletList[i]);
-
+                        playerBulletList.Remove(playerBulletList[j]);
                         break;
                     }
                 }
@@ -264,6 +270,18 @@ namespace Project
 
         void UpdateGameplay(GameTime deltaTime)
         {
+            counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+
+            if(counter >= 10)
+            {
+                counter = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    var asteroid = new Asteroid();
+                    asteroid.Initialize();
+                    enemyList.Add(asteroid);
+                }
+            }
             //update player
             player.Update(deltaTime);
             for (int i = 0; i < playerBulletList.Count; i++)
@@ -282,7 +300,7 @@ namespace Project
                 missileList[i].Update(deltaTime);
 
             //detect collision
-            DetectCollision();
+            DetectCollision(deltaTime);
 
             if (!Player.playerAlive)
             {

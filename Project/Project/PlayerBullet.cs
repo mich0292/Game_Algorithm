@@ -17,6 +17,8 @@ namespace Project
             name = "playerBullet";
             position = Game1.player.position;
             texture = Game1.assets["playerBullet"];
+            orientation = 0f;
+            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
         }
 
         public override void Update(GameTime gameTime)
@@ -29,8 +31,7 @@ namespace Project
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(texture, position,
-                origin: new Vector2(texture.Width / 2.0f, texture.Height / 2.0f));
+            spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
         }
     }
 }

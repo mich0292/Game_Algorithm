@@ -15,6 +15,7 @@ namespace Project
         public float speed;
         public Vector2 position; 
         public Vector2 direction;
+        public Vector2 origin;
         public float orientation;
         public float fireRate;
         public float fireTime;
