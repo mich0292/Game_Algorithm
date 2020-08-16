@@ -18,6 +18,8 @@ namespace Project
             speed = 100.0f;
             fireTime = 0f;
             fireRate = 100.0f;
+            orientation = 0f;
+            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
         }
 
         public override void Update(GameTime gameTime)
@@ -47,8 +49,7 @@ namespace Project
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(texture, position,
-                origin: new Vector2(texture.Width / 2.0f, texture.Height / 2.0f));
+            spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
         }
 
         //Reference from notes Lecture 3, part of kinematic seek
