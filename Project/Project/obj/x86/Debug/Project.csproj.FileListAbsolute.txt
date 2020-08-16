@@ -87,3 +87,4 @@ D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.exe
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.pdb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\start.xnb
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csprojAssemblyReference.cache
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\exit.xnb

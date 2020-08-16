@@ -33,8 +33,14 @@ namespace Project
         public static List<Missile> missileList = new List<Missile>();
         public static GameWindow window;
 
-        public Menu menu;
+        //For measuring the screen
+        private int screenWidth;
+        private int screenHeight;
+
+
+        //public Menu menu;
         private Button startButton;
+        private Button endButton;
         public bool called = false;
 
         public Game1()
@@ -58,6 +64,9 @@ namespace Project
             this.IsMouseVisible = true;
             //this.Components.Add(menu);
             base.Initialize();
+
+            screenWidth = graphics.GraphicsDevice.Viewport.Width; // or Window.ClientBounds.Width
+            screenHeight = graphics.GraphicsDevice.Viewport.Height;
         }
 
         /// <summary>
@@ -75,6 +84,7 @@ namespace Project
             assets.Add("player", Content.Load<Texture2D>("Player"));
             assets.Add("playerBullet", Content.Load<Texture2D>("bullet"));
             assets.Add("startButton", Content.Load<Texture2D>("start"));
+            assets.Add("endButton", Content.Load<Texture2D>("exit"));
 
             player.Initialize();
         }
@@ -244,9 +254,21 @@ namespace Project
         {
             MouseState MouseInput = Mouse.GetState();
            
-            startButton = new Button("startButton", Game1.assets["startButton"], 250, 250);
+            startButton = new Button("startButton", Game1.assets["startButton"], screenWidth/2 - Game1.assets["startButton"].Width/2, 150);
+            endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, 250);
 
-            if (MouseInput.LeftButton == ButtonState.Pressed && startButton.enterButton(MouseInput)) { _state = GameState.Gameplay; }
+            if (MouseInput.LeftButton == ButtonState.Pressed)
+            {
+                if (startButton.enterButton(MouseInput))
+                {
+                    _state = GameState.Gameplay;
+                }
+                if (endButton.enterButton(MouseInput))
+                {
+                    Exit();
+                }
+            }
+
         }
 
         void UpdateGameplay(GameTime deltaTime)
@@ -288,6 +310,7 @@ namespace Project
             GraphicsDevice.Clear(Color.Coral);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             startButton.Draw(spriteBatch);
+            endButton.Draw(spriteBatch);
             spriteBatch.End();
         }
 
