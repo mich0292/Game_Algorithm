@@ -41,6 +41,7 @@ namespace Project
         private Button startButton;
         private Button endButton;
         private float counter;
+        private float collisionTime;
 
 
         public Game1()
@@ -66,6 +67,7 @@ namespace Project
             screenWidth = graphics.GraphicsDevice.Viewport.Width; // or Window.ClientBounds.Width
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
             counter = 0;
+            collisionTime = 0;
         }
 
         /// <summary>
@@ -147,7 +149,7 @@ namespace Project
             }    
         }
 
-        public void DetectCollision()
+        public void DetectCollision(GameTime gameTime)
         {
             //detect collision between player and enemy
             for(int i = 0; i < enemyList.Count; i++)
@@ -155,10 +157,12 @@ namespace Project
                 if (player.position.X < enemyList[i].position.X + enemyList[i].texture.Width &&
                     player.position.X + player.texture.Width > enemyList[i].position.X &&
                     player.position.Y < enemyList[i].position.Y + enemyList[i].texture.Height &&
-                    player.position.Y + player.texture.Height > enemyList[i].position.Y)
+                    player.position.Y + player.texture.Height > enemyList[i].position.Y &&
+                    gameTime.TotalGameTime.TotalSeconds > collisionTime)
                 {
                     player.health--;
                     enemyList[i].health--;
+                    collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 5;
 
                     if(player.health <= 0)
                     {
@@ -168,6 +172,7 @@ namespace Project
 
                     if(enemyList[i].health <= 0)
                         enemyList.Remove(enemyList[i]);
+                        
 
                     break;
                 }
@@ -186,7 +191,7 @@ namespace Project
                         enemyList[i].health--;
 
                         if (enemyList[i].health <= 0)
-                            enemyList.Remove(enemyList[i]);
+                            enemyList.Remove(enemyList[i]);                            
 
                         playerBulletList.Remove(playerBulletList[j]);
                         break;
@@ -266,9 +271,8 @@ namespace Project
         void UpdateGameplay(GameTime deltaTime)
         {
             counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
-            System.Diagnostics.Debug.WriteLine("Counter: " + counter);
 
-            if(counter >= 5)
+            if(counter >= 10)
             {
                 counter = 0;
                 for (int i = 0; i < 5; i++)
@@ -296,7 +300,7 @@ namespace Project
                 missileList[i].Update(deltaTime);
 
             //detect collision
-            DetectCollision();
+            DetectCollision(deltaTime);
 
             if (!Player.playerAlive)
             {

@@ -14,18 +14,19 @@ namespace Project
     {
         private float displace;
         private Vector2 velocity;
-        private Random rand;
+        private static Random rand;
 
         public override void Initialize()
         {
             //initialize all the variables
+            health = 1;
             speed = 100.0f;
             name = "asteroid";
             texture = Game1.assets["asteroid"];
             orientation = 0f;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             rand = new Random();
-            velocity = new Vector2(1.0f, 0.0f);
+            velocity = new Vector2(0.0f, 1.0f);
             displace = 20f;
             position = new Vector2(rand.Next(0, Game1.window.ClientBounds.Width), Game1.window.ClientBounds.Height);
         }
