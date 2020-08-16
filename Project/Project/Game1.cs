@@ -8,7 +8,7 @@ using MonoGame.UI.Forms;
 
 namespace Project
 {
-    enum GameState
+    public enum GameState
     {
         MainMenu,
         Gameplay,
@@ -20,7 +20,7 @@ namespace Project
     /// </summary>
     public class Game1 : Game
     {
-        GameState _state;
+        public static GameState _state;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -130,7 +130,7 @@ namespace Project
                         DrawMainMenu(gameTime);
                         called = true;
                     }
-                                       
+
                     break;
                 case GameState.Gameplay:
                     this.Components.Remove(menu);
