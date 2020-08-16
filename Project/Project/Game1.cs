@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using MonoGame.UI.Forms;
 
 // SceneManagement -> https://community.monogame.net/t/switch-scenes-in-monogame/2605/2
 
@@ -41,7 +40,7 @@ namespace Project
         //public Menu menu;
         private Button startButton;
         private Button endButton;
-        public bool called = false;
+
 
         public Game1()
         {
@@ -49,7 +48,6 @@ namespace Project
             Content.RootDirectory = "Content";
 
             window = this.Window;
-            //menu = new Menu(this);
         }
 
         /// <summary>
@@ -62,7 +60,6 @@ namespace Project
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
-            //this.Components.Add(menu);
             base.Initialize();
 
             screenWidth = graphics.GraphicsDevice.Viewport.Width; // or Window.ClientBounds.Width
@@ -137,15 +134,9 @@ namespace Project
             switch (_state)
             {
                 case GameState.MainMenu:
-                    if (!called)
-                    {
-                        DrawMainMenu(gameTime);
-                        called = true;
-                    }
-
+                    DrawMainMenu(gameTime);
                     break;
                 case GameState.Gameplay:
-                    //this.Components.Remove(menu);
                     DrawGameplay(gameTime);
                     break;
                 case GameState.GameOver:
