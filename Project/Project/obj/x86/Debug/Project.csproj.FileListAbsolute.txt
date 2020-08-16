@@ -85,3 +85,4 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CopyComplete
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.exe
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.pdb
+D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csprojAssemblyReference.cache
