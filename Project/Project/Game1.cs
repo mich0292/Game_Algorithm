@@ -34,6 +34,7 @@ namespace Project
         public static GameWindow window;
 
         public Menu menu;
+        private Button startButton;
         public bool called = false;
 
         public Game1()
@@ -42,7 +43,7 @@ namespace Project
             Content.RootDirectory = "Content";
 
             window = this.Window;
-            menu = new Menu(this);
+            //menu = new Menu(this);
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Project
         {
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
-            this.Components.Add(menu);
+            //this.Components.Add(menu);
             base.Initialize();
         }
 
@@ -73,6 +74,7 @@ namespace Project
             //Load content here
             assets.Add("player", Content.Load<Texture2D>("Player"));
             assets.Add("playerBullet", Content.Load<Texture2D>("bullet"));
+            assets.Add("startButton", Content.Load<Texture2D>("start"));
 
             player.Initialize();
         }
@@ -133,7 +135,7 @@ namespace Project
 
                     break;
                 case GameState.Gameplay:
-                    this.Components.Remove(menu);
+                    //this.Components.Remove(menu);
                     DrawGameplay(gameTime);
                     break;
                 case GameState.GameOver:
@@ -240,8 +242,11 @@ namespace Project
 
         void UpdateMainMenu(GameTime deltaTime)
         {
-            KeyboardState keyboard = Keyboard.GetState();
-            if (keyboard.IsKeyDown(Keys.Up)) { _state = GameState.Gameplay; }
+            MouseState MouseInput = Mouse.GetState();
+           
+            startButton = new Button("startButton", Game1.assets["startButton"], 250, 250);
+
+            if (MouseInput.LeftButton == ButtonState.Pressed && startButton.enterButton(MouseInput)) { _state = GameState.Gameplay; }
         }
 
         void UpdateGameplay(GameTime deltaTime)
@@ -280,7 +285,10 @@ namespace Project
 
         void DrawMainMenu(GameTime deltaTime)
         {
-            GraphicsDevice.Clear(Color.Coral);   
+            GraphicsDevice.Clear(Color.Coral);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            startButton.Draw(spriteBatch);
+            spriteBatch.End();
         }
 
         void DrawGameplay(GameTime deltaTime)

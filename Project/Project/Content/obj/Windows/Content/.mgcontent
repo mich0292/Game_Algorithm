@@ -7,10 +7,12 @@
     <File>D:/GameAlgorithm/Project/Project/Content/bullet.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/defaultFont.spritefont</File>
     <File>D:/GameAlgorithm/Project/Project/Content/Player.png</File>
+    <File>D:/GameAlgorithm/Project/Project/Content/start3.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File>start.png</File>
   </DestFiles>
 </SourceFileCollection>

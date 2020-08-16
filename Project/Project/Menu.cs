@@ -10,8 +10,8 @@ using MonoGame.UI.Forms;
 
 namespace Project
 {
-    public class Menu : ControlManager
-    {
+    public class Menu
+    { /*: ControlManager
         public Menu(Game game) : base(game)
         {
 
@@ -49,6 +49,6 @@ namespace Project
         private void QuitGame(object sender, EventArgs e)
         {
             System.Environment.Exit(1);
-        }
+        }*/
     }
 }

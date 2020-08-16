@@ -42,6 +42,8 @@ C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\T
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csprojAssemblyReference.cache
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.UI.Forms.dll
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\defaultFont.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.xml
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CoreCompileInputs.cache
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\bullet.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\defaultFont.xnb
@@ -53,7 +55,6 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphic
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.dll
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.dll
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.dll
-D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.dll
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.UI.Forms.dll
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Newtonsoft.Json.dll
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
@@ -73,7 +74,6 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.p
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.xml
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.pdb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.xml
-D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.xml
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Newtonsoft.Json.xml
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.xml
@@ -85,4 +85,5 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CopyComplete
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.exe
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\start.xnb
 D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csprojAssemblyReference.cache

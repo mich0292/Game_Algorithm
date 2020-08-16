@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/GameAlgorithm/testing2/testing2/Content/star_galaxy_glow_light_95414_1280x720.jpg</SourceFile>
-  <SourceTime>2020-08-16T21:59:09.5596595+08:00</SourceTime>
-  <DestFile>D:/GameAlgorithm/testing2/testing2/Content/bin/Windows/Content/star_galaxy_glow_light_95414_1280x720.xnb</DestFile>
-  <DestTime>2020-08-16T22:05:45.6370986+08:00</DestTime>
+  <SourceFile>D:/GameAlgorithm/Project/Project/Content/start3.png</SourceFile>
+  <SourceTime>2020-08-16T22:38:28.9335189+08:00</SourceTime>
+  <DestFile>D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/start.xnb</DestFile>
+  <DestTime>2020-08-16T22:38:57.1200447+08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-09T00:35:54+08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
