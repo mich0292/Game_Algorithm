@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
+// References used:
 // SceneManagement -> https://community.monogame.net/t/switch-scenes-in-monogame/2605/2
+// Camera -> https://stackoverflow.com/questions/17452808/moving-a-camera-in-xna-c-sharp
 
 namespace Project
 {
@@ -33,9 +35,8 @@ namespace Project
         public static GameWindow window;
 
         //For measuring the screen
-        private int screenWidth;
-        private int screenHeight;
-
+        public static int screenWidth;
+        public static int screenHeight;
 
         //public Menu menu;
         private Button startButton;
@@ -124,7 +125,6 @@ namespace Project
                 case GameState.GameOver:
                     UpdateGameOver(gameTime);
                     break;
-
             }
         }
 
@@ -162,13 +162,7 @@ namespace Project
                 {
                     player.health--;
                     enemyList[i].health--;
-                    collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 5;
-
-                    if(player.health <= 0)
-                    {
-                        //player lose
-                        //proceed to lose menu
-                    }
+                    collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
 
                     if(enemyList[i].health <= 0)
                         enemyList.Remove(enemyList[i]);

@@ -28,10 +28,11 @@ namespace Project
             rand = new Random();
             velocity = new Vector2(0.0f, 1.0f);
             displace = 20f;
-            position = new Vector2(rand.Next(0, Game1.window.ClientBounds.Width), Game1.window.ClientBounds.Height);
+            position = new Vector2(rand.Next(0, Game1.screenWidth), Game1.screenHeight);
         }
 
         //reference from Lab code
+        // https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-wander--gamedev-1624
         public override void Update(GameTime gameTime)
         {
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
