@@ -14,7 +14,7 @@ namespace Project
         public int health;
         public float speed;
         public Vector2 position; 
-        public Vector2 direction;
+        public Vector2 velocity; // the direction vector
         public Vector2 origin;
         public float orientation;
         public float fireRate;

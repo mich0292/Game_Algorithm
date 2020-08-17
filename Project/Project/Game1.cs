@@ -273,7 +273,7 @@ namespace Project
             if(counter >= 2)
             {
                 counter = 0;
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     var asteroid = new Asteroid();
                     asteroid.Initialize();
