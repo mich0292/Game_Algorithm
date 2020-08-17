@@ -37,7 +37,7 @@ namespace Project
             rand = new Random();
             velocity = new Vector2(0.0f, 1.0f);
             displace = 20f;
-            position = new Vector2(rand.Next(0, Game1.screenWidth), Game1.screenHeight);
+            position = new Vector2(rand.Next(0, Game1.screenWidth), 0);
         }
 
         public override void Update(GameTime gameTime)
@@ -56,15 +56,11 @@ namespace Project
             */
             Orientation(velocity);
 
-            if (position.X < 0)
-                position.X = Game1.window.ClientBounds.Width - 30;
-            else if (position.X > Game1.window.ClientBounds.Width)
-                position.X = 0;
-
-            if (position.Y < 0)
-                position.Y = Game1.window.ClientBounds.Height - 30;
-            else if (position.Y > Game1.window.ClientBounds.Height)
-                position.Y = 0;
+            if (position.X > Game1.window.ClientBounds.Width || position.X < 0 || position.Y > Game1.window.ClientBounds.Height 
+                || position.Y < 0)
+            {
+                Game1.enemyList.Remove(this);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -85,7 +81,7 @@ namespace Project
             Vector2 circleCenter = velocity * WANDER_OFFSET;
 
             //Debug.WriteLine("circle Center = ", circleCenter.ToString());
-            //Debug.WriteLine("velocity = ", velocity.ToString());
+            /Debug.WriteLine("velocity = ", velocity.ToString());
 
             //Find the displacement (a point around the circle circumference)
             double randomNumber = rand.NextDouble();

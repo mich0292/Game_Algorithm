@@ -25,8 +25,11 @@ namespace Project
         {
             position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if(position.X > Game1.window.ClientBounds.Width || position.X < 0 || position.Y > Game1.window.ClientBounds.Height || position.Y < 0)
-                Game1.playerBulletList.Remove(this);                
+            if(position.X > Game1.window.ClientBounds.Width || position.X < 0 || position.Y > Game1.window.ClientBounds.Height 
+                || position.Y < 0)
+            {
+                Game1.playerBulletList.Remove(this);
+            }                         
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
