@@ -61,12 +61,18 @@ namespace Project
             }
 
             //Check whether the player is dead to end the game
-            if (health <= 0) { playerAlive = false;  }
+            if (health == 0) { playerAlive = false;  }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
+        }
+
+        public void revivePlayer()
+        {
+            health = 5;
+            playerAlive = true;
         }
     }
 }

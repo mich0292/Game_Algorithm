@@ -3,5 +3,7 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "D:/GameAlgorithm/Project/Project/Content/bullet.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/bullet.xnb","TextureProcessor","Texture2DContent",408,2789,0.005
 "D:/GameAlgorithm/Project/Project/Content/defaultFont.spritefont","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/defaultFont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21521,0.8081822
 "D:/GameAlgorithm/Project/Project/Content/exit.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/exit.xnb","TextureProcessor","Texture2DContent",13371,100885,0.0220054
+"D:/GameAlgorithm/Project/Project/Content/menu.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/menu.xnb","TextureProcessor","Texture2DContent",12964,100885,0.329354
 "D:/GameAlgorithm/Project/Project/Content/Player.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/Player.xnb","TextureProcessor","Texture2DContent",6012,25461,0.0160032
+"D:/GameAlgorithm/Project/Project/Content/restart.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/restart.xnb","TextureProcessor","Texture2DContent",14026,100885,0.0230087
 "D:/GameAlgorithm/Project/Project/Content/start3.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/start.xnb","TextureProcessor","Texture2DContent",18725,100885,0.0220045

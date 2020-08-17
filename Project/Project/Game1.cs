@@ -41,6 +41,8 @@ namespace Project
         //public Menu menu;
         private Button startButton;
         private Button endButton;
+        private Button restartButton;
+        private Button menuButton;
         private float counter;
         private float collisionTime;
 
@@ -69,6 +71,10 @@ namespace Project
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
             counter = 0;
             collisionTime = 0;
+
+            startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
+            endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
+            restartButton = new Button("restartButton", Game1.assets["restartButton"], screenWidth / 2 - Game1.assets["restartButton"].Width / 2, screenHeight / 2 - Game1.assets["restartButton"].Height / 2);          
         }
 
         /// <summary>
@@ -81,12 +87,14 @@ namespace Project
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-
+            // http://pixelartmaker.com/offshoot/a8bcafa2d30a8be -> for making buttons 
             //Load content here
             assets.Add("player", Content.Load<Texture2D>("Player"));
             assets.Add("playerBullet", Content.Load<Texture2D>("bullet"));
             assets.Add("startButton", Content.Load<Texture2D>("start"));
             assets.Add("endButton", Content.Load<Texture2D>("exit"));
+            assets.Add("restartButton", Content.Load<Texture2D>("restart"));
+            assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             player.Initialize();
         }
@@ -244,9 +252,6 @@ namespace Project
         void UpdateMainMenu(GameTime deltaTime)
         {
             MouseState MouseInput = Mouse.GetState();
-           
-            startButton = new Button("startButton", Game1.assets["startButton"], screenWidth/2 - Game1.assets["startButton"].Width/2, 150);
-            endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, 250);
 
             if (MouseInput.LeftButton == ButtonState.Pressed)
             {
@@ -259,14 +264,13 @@ namespace Project
                     Exit();
                 }
             }
-
         }
 
         void UpdateGameplay(GameTime deltaTime)
         {
             counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
 
-            if(counter >= 10)
+            if(counter >= 2)
             {
                 counter = 0;
                 for (int i = 0; i < 5; i++)
@@ -299,13 +303,31 @@ namespace Project
             if (!Player.playerAlive)
             {
                 _state = GameState.GameOver;
+                playerBulletList.Clear();
+                enemyBulletList.Clear();
+                enemyList.Clear();
+                missileList.Clear();
             }
 
         }
 
         void UpdateGameOver(GameTime deltaTime)
         {
+            MouseState MouseInput = Mouse.GetState();
 
+            if (MouseInput.LeftButton == ButtonState.Pressed)
+            {
+                if (restartButton.enterButton(MouseInput))
+                {
+                    _state = GameState.Gameplay;
+                    //current player health is 0 ((because of gameover)
+                    player.revivePlayer();
+                }
+                if (endButton.enterButton(MouseInput))
+                {
+                    Exit();
+                }
+            }
         }
 
         void DrawMainMenu(GameTime deltaTime)
@@ -344,6 +366,10 @@ namespace Project
         void DrawGameOver(GameTime deltaTime)
         {
             GraphicsDevice.Clear(Color.AntiqueWhite);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            restartButton.Draw(spriteBatch);
+            endButton.Draw(spriteBatch);
+            spriteBatch.End();
         }
     }
 }
