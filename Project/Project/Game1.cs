@@ -283,8 +283,6 @@ namespace Project
             }
             //update player
             player.Update(deltaTime);
-            for (int i = 0; i < playerBulletList.Count; i++)
-                playerBulletList[i].Update(deltaTime);
             //update player bullet
             for (int i = 0; i < playerBulletList.Count; i++)
                 playerBulletList[i].Update(deltaTime);
@@ -309,7 +307,6 @@ namespace Project
                 enemyList.Clear();
                 missileList.Clear();
             }
-
         }
 
         void UpdateGameOver(GameTime deltaTime)
