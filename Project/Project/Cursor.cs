@@ -8,35 +8,49 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project
 {
-    public class Missile : GameObject
+    public class Cursor : GameObject
     {
         public GameObject target;
 
         public override void Initialize()
         {
             //initialize all the variables
-            speed = 300.0f;
-            name = "missile";
-            texture = Game1.assets["missile"];
+            name = "cursor";
+            texture = Game1.assets["cursor"];
             position.X = Game1.window.ClientBounds.Width / 2;
             position.Y = Game1.window.ClientBounds.Height / 2;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
+            target = null;
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (Game1.enemyList.Contains(target))
+            if (target != null)
             {
-                //path finding
+                if (Game1.enemyList.Contains(target))
+                    position = target.position;
+                else
+                    target = null;
             }
-            else
-                Game1.missileList.Remove(this);
+        }
+
+        public void SelectTarget()
+        {
+            for (int i = 0; i < Game1.enemyList.Count; i++)
+            {
+                if (target != Game1.enemyList[i])
+                {
+                    target = Game1.enemyList[i];
+                    break;
+                }
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
+            if (target != null)
+                spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
         }
     }
 }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Asteroid.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="Cursor.cs" />
     <Compile Include="Missile.cs" />
     <Compile Include="PlayerBullet.cs" />
     <Compile Include="Enemy2.cs" />

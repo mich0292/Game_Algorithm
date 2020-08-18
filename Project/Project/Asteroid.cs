@@ -81,12 +81,12 @@ namespace Project
             Vector2 circleCenter = velocity * WANDER_OFFSET;
 
             //Debug.WriteLine("circle Center = ", circleCenter.ToString());
-            /Debug.WriteLine("velocity = ", velocity.ToString());
+            //Debug.WriteLine("velocity = ", velocity.ToString());
 
             //Find the displacement (a point around the circle circumference)
             double randomNumber = rand.NextDouble();
             float numberInRightRange = MathHelper.Lerp(-1, +1, (float)randomNumber);
-            Debug.WriteLine(numberInRightRange);
+            //Debug.WriteLine(numberInRightRange);
             Vector2 displacement = new Vector2(numberInRightRange, 0) * WANDER_RADIUS;
             displacement = setAngle(displacement, wanderAngle);
 

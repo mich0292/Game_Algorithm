@@ -96,6 +96,7 @@ namespace Project
             assets.Add("restartButton", Content.Load<Texture2D>("restart"));
             assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
+            assets.Add("cursor", Content.Load<Texture2D>("cursor"));
             player.Initialize();
         }
 
