@@ -345,7 +345,7 @@ namespace Project
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.FrontToBack);
             //draw player
             player.Draw(spriteBatch, deltaTime);
             //draw player bullet
