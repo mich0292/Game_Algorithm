@@ -91,12 +91,17 @@ namespace Project
             //Load content here
             assets.Add("player", Content.Load<Texture2D>("Player"));
             assets.Add("playerBullet", Content.Load<Texture2D>("bullet"));
+            assets.Add("enemyBullet", Content.Load<Texture2D>("bullet")); //change the file!!!
             assets.Add("startButton", Content.Load<Texture2D>("start"));
             assets.Add("endButton", Content.Load<Texture2D>("exit"));
             assets.Add("restartButton", Content.Load<Texture2D>("restart"));
             assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             assets.Add("cursor", Content.Load<Texture2D>("cursor"));
+            assets.Add("enemy1", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
             player.Initialize();
         }
 
