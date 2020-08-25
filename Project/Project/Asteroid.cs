@@ -16,13 +16,12 @@ namespace Project
 {
     public class Asteroid : GameObject
     {
-        private float displace;
-        private float wanderAngle;
+        private float wanderAngle, wanderTime;
         private static Random rand;
 
         private const float WANDER_OFFSET = 5.0f;
         private const float WANDER_RADIUS = 2.0f;
-        private const float WANDER_RATE = 5.0f;
+        private const float WANDER_RATE = 50.0f; //in miliseconds
         private const float ANGLE_CHANGE = 0.5f;
 
         public override void Initialize()
@@ -36,17 +35,20 @@ namespace Project
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             rand = new Random();
             velocity = new Vector2(0.0f, 1.0f);
-            displace = 20f;
             position = new Vector2(rand.Next(0, Game1.screenWidth), 0);
+            wanderTime = 0.0f;
         }
 
         public override void Update(GameTime gameTime)
         {
-            Vector2 wanderForce = Wander();
-            velocity += wanderForce;
-            velocity.Normalize();
-            velocity *= speed;
-
+            if (gameTime.TotalGameTime.TotalMilliseconds > wanderTime )
+            {
+                wanderTime = (float)gameTime.TotalGameTime.TotalMilliseconds + WANDER_RATE;
+                Vector2 wanderForce = Wander();
+                velocity += wanderForce;
+                velocity.Normalize();
+                velocity *= speed;
+            }
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             /*
             Vector2 displacement = new Vector2(rand.Next(-1, 2) * displace, rand.Next(-1, 2) * displace);

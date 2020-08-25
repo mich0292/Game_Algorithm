@@ -13,7 +13,7 @@ namespace Project
         public override void Initialize()
         {
             //initialize all the variables
-            speed = 100.0f;
+            speed = 300.0f;
             name = "playerBullet";
             position = Game1.player.position;
             texture = Game1.assets["playerBullet"];
