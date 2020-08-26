@@ -32,27 +32,26 @@ namespace Project
         public static List<GameObject> enemyList = new List<GameObject>();
         public static List<GameObject> enemyBulletList = new List<GameObject>();
         public static List<Missile> missileList = new List<Missile>();
-        public static GameWindow window;
 
         //For measuring the screen
         public static int screenWidth;
         public static int screenHeight;
 
-        //public Menu menu;
         private Button startButton;
         private Button endButton;
         private Button restartButton;
         private Button menuButton;
+        //Asteroid
         private float counter;
+        //Player collision
         private float collisionTime;
-
+        //Menu title
+        private UI menuTitle;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            window = this.Window;
         }
 
         /// <summary>
@@ -102,6 +101,7 @@ namespace Project
             assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
+            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
             player.Initialize();
         }
 
@@ -338,6 +338,7 @@ namespace Project
             GraphicsDevice.Clear(Color.Coral);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             startButton.Draw(spriteBatch);
+            menuTitle.Draw(spriteBatch, deltaTime);
             endButton.Draw(spriteBatch);
             spriteBatch.End();
         }

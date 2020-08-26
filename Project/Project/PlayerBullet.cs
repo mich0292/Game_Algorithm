@@ -25,7 +25,7 @@ namespace Project
         {
             position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if(position.X > Game1.window.ClientBounds.Width || position.X < 0 || position.Y > Game1.window.ClientBounds.Height 
+            if(position.X > Game1.screenWidth || position.X < 0 || position.Y > Game1.screenHeight
                 || position.Y < 0)
             {
                 Game1.playerBulletList.Remove(this);

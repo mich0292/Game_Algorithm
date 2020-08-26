@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/GameAlgorithm/Project/Project/Content/cursor.png</SourceFile>
-  <SourceTime>2020-08-26T00:03:01.7144693+08:00</SourceTime>
-  <DestFile>D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/cursor.xnb</DestFile>
-  <DestTime>2020-08-26T00:22:24.9891682+08:00</DestTime>
+  <SourceFile>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/cursor.png</SourceFile>
+  <SourceTime>2012-07-04T09:33:40+08:00</SourceTime>
+  <DestFile>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/bin/Windows/Content/cursor.xnb</DestFile>
+  <DestTime>2020-08-26T22:20:32.0185265+08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-09T00:35:54+08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

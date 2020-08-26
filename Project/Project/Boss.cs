@@ -22,8 +22,8 @@ namespace Project
             speed = 300.0f;
             name = "boss";
             texture = Game1.assets["boss"];
-            position.X = Game1.window.ClientBounds.Width / 2;
-            position.Y = Game1.window.ClientBounds.Height / 2;
+            position.X = Game1.screenWidth / 2;
+            position.Y = Game1.screenHeight / 2;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
         }

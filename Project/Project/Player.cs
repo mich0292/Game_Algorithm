@@ -27,8 +27,8 @@ namespace Project
             speed = 300.0f;
             name = "player";
             texture = Game1.assets["player"];
-            position.X = Game1.window.ClientBounds.Width / 2;
-            position.Y = Game1.window.ClientBounds.Height / 2;
+            position.X = Game1.screenWidth / 2;
+            position.Y = Game1.screenHeight / 2;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
             cursor = new Cursor();
@@ -42,11 +42,11 @@ namespace Project
             //moving the player
             if (keyboard.IsKeyDown(Keys.Up) && position.Y > 0 + texture.Height / 2)
                 position.Y -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            else if (keyboard.IsKeyDown(Keys.Down) && position.Y < Game1.window.ClientBounds.Height - texture.Height / 2)
+            else if (keyboard.IsKeyDown(Keys.Down) && position.Y < Game1.screenHeight - texture.Height / 2)
                 position.Y += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             else if (keyboard.IsKeyDown(Keys.Left) && position.X > 0 + texture.Width / 2)
                 position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            else if (keyboard.IsKeyDown(Keys.Right) && position.X < Game1.window.ClientBounds.Width - texture.Width / 2)
+            else if (keyboard.IsKeyDown(Keys.Right) && position.X < Game1.screenWidth - texture.Width / 2)
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             //player fire bullet
