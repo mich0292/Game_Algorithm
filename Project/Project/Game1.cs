@@ -73,7 +73,8 @@ namespace Project
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
-            restartButton = new Button("restartButton", Game1.assets["restartButton"], screenWidth / 2 - Game1.assets["restartButton"].Width / 2, screenHeight / 2 - Game1.assets["restartButton"].Height / 2);          
+            restartButton = new Button("restartButton", Game1.assets["restartButton"], screenWidth / 2 - Game1.assets["restartButton"].Width / 2, screenHeight / 2 - Game1.assets["restartButton"].Height / 2);
+            player.Initialize();
         }
 
         /// <summary>
@@ -101,8 +102,7 @@ namespace Project
             assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
-            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
-            player.Initialize();
+            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));            
         }
 
         /// <summary>
