@@ -42,7 +42,7 @@ namespace Project
         private Button startButton;
         private Button endButton;
         private Button restartButton;
-        private Button menuButton;
+        //private Button menuButton;
         //Asteroid
         private float counter;
         //Player collision
@@ -104,7 +104,7 @@ namespace Project
             assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             assets.Add("cursor", Content.Load<Texture2D>("cursor"));
-            assets.Add("enemy1", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); //change the file!!!
             assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
@@ -291,7 +291,10 @@ namespace Project
                 for (int i = 0; i < 1; i++)
                 {
                     var asteroid = new Asteroid();
+                    var enemy = new Enemy1();
                     asteroid.Initialize();
+                    enemy.Initialize();
+                    enemyList.Add(enemy);
                     enemyList.Add(asteroid);
                 }
             }

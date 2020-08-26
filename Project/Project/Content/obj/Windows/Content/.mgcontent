@@ -7,6 +7,7 @@
     <File>D:/GameAlgorithm/Project/Project/Content/asteroid.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/background1.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/bullet.png</File>
+    <File>D:/GameAlgorithm/Project/Project/Content/Cruiser_57x49.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/cursor.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/exit.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/font.spritefont</File>
@@ -19,6 +20,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File>enemy1.png</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

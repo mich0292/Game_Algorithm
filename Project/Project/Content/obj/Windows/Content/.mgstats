@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "D:/GameAlgorithm/Project/Project/Content/background1.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/background1.xnb","TextureProcessor","Texture2DContent",7346,646501,0.1550364
+"D:/GameAlgorithm/Project/Project/Content/Cruiser_57x49.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/enemy1.xnb","TextureProcessor","Texture2DContent",2196,11257,0.1200281
 "D:/GameAlgorithm/Project/Project/Content/start3.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/start.xnb","TextureProcessor","Texture2DContent",18725,100885,0.0060023

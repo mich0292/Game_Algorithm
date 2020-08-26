@@ -45,10 +45,10 @@
     <Compile Include="Boss.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Cursor.cs" />
+    <Compile Include="Enemy1.cs" />
     <Compile Include="EnemyBullet.cs" />
     <Compile Include="Missile.cs" />
     <Compile Include="PlayerBullet.cs" />
-    <Compile Include="Enemy2.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Player.cs" />

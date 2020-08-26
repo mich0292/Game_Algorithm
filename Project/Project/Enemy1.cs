@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Project
 {
-    class Enemy2:GameObject
+    class Enemy1:GameObject
     {
         public override void Initialize()
         {
@@ -19,7 +19,8 @@ namespace Project
             fireTime = 0f;
             fireRate = 100.0f;
             orientation = 0f;
-            texture = Game1.assets["player"];
+            texture = Game1.assets["enemy1"];
+            position = new Vector2(0, 0);
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
         }
 
@@ -31,13 +32,12 @@ namespace Project
 
         //Reference from notes Lecture 3
         public void KinematicSeek(GameTime gameTime)
-        {            
+        {
             Vector2 velocity = Game1.player.position - position;
             velocity.Normalize();
-
             velocity *= speed;
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Orientation(velocity);            
+            Orientation(velocity);
         }
 
         public void LineOfSight(GameTime gameTime)
