@@ -6,6 +6,8 @@ using System.Collections.Generic;
 // References used:
 // SceneManagement -> https://community.monogame.net/t/switch-scenes-in-monogame/2605/2
 // Camera -> https://stackoverflow.com/questions/17452808/moving-a-camera-in-xna-c-sharp
+// Camera -> https://www.youtube.com/watch?v=zPdmkFDT5Qo
+//UI (Sprite Fonts) -> https://www.youtube.com/watch?v=x_c19loJ9Ds
 
 namespace Project
 {
@@ -47,6 +49,10 @@ namespace Project
         private float collisionTime;
         //Menu title
         private UI menuTitle;
+        //Scrolling Background
+        private ScrollingBackground bg1;
+        private ScrollingBackground bg2;
+        
 
         public Game1()
         {
@@ -102,7 +108,10 @@ namespace Project
             assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
-            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));            
+            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
+            //load background here
+            //bg1 = new ScrollingBackground(Content.Load<Texture2D>(), new Rectangle());
+            //bg2 = new ScrollingBackground(Content.Load<Texture2D>(), new Rectangle());
         }
 
         /// <summary>

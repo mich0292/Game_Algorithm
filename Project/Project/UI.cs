@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project
 {
+
     public class UI
     {
         public SpriteFont font;
