@@ -21,7 +21,7 @@ namespace Project
 
         private const float WANDER_OFFSET = 5.0f;
         private const float WANDER_RADIUS = 2.0f;
-        private const float WANDER_RATE = 50.0f; //in miliseconds
+        private const float WANDER_RATE = 100.0f; //in miliseconds
         private const float ANGLE_CHANGE = 0.5f;
 
         public override void Initialize()
