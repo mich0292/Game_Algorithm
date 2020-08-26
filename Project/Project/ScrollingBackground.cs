@@ -29,6 +29,5 @@ namespace Project
         {
             spriteBatch.Draw(texture, rec, Color.White);
         }
-
     }
 }
