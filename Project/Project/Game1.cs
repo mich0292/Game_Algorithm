@@ -309,6 +309,17 @@ namespace Project
             //update missile
             for (int i = 0; i < missileList.Count; i++)
                 missileList[i].Update(deltaTime);
+            //update background
+            //if (bg1.rec.Y >= 500)
+            //{
+            //    bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
+            //}
+            //if (bg2.rec.Y >= 500)
+            //{
+            //    bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
+            //}
+            //bg1.Update();
+            //bg2.Update();
 
             //detect collision
             DetectCollision(deltaTime);
@@ -372,6 +383,10 @@ namespace Project
             //draw missile
             for (int i = 0; i < missileList.Count; i++)
                 missileList[i].Draw(spriteBatch, deltaTime);
+
+            //draw background
+            //bg1.Draw(spriteBatch, deltaTime);
+            //bg2.Draw(spriteBatch, deltaTime);
 
             spriteBatch.End();
         }
