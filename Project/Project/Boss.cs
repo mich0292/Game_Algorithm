@@ -10,8 +10,8 @@ namespace Project
 {
     public class Boss : GameObject
     {
-        public enum State { avoid, attack, attack_faster};
-        public State currentState;
+        public enum BossState { avoid, attack, attack_faster};
+        public static BossState currentState;
 
         public override void Initialize()
         {
@@ -30,9 +30,30 @@ namespace Project
 
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            switch (currentState)
+            {
+                case BossState.avoid: UpdateAvoid(); break;
+                case BossState.attack: UpdateAttack(); break;
+                case BossState.attack_faster: UpdateAttackFaster(); break;
+                  
+            }
         }
 
+        void UpdateAvoid()
+        {
+
+        }
+
+        void UpdateAttack()
+        {
+
+        }
+
+        void UpdateAttackFaster()
+        {
+            fireRate = 75f;
+        }
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
