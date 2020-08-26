@@ -14,6 +14,7 @@
     <File>D:/GameAlgorithm/Project/Project/Content/menu.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/Player.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/restart.png</File>
+    <File>D:/GameAlgorithm/Project/Project/Content/rocket.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/start3.png</File>
   </SourceFiles>
   <DestFiles>
@@ -21,6 +22,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>enemy1.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
