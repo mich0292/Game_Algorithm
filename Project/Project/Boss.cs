@@ -10,7 +10,7 @@ namespace Project
 {
     public class Boss : GameObject
     {
-        public enum State { avoid, attack};
+        public enum State { avoid, attack, attack_faster};
         public State currentState;
 
         public override void Initialize()
