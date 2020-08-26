@@ -68,12 +68,12 @@ namespace Project
 
             if (keyboard.IsKeyUp(Keys.Z) && cursor.target != null)
             {
-                System.Diagnostics.Debug.WriteLine("Blabla");
+                System.Diagnostics.Debug.WriteLine("Fire missile");
                 //missileTime = (float)gameTime.TotalGameTime.TotalSeconds + missileRate;
                 //var missile = new Missile();
                 //missile.Initialize();
                 //missile.target = cursor.target;
-                cursor.target = null;
+                //cursor.target = null;
                 //Game1.missileList.Add(missile);
             }
 

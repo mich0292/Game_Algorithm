@@ -104,10 +104,10 @@ namespace Project
             assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             assets.Add("cursor", Content.Load<Texture2D>("cursor"));
-            assets.Add("enemy1", Content.Load<Texture2D>("cursor")); //change the file!!!
-            assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
-            assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
-            assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
+            //assets.Add("enemy1", Content.Load<Texture2D>("cursor")); //change the file!!!
+            //assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("missile", Content.Load<Texture2D>("rocket")); //change the file!!!
+            //assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
             //load background here
             bg1.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 500, 800, 500));
@@ -174,6 +174,7 @@ namespace Project
 
         public void DetectCollision(GameTime gameTime)
         {
+            bool checkBreak = false;
             //detect collision between player and enemy
             for(int i = 0; i < enemyList.Count; i++)
             {
@@ -256,11 +257,13 @@ namespace Project
 
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
-
+                            checkBreak = true;
                             break;
                         }
                     }
                 }
+                if (checkBreak)
+                    break;
             }
         }
 
@@ -383,6 +386,7 @@ namespace Project
             //draw missile
             for (int i = 0; i < missileList.Count; i++)
                 missileList[i].Draw(spriteBatch, deltaTime);
+
 
             //draw background
             bg1.Draw(spriteBatch, deltaTime);
