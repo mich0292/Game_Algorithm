@@ -50,8 +50,8 @@ namespace Project
         //Menu title
         private UI menuTitle;
         //Scrolling Background
-        private ScrollingBackground bg1;
-        private ScrollingBackground bg2;
+        private ScrollingBackground bg1 = new ScrollingBackground();
+        private ScrollingBackground bg2 = new ScrollingBackground();
         
 
         public Game1()
@@ -110,8 +110,8 @@ namespace Project
             assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
             //load background here
-            //bg1 = new ScrollingBackground(Content.Load<Texture2D>(), new Rectangle());
-            //bg2 = new ScrollingBackground(Content.Load<Texture2D>(), new Rectangle());
+            bg1.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 500, 800, 500));
+            bg2.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 0, 800, 500));
         }
 
         /// <summary>
@@ -310,16 +310,16 @@ namespace Project
             for (int i = 0; i < missileList.Count; i++)
                 missileList[i].Update(deltaTime);
             //update background
-            //if (bg1.rec.Y >= 500)
-            //{
-            //    bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
-            //}
-            //if (bg2.rec.Y >= 500)
-            //{
-            //    bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
-            //}
-            //bg1.Update();
-            //bg2.Update();
+            if (bg1.rec.Y >= 500)
+            {
+                bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
+            }
+            if (bg2.rec.Y >= 500)
+            {
+                bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
+            }
+            bg1.Update();
+            bg2.Update();
 
             //detect collision
             DetectCollision(deltaTime);
@@ -385,8 +385,8 @@ namespace Project
                 missileList[i].Draw(spriteBatch, deltaTime);
 
             //draw background
-            //bg1.Draw(spriteBatch, deltaTime);
-            //bg2.Draw(spriteBatch, deltaTime);
+            bg1.Draw(spriteBatch, deltaTime);
+            bg2.Draw(spriteBatch, deltaTime);
 
             spriteBatch.End();
         }
