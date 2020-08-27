@@ -104,3 +104,5 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\font.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\background1.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy1.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\rocket.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy1.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\rocket.xnb
