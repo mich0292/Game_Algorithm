@@ -44,6 +44,7 @@ namespace Project
         //https://gamedev.stackexchange.com/questions/26813/xna-2d-line-of-sight-check
         //https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
         //https://community.monogame.net/t/building-boundingbox/8276/8
+        //https://www.redblobgames.com/articles/visibility/
         public void LineOfSight(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
