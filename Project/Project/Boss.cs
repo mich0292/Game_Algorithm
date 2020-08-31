@@ -35,8 +35,7 @@ namespace Project
             {
                 case BossState.avoid: UpdateAvoid(); break;
                 case BossState.attack: UpdateAttack(); break;
-                case BossState.attack_faster: UpdateAttackFaster(); break;
-                  
+                case BossState.attack_faster: UpdateAttackFaster(); break;                 
             }
         }
 

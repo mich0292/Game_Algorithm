@@ -56,7 +56,8 @@ namespace Project
         //Reference from notes Lecture 3, part of kinematic seek
         public void Orientation(Vector2 velocity)
         {
-            orientation = (float)Math.Atan2(velocity.Y, velocity.X);
+            //https://stackoverflow.com/questions/2276855/xna-2d-vector-angles-whats-the-correct-way-to-calculate
+            orientation = (float)Math.Atan2(velocity.X, -velocity.Y);
         }
     }
 }
