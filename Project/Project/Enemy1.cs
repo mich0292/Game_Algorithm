@@ -40,6 +40,10 @@ namespace Project
             Orientation(velocity);
         }
 
+        //https://deepnight.net/tutorial/bresenham-magic-raycasting-line-of-sight-pathfinding/
+        //https://gamedev.stackexchange.com/questions/26813/xna-2d-line-of-sight-check
+        //https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
+        //https://community.monogame.net/t/building-boundingbox/8276/8
         public void LineOfSight(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
