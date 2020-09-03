@@ -13,13 +13,16 @@ namespace Project
         public enum BossState { avoid, attack, attack_faster};
         public static BossState currentState;
 
+        private int oriHealth;
+
         public override void Initialize()
         {
             //initialize all the variables
             health = 50;
+            oriHealth = health;
             fireRate = 150f; //in miliseconds
             fireTime = 0f;  //in miliseconds
-            speed = 300.0f;
+            speed = 150.0f;
             name = "boss";
             texture = Game1.assets["boss"];
             position.X = Game1.screenWidth / 2;
@@ -30,32 +33,63 @@ namespace Project
 
         public override void Update(GameTime gameTime)
         {
-            //throw new NotImplementedException();
+            int temp = oriHealth * 30 / 100;
+
+            if (health < temp && currentState == BossState.attack)
+                currentState = BossState.attack_faster;
+
             switch (currentState)
             {
-                case BossState.avoid: UpdateAvoid(); break;
-                case BossState.attack: UpdateAttack(); break;
-                case BossState.attack_faster: UpdateAttackFaster(); break;                 
+                case BossState.avoid:
+                    UpdateAvoid(gameTime);
+                    break;
+                case BossState.attack:
+                    UpdateAttack(gameTime);
+                    break;
+                case BossState.attack_faster:
+                    UpdateAttackFaster(gameTime);
+                    break;                 
             }
         }
 
-        void UpdateAvoid()
+        void UpdateAvoid(GameTime gameTime)
         {
+            if(Game1.player.previousPos.X - Game1.player.position.X < 0) //player move from left to right
+                position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
+            else if(Game1.player.previousPos.X - Game1.player.position.X > 0) //player move from right to left
+                position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet
 
         }
 
-        void UpdateAttack()
+        void UpdateAttack(GameTime gameTime)
         {
-
+            MoveToPlayer(gameTime); 
+            Fire();
         }
 
-        void UpdateAttackFaster()
+        void UpdateAttackFaster(GameTime gameTime)
         {
             fireRate = 75f;
+            MoveToPlayer(gameTime);
+            Fire();
         }
+
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
+        }
+
+        public void MoveToPlayer(GameTime gameTime)
+        {
+            if (Game1.player.position.X  - position.X < 0) 
+                position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to chase the player
+            else if (Game1.player.position.X - position.X > 0) 
+                position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to chase the player
+        }
+
+        public void Fire()
+        {
+            //line of sight here
         }
     }
 }
