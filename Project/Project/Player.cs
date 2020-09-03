@@ -26,7 +26,6 @@ namespace Project
             texture = Game1.assets["player"];
             position.X = Game1.screenWidth / 2;
             position.Y = Game1.screenHeight / 2;
-            previousPos = position;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
             cursor = new Cursor();
@@ -36,7 +35,7 @@ namespace Project
         public override void Update(GameTime gameTime)
         {
             KeyboardState keyboard = Keyboard.GetState();
-            Boss.currentState = Boss.BossState.attack;
+            previousPos = position;
 
             //moving the player
             if (keyboard.IsKeyDown(Keys.Up) && position.Y > 0 + texture.Height / 2)
@@ -57,6 +56,8 @@ namespace Project
                 Game1.playerBulletList.Add(new PlayerBullet());
                 Game1.playerBulletList[Game1.playerBulletList.Count - 1].Initialize();
             }
+            else
+                Boss.currentState = Boss.BossState.attack;
 
             //player fire missile
             if (keyboard.IsKeyDown(Keys.Z) && gameTime.TotalGameTime.TotalSeconds > missileTime)
@@ -80,9 +81,7 @@ namespace Project
 
             //Check whether the player is dead to end the game
             if (health == 0)
-                playerAlive = false;
-
-            previousPos = position;
+                playerAlive = false;            
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

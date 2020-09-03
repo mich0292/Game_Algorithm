@@ -81,6 +81,10 @@ namespace Project
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
             restartButton = new Button("restartButton", Game1.assets["restartButton"], screenWidth / 2 - Game1.assets["restartButton"].Width / 2, screenHeight / 2 - Game1.assets["restartButton"].Height / 2);
             player.Initialize();
+            //boss
+            var boss = new Boss();
+            boss.Initialize();
+            enemyList.Add(boss);
         }
 
         /// <summary>
@@ -107,8 +111,9 @@ namespace Project
             assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); //change the file!!!
             assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
             assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
-            assets.Add("boss", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("boss", Content.Load<Texture2D>("boss")); 
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
+
             //load background here
             bg1.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 500, 800, 500));
             bg2.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 0, 800, 500));
@@ -314,13 +319,10 @@ namespace Project
                 missileList[i].Update(deltaTime);
             //update background
             if (bg1.rec.Y >= 500)
-            {
                 bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
-            }
+
             if (bg2.rec.Y >= 500)
-            {
                 bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
-            }
             bg1.Update();
             bg2.Update();
 

@@ -14,6 +14,7 @@ namespace Project
         public static BossState currentState;
 
         private int oriHealth;
+        private float avoidSpeed;
 
         public override void Initialize()
         {
@@ -22,11 +23,12 @@ namespace Project
             oriHealth = health;
             fireRate = 150f; //in miliseconds
             fireTime = 0f;  //in miliseconds
-            speed = 150.0f;
+            speed = 300.0f;
+            avoidSpeed = 1000.0f;
             name = "boss";
             texture = Game1.assets["boss"];
             position.X = Game1.screenWidth / 2;
-            position.Y = Game1.screenHeight / 2;
+            position.Y = 50;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
         }
@@ -44,33 +46,50 @@ namespace Project
                     UpdateAvoid(gameTime);
                     break;
                 case BossState.attack:
-                    UpdateAttack(gameTime);
+                    //UpdateAttack(gameTime);
                     break;
                 case BossState.attack_faster:
-                    UpdateAttackFaster(gameTime);
+                    //UpdateAttackFaster(gameTime);
                     break;                 
             }
         }
 
         void UpdateAvoid(GameTime gameTime)
-        {
-            if(Game1.player.previousPos.X - Game1.player.position.X < 0) //player move from left to right
-                position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
-            else if(Game1.player.previousPos.X - Game1.player.position.X > 0) //player move from right to left
-                position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet
-
+        {            
+            if (Game1.player.previousPos.X - Game1.player.position.X < 0 && position.X < Game1.screenWidth - texture.Width / 2 
+                && Game1.player.position.X < position.X) //player move from left to right and player is on left side of boss
+                position.X += avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
+            else if (Game1.player.previousPos.X - Game1.player.position.X < 0 && position.X > 0 + texture.Width / 2 && Game1.player.position.X > position.X) //player move from left to right and player is on right side of boss
+                position.X -= avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet
+            else if (Game1.player.previousPos.X - Game1.player.position.X > 0 && position.X < Game1.screenWidth - texture.Width / 2 && Game1.player.position.X < position.X) //player move from right to left and player is on left side of boss
+                position.X += avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
+            else if (Game1.player.previousPos.X - Game1.player.position.X > 0 && position.X > 0 + texture.Width / 2 && Game1.player.position.X > position.X) //player move from right to left and player is on right side of boss
+                position.X -= avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet
+            else if(Game1.player.previousPos.X - Game1.player.position.X == 0) //player stand still
+            {
+                if(Game1.player.position.X >= Game1.screenWidth - Game1.player.texture.Width / 2 && position.X > 0 + texture.Width / 2)  //player reach the maximum right side
+                    position.X -= avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet
+                else if(Game1.player.position.X <= 0 + Game1.player.texture.Width / 2 && position.X < Game1.screenWidth - texture.Width / 2) //player reach the maximum left side
+                    position.X += avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
+                else if (Game1.player.position.X < position.X && position.X < Game1.screenWidth - texture.Width / 2) //player on the boss left side
+                    position.X += avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet                   
+                else if (Game1.player.position.X > position.X && position.X > 0 + texture.Width / 2) //player on the boss right side
+                    position.X -= avoidSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet                                      
+            }
         }
 
         void UpdateAttack(GameTime gameTime)
         {
-            MoveToPlayer(gameTime); 
+            System.Diagnostics.Debug.WriteLine("Attack");
+            //MoveToPlayer(gameTime); 
             Fire();
         }
 
         void UpdateAttackFaster(GameTime gameTime)
         {
+            System.Diagnostics.Debug.WriteLine("Attack");
             fireRate = 75f;
-            MoveToPlayer(gameTime);
+            //MoveToPlayer(gameTime);
             Fire();
         }
 
@@ -81,9 +100,9 @@ namespace Project
 
         public void MoveToPlayer(GameTime gameTime)
         {
-            if (Game1.player.position.X  - position.X < 0) 
+            if (Game1.player.position.X < position.X) 
                 position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to chase the player
-            else if (Game1.player.position.X - position.X > 0) 
+            else if (Game1.player.position.X > position.X) 
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to chase the player
         }
 
