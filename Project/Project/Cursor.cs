@@ -8,11 +8,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Project
 {
-    public class Cursor : GameObject
+    public static class Cursor 
     {
-        public GameObject target;
+        public static GameObject target;
+        public static int counter;
 
-        public override void Initialize()
+        private static string name;
+        private static Texture2D texture;
+        public static Vector2 position;
+        public static Vector2 origin;
+        public static float orientation;
+
+        public static void Initialize()
         {
             //initialize all the variables
             name = "cursor";
@@ -22,9 +29,10 @@ namespace Project
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
             target = null;
+            counter = 0;
         }
 
-        public override void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
             if (target != null)
             {
@@ -35,9 +43,9 @@ namespace Project
             }
         }
 
-        public void SelectTarget()
+        public static void SelectTarget()
         {
-            for (int i = 0; i < Game1.enemyList.Count; i++)
+            for (int i = counter; i < Game1.enemyList.Count; counter++, i++)
             {
                 if (target != Game1.enemyList[i])
                 {
@@ -45,12 +53,14 @@ namespace Project
                     break;
                 }
             }
+            if (counter >= Game1.enemyList.Count)
+                counter = 0;
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        public static void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             if (target != null)
-                spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
+                spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);                
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Project
     {
         private float missileTime; //in seconds
         private float missileRate; //in seconds
-        private Cursor cursor;
+        private float tabTime;
 
         public static bool playerAlive = true;
         public Vector2 previousPos;
@@ -28,8 +28,8 @@ namespace Project
             position.Y = Game1.screenHeight / 2;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
-            cursor = new Cursor();
-            cursor.Initialize();
+            tabTime = 0f;
+            Cursor.Initialize();
         }
 
         public override void Update(GameTime gameTime)
@@ -48,13 +48,15 @@ namespace Project
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             //player fire bullet
-            if (keyboard.IsKeyDown(Keys.Space) && gameTime.TotalGameTime.TotalMilliseconds > fireTime)
+            if (keyboard.IsKeyDown(Keys.Space))
             {
                 Boss.currentState = Boss.BossState.avoid; //boss dodge the bullet
-
-                fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
-                Game1.playerBulletList.Add(new PlayerBullet());
-                Game1.playerBulletList[Game1.playerBulletList.Count - 1].Initialize();
+                if(gameTime.TotalGameTime.TotalMilliseconds > fireTime)
+                {
+                    fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
+                    Game1.playerBulletList.Add(new PlayerBullet());
+                    Game1.playerBulletList[Game1.playerBulletList.Count - 1].Initialize();
+                }
             }
             else
                 Boss.currentState = Boss.BossState.attack;
@@ -62,31 +64,34 @@ namespace Project
             //player fire missile
             if (keyboard.IsKeyDown(Keys.Z) && gameTime.TotalGameTime.TotalSeconds > missileTime)
             {
-                if (keyboard.IsKeyDown(Keys.Tab) || cursor.target == null)
-                    cursor.SelectTarget();
+                if ((keyboard.IsKeyDown(Keys.Tab) || Cursor.target == null) && gameTime.TotalGameTime.TotalMilliseconds > tabTime)
+                {
+                    tabTime = (float)gameTime.TotalGameTime.TotalMilliseconds + 200f;
+                    Cursor.SelectTarget();
+                }                    
 
-                cursor.Update(gameTime);
+                Cursor.Update(gameTime);
             }
 
-            if (keyboard.IsKeyUp(Keys.Z) && cursor.target != null)
-            {
-                System.Diagnostics.Debug.WriteLine("Fire missile");
-                //missileTime = (float)gameTime.TotalGameTime.TotalSeconds + missileRate;
-                //var missile = new Missile();
-                //missile.Initialize();
-                //missile.target = cursor.target;
-                //cursor.target = null;
-                //Game1.missileList.Add(missile);
+            if (keyboard.IsKeyUp(Keys.Z) && Cursor.target != null)
+            {                
+                missileTime = (float)gameTime.TotalGameTime.TotalSeconds + missileRate;
+                var missile = new Missile();
+                missile.Initialize();
+                missile.target = Cursor.target;
+                Cursor.target = null;
+                Cursor.counter = 0; //after fire missile, reset the counter
+                Game1.missileList.Add(missile);
             }
 
             //Check whether the player is dead to end the game
             if (health == 0)
-                playerAlive = false;            
+                playerAlive = false;
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            cursor.Draw(spriteBatch, gameTime);
+            Cursor.Draw(spriteBatch, gameTime);
             spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 1.0f);
         }
 
