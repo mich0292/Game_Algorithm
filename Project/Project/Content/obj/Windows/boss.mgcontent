@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/asteroid.png</SourceFile>
-  <SourceTime>2014-02-02T13:42:00+08:00</SourceTime>
-  <DestFile>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/bin/Windows/Content/asteroid.xnb</DestFile>
-  <DestTime>2020-09-03T14:37:46.1431021+08:00</DestTime>
+  <SourceFile>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/boss.png</SourceFile>
+  <SourceTime>2020-09-03T15:01:52.1655562+08:00</SourceTime>
+  <DestFile>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/bin/Windows/boss.xnb</DestFile>
+  <DestTime>2020-09-03T15:02:45.0676533+08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-09T00:35:54+08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
