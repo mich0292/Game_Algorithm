@@ -110,7 +110,7 @@ namespace Project
             assets.Add("cursor", Content.Load<Texture2D>("cursor"));
             assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); //change the file!!!
             assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
-            assets.Add("missile", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("missile", Content.Load<Texture2D>("rocket")); //change the file!!!
             assets.Add("boss", Content.Load<Texture2D>("boss")); 
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
 
