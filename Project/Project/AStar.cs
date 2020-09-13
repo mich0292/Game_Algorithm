@@ -151,37 +151,40 @@ namespace Project
         public static List<Vector2> GetNeighbour(Vector2 start, Vector2 end, Vector2 curr, IEnumerable<Vector2> validNode)
         {
             List<Vector2> neighbour = new List<Vector2>();
-            Vector2 diff = end - start;
-            diff.X = (int)(diff.X / 16);
-            diff.Y = (int)(diff.Y / 16);
+            //Vector2 diff = end - start;
+            //diff.X = (int)(diff.X / 16);
+            //diff.Y = (int)(diff.Y / 16);
             Vector2 temp;
 
             if (curr.X + 1 <= rightBound) //right neighbour
             {
                 temp = curr;
-                temp.X += diff.X;
-                System.Diagnostics.Debug.WriteLine(temp);
+                //temp.X += diff.X;        
+                temp.X++;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
             if (curr.X - 1 >= leftBound) //left neighbour
             {
                 temp = curr;
-                temp.X -= diff.X;
+                //temp.X -= diff.X;
+                temp.X--;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
             if (curr.Y - 1 >= topBound) //top neighbour
             {
                 temp = curr;
-                temp.Y -= diff.Y;
+                //temp.Y -= diff.Y;
+                temp.Y--;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
             if (curr.Y + 1 <= bottomBound) //bottom neighbour
             {
                 temp = curr;
-                temp.Y += diff.Y;
+                //temp.Y += diff.Y;
+                temp.Y++;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
@@ -189,35 +192,44 @@ namespace Project
             if (curr.X - 1 >= leftBound && curr.Y - 1 >= topBound) //top left neighbour
             {
                 temp = curr;
-                temp.X -= diff.X;
-                temp.Y -= diff.Y;
+                //temp.X -= diff.X;
+                //temp.Y -= diff.Y;
+                temp.X--;
+                temp.Y--;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
             if (curr.X + 1 <= rightBound && curr.Y - 1 >= topBound) //top right neighbour
             {
                 temp = curr;
-                temp.X += diff.X;
-                temp.Y -= diff.Y;
+                //temp.X += diff.X;
+                //temp.Y -= diff.Y;
+                temp.X++;
+                temp.Y--;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
             if (curr.Y + 1 <= bottomBound && curr.X - 1 >= leftBound) //bottom left neighbour
             {
                 temp = curr;
-                temp.Y += diff.Y;
-                temp.X -= diff.X;
+                //temp.Y += diff.Y;
+                //temp.X -= diff.X;
+                temp.Y++;
+                temp.X--;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
             if (curr.Y + 1 <= bottomBound && curr.X + 1 <= rightBound) //bottom neighbour
             {
                 temp = curr;
-                temp.Y += diff.Y;
-                temp.X += diff.X;
+                //temp.Y += diff.Y;
+                //temp.X += diff.X;
+                temp.Y++;
+                temp.X++;
                 if (validNode.Contains(temp))
                     neighbour.Add(temp);
             }
+            System.Diagnostics.Debug.WriteLine("neighbour count: " + neighbour.Count);
             return neighbour;
         }
     }
