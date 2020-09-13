@@ -10,5 +10,5 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "D:/GameAlgorithm/Project/Project/Content/menu.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/menu.xnb","TextureProcessor","Texture2DContent",12964,100885,0.0070021
 "D:/GameAlgorithm/Project/Project/Content/Player.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/Player.xnb","TextureProcessor","Texture2DContent",6012,25461,0.0040019
 "D:/GameAlgorithm/Project/Project/Content/restart.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/restart.xnb","TextureProcessor","Texture2DContent",14026,100885,0.0050019
-"D:/GameAlgorithm/Project/Project/Content/rocket.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/rocket.xnb","TextureProcessor","Texture2DContent",1699,10469,0.0020002
+"D:/GameAlgorithm/Project/Project/Content/rocket.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/rocket.xnb","TextureProcessor","Texture2DContent",1799,10469,0.1230273
 "D:/GameAlgorithm/Project/Project/Content/start3.png","D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/start.xnb","TextureProcessor","Texture2DContent",18725,100885,0.0040011

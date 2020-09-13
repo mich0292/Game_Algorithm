@@ -231,12 +231,6 @@ namespace Project
                 {
                     player.health--;
 
-                    if (player.health <= 0)
-                    {
-                        //player lose
-                        //proceed to lose menu
-                    }
-
                     enemyBulletList.Remove(enemyBulletList[i]);
 
                     break;

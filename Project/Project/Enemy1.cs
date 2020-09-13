@@ -16,8 +16,8 @@ namespace Project
             //initialize all the variables
             health = 1;
             speed = 100.0f;
-            fireTime = 0f;
-            fireRate = 100.0f;
+            fireTime = 0.0f;
+            fireRate = 500.0f;
             orientation = 0f;
             texture = Game1.assets["enemy1"];
             position = new Vector2(0, 0);
@@ -50,8 +50,19 @@ namespace Project
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
+                Console.WriteLine(InLOS(90, 300, Game1.player.position, position, orientation));
+                //Console.WriteLine(this.orientation);
+                Console.WriteLine(Game1.player.health);   
+                if (GameObject.InLOS(90, 300, Game1.player.position, position, orientation))
+                {
+                    Console.WriteLine("I'm here");
+                    EnemyBullet tempBullet = new EnemyBullet();
+                    tempBullet.setOwner(this);
+                    tempBullet.Initialize();
+                    Game1.enemyBulletList.Add(tempBullet);
+                }              
             }
-        }
+        }      
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -62,7 +73,7 @@ namespace Project
         public void Orientation(Vector2 velocity)
         {
             //https://stackoverflow.com/questions/2276855/xna-2d-vector-angles-whats-the-correct-way-to-calculate
-            orientation = (float)Math.Atan2(velocity.X, -velocity.Y);
+            orientation = (float)Math.Atan2(velocity.Y, velocity.X);
         }
     }
 }

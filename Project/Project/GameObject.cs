@@ -25,5 +25,14 @@ namespace Project
         public abstract void Initialize();
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+
+        public static bool InLOS(float AngleDistance, float PositionDistance, Vector2 PositionA, Vector2 PositionB, float AngleB)
+        {
+            float AngleBetween = (float)Math.Atan2((PositionA.Y - PositionB.Y), (PositionA.X - PositionB.X));
+            //Console.WriteLine(AngleBetween);
+            if ((AngleBetween <= (AngleB + (AngleDistance / 2f / 100f))) && (AngleBetween >= (AngleB - (AngleDistance / 2f / 100f)))
+                && (Vector2.Distance(PositionA, PositionB) <= PositionDistance)) return true;
+            else return false;
+        }
     }
 }
