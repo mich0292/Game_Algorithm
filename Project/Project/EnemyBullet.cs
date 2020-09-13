@@ -25,7 +25,8 @@ namespace Project
                 orientation = owner.orientation;
                 position = owner.position;
             }
-            direction = Game1.player.position + new Vector2 (Game1.screenWidth, Game1.screenHeight);
+            //direction = Game1.player.position + new Vector2 (Game1.screenWidth, Game1.screenHeight);         
+            direction = Game1.player.position - position;
         }
 
         public void setOwner(GameObject owner)
@@ -35,7 +36,8 @@ namespace Project
        
         public override void Update(GameTime gameTime)
         {
-            Vector2 velocity = direction - position;
+            //Vector2 velocity = direction - position;
+            Vector2 velocity = direction;
             velocity.Normalize();
             velocity *= speed;
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;          

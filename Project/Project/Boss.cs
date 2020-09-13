@@ -81,14 +81,14 @@ namespace Project
         void UpdateAttack(GameTime gameTime)
         {
             MoveToPlayer(gameTime); 
-            Fire();
+            Fire(gameTime);
         }
 
         void UpdateAttackFaster(GameTime gameTime)
         {
             fireRate = 75f;
             MoveToPlayer(gameTime);
-            Fire();
+            Fire(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -104,9 +104,19 @@ namespace Project
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to chase the player
         }
 
-        public void Fire()
+        public void Fire(GameTime gameTime)
         {
-            //line of sight here
+            if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
+            {                
+                fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
+                if (GameObject.InLOS(360, 400, Game1.player.position, position, orientation))
+                {
+                    EnemyBullet tempBullet = new EnemyBullet();
+                    tempBullet.setOwner(this);
+                    tempBullet.Initialize();
+                    Game1.enemyBulletList.Add(tempBullet);
+                }
+            }
         }
     }
 }
