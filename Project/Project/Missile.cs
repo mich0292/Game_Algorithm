@@ -11,6 +11,8 @@ namespace Project
     public class Missile : GameObject
     {
         public GameObject target;
+        List<Vector2> path;
+        private bool called = false;
 
         public override void Initialize()
         {
@@ -28,12 +30,30 @@ namespace Project
         {
             if (Game1.enemyList.Contains(target))
             {
-                Vector2 diff = target.position - position;
-                orientation = (float)Math.Atan2(diff.Y, diff.X);
-                diff.Normalize();
+                Vector2 moveToward;
+                if (!called)
+                {
+                    var stopWatch = new System.Diagnostics.Stopwatch();
+                    stopWatch.Start();
+                    AStar.Initialize(position, target.position);
+                    path = AStar.Compute(position, target.position);
+                    stopWatch.Stop();
+                    System.Diagnostics.Debug.WriteLine(stopWatch.Elapsed);
+                    called = true;
+                }
 
-                position += speed * diff;
-                //path finding
+                if (path.Count > 0)
+                {
+                    moveToward = path[0];
+                    path.RemoveAt(0);
+
+                    Vector2 diff = moveToward - position;
+                    //Vector2 diff = target.position - position;
+                    orientation = (float)Math.Atan2(diff.Y, diff.X);
+                    diff.Normalize();
+
+                    position += speed * diff * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                }
             }
             else
                 Game1.missileList.Remove(this);
