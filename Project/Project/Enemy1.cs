@@ -44,7 +44,6 @@ namespace Project
                 
                 if (InLOS(90, 300, Game1.player.position, position, orientation))
                 {
-                    Console.WriteLine("I'm here");
                     EnemyBullet tempBullet = new EnemyBullet();
                     tempBullet.setOwner(this);
                     tempBullet.Initialize();
@@ -53,7 +52,6 @@ namespace Project
             }
         }
        
-
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 0.99f);

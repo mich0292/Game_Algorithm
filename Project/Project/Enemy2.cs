@@ -29,7 +29,8 @@ namespace Project
             LineOfSight(gameTime);
         }
 
-        //Reference from notes Lecture 3
+        //Pattern movement - Catmull-rom spline
+        //https://andrewhungblog.wordpress.com/2017/03/03/catmull-rom-splines-in-plain-english/
         public void KinematicSeek(GameTime gameTime)
         {            
             Vector2 velocity = Game1.player.position - position;
@@ -45,6 +46,14 @@ namespace Project
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
+
+                if (InLOS(90, 300, Game1.player.position, position, orientation))
+                {
+                    EnemyBullet tempBullet = new EnemyBullet();
+                    tempBullet.setOwner(this);
+                    tempBullet.Initialize();
+                    Game1.enemyBulletList.Add(tempBullet);
+                }
             }
         }
 
