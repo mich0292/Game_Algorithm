@@ -52,7 +52,11 @@ namespace Project
         //Scrolling Background
         private ScrollingBackground bg1 = new ScrollingBackground();
         private ScrollingBackground bg2 = new ScrollingBackground();
-        
+        //pause texture
+        private Texture2D pauseTexture;
+        //pause variable
+        private bool pauseGame;
+        private float pauseCounter;
 
         public Game1()
         {
@@ -76,6 +80,8 @@ namespace Project
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
             counter = 0;
             collisionTime = 0;
+            pauseCounter = 0f;
+            pauseGame = false;
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
@@ -114,6 +120,7 @@ namespace Project
             assets.Add("missile", Content.Load<Texture2D>("rocket")); 
             assets.Add("boss", Content.Load<Texture2D>("boss")); 
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
+            pauseTexture = Content.Load<Texture2D>("pause");
 
             //load background here
             bg1.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 500, 800, 500));
@@ -269,54 +276,63 @@ namespace Project
 
         void UpdateGameplay(GameTime deltaTime)
         {
-            counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+            KeyboardState keyboard = Keyboard.GetState();
 
-            if(counter >= 2)
+            if(keyboard.IsKeyDown(Keys.Enter) && deltaTime.TotalGameTime.TotalMilliseconds > pauseCounter)
             {
-                counter = 0;
-                for (int i = 0; i < 1; i++)
+                pauseCounter = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200f;
+                pauseGame = !pauseGame;
+            }                
+            if (!pauseGame)
+            {
+                counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+
+                if (counter >= 2)
                 {
-                    var asteroid = new Asteroid();
-                    var enemy = new Enemy1();
-                    asteroid.Initialize();
-                    enemy.Initialize();
-                    enemyList.Add(enemy);
-                    enemyList.Add(asteroid);
+                    counter = 0;
+                    for (int i = 0; i < 1; i++)
+                    {
+                        var asteroid = new Asteroid();
+                        var enemy = new Enemy1();
+                        asteroid.Initialize();
+                        enemy.Initialize();
+                        enemyList.Add(enemy);
+                        enemyList.Add(asteroid);
+                    }
                 }
-            }
-            //update player
-            player.Update(deltaTime);
-            //update player bullet
-            for (int i = 0; i < playerBulletList.Count; i++)
-                playerBulletList[i].Update(deltaTime);
-            //update enemy bullet
-            for (int i = 0; i < enemyBulletList.Count; i++)
-                enemyBulletList[i].Update(deltaTime);
-            //update enemy 
-            for (int i = 0; i < enemyList.Count; i++)
-                enemyList[i].Update(deltaTime);
-            //update missile
-            for (int i = 0; i < missileList.Count; i++)
-                missileList[i].Update(deltaTime);
-            //update background
-            if (bg1.rec.Y >= 500)
-                bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
+                //update player
+                player.Update(deltaTime);
+                //update player bullet
+                for (int i = 0; i < playerBulletList.Count; i++)
+                    playerBulletList[i].Update(deltaTime);
+                //update enemy bullet
+                for (int i = 0; i < enemyBulletList.Count; i++)
+                    enemyBulletList[i].Update(deltaTime);
+                //update enemy 
+                for (int i = 0; i < enemyList.Count; i++)
+                    enemyList[i].Update(deltaTime);
+                //update missile
+                for (int i = 0; i < missileList.Count; i++)
+                    missileList[i].Update(deltaTime);
+                //update background
+                if (bg1.rec.Y >= 500)
+                    bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
+                if (bg2.rec.Y >= 500)
+                    bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
+                bg1.Update();
+                bg2.Update();
 
-            if (bg2.rec.Y >= 500)
-                bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
-            bg1.Update();
-            bg2.Update();
+                //detect collision
+                DetectCollision(deltaTime);
 
-            //detect collision
-            DetectCollision(deltaTime);
-
-            if (!Player.playerAlive)
-            {
-                _state = GameState.GameOver;
-                playerBulletList.Clear();
-                enemyBulletList.Clear();
-                enemyList.Clear();
-                missileList.Clear();
+                if (!Player.playerAlive)
+                {
+                    _state = GameState.GameOver;
+                    playerBulletList.Clear();
+                    enemyBulletList.Clear();
+                    enemyList.Clear();
+                    missileList.Clear();
+                }
             }
         }
 
@@ -352,9 +368,10 @@ namespace Project
         void DrawGameplay(GameTime deltaTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            spriteBatch.Begin(SpriteSortMode.FrontToBack);            
+
             //draw player
             player.Draw(spriteBatch, deltaTime);
             //draw player bullet
@@ -373,7 +390,9 @@ namespace Project
             //draw background
             bg1.Draw(spriteBatch, deltaTime);
             bg2.Draw(spriteBatch, deltaTime);
-
+            //draw pause
+            if (pauseGame)
+                spriteBatch.Draw(pauseTexture, new Vector2(screenWidth / 2 - pauseTexture.Width / 2, screenHeight / 2 - pauseTexture.Height / 2), Color.White);
             spriteBatch.End();
         }
 
