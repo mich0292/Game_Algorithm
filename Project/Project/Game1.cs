@@ -8,6 +8,7 @@ using System.Collections.Generic;
 // Camera -> https://stackoverflow.com/questions/17452808/moving-a-camera-in-xna-c-sharp
 // Camera -> https://www.youtube.com/watch?v=zPdmkFDT5Qo
 //UI (Sprite Fonts) -> https://www.youtube.com/watch?v=x_c19loJ9Ds
+//pause -> https://www.youtube.com/watch?v=RKmJsjLaNFM
 
 namespace Project
 {
