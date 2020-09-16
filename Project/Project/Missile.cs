@@ -34,26 +34,26 @@ namespace Project
                 Vector2 moveToward;
                 counter += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                //if (counter >= 0.5f)
-                //{
-                //    var stopWatch = new System.Diagnostics.Stopwatch();
-                //    stopWatch.Start();
-                //    AStar.Initialize(position, target.position);
-                //    path = AStar.Compute(position, target.position);
-                //    stopWatch.Stop();
-                //    System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed.TotalSeconds);
-                //    counter = 0f;
-                //}
-                if (!called)
+                if (counter >= 0.5f)
                 {
                     var stopWatch = new System.Diagnostics.Stopwatch();
                     stopWatch.Start();
                     AStar.Initialize(position, target.position);
                     path = AStar.Compute(position, target.position);
                     stopWatch.Stop();
-                    System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed);
-                    called = true;
+                    System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed.TotalSeconds);
+                    counter = 0f;
                 }
+                //if (!called)
+                //{
+                //    var stopWatch = new System.Diagnostics.Stopwatch();
+                //    stopWatch.Start();
+                //    AStar.Initialize(position, target.position);
+                //    path = AStar.Compute(position, target.position);
+                //    stopWatch.Stop();
+                //    System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed);
+                //    called = true;
+                //}
 
                 if (path.Count > 0)
                 {

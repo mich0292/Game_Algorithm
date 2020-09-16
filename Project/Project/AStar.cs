@@ -61,7 +61,7 @@ namespace Project
                         for (int k = 0; k < Game1.enemyList.Count; k++)
                         {
                             Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
-                            if (enemyPosition == position || Game1.enemyList[k].BoundingBox.Contains(position)) //if the i and j is equal to enemy position, set the position to not walkable
+                            if (enemyPosition == position) //if the i and j is equal to enemy position, set the position to not walkable
                             {
                                 set = true;
                                 walkablePosition.Add(position, false);
