@@ -1,0 +1,169 @@
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\Player.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Project.exe
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Project.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Newtonsoft.Json.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Newtonsoft.Json.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CoreCompileInputs.cache
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CopyComplete
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.exe
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\bullet.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csprojAssemblyReference.cache
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.UI.Forms.dll
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\defaultFont.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Framework.xml
+D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CoreCompileInputs.cache
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\bullet.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\defaultFont.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\Player.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Project.exe
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Project.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.UI.Forms.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Newtonsoft.Json.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.dll
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Newtonsoft.Json.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
+D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CopyComplete
+D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.exe
+D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.pdb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\start.xnb
+D:\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csprojAssemblyReference.cache
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\exit.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\exit.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\start.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\asteroid.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\asteroid.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\menu.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\restart.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\menu.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\restart.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\cursor.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\cursor.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\font.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\background1.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\font.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\background1.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy1.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\rocket.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy1.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\rocket.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\boss.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\boss.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy_bullet.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy_bullet.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\defaultFont.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\asteroid.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\background1.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\boss.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\bullet.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\cursor.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\enemy1.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\enemy_bullet.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\exit.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\font.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\menu.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\Player.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\restart.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\rocket.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\start.xnb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Project.exe
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Project.pdb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Framework.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.UI.Forms.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Newtonsoft.Json.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.XInput.dll
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.pdb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.pdb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Graphics.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.pdb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Gui.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.pdb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Input.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.pdb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Extended.Tiled.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\MonoGame.Framework.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Newtonsoft.Json.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\SharpDX.XInput.xml
+D:\GameAlgorithm\TestPatternMovement\Project\obj\x86\Debug\Project.csprojAssemblyReference.cache
+D:\GameAlgorithm\TestPatternMovement\Project\obj\x86\Debug\Project.csproj.CoreCompileInputs.cache
+D:\GameAlgorithm\TestPatternMovement\Project\obj\x86\Debug\Project.csproj.CopyComplete
+D:\GameAlgorithm\TestPatternMovement\Project\obj\x86\Debug\Project.exe
+D:\GameAlgorithm\TestPatternMovement\Project\obj\x86\Debug\Project.pdb
+D:\GameAlgorithm\TestPatternMovement\Project\bin\Windows\x86\Debug\Content\enemy2.xnb
