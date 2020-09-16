@@ -25,7 +25,7 @@ namespace Project
 
         public override void Update(GameTime gameTime)
         {
-            KinematicSeek(gameTime);
+            PatternMovement(gameTime);
             LineOfSight(gameTime);
         }
 
