@@ -39,6 +39,7 @@ namespace Project
                 bottomBound = (int)goal.Y;
             }
         }
+
         public static void WalkablePosition(Vector2 start, Vector2 goalPosition)
         {
             bool set;
@@ -75,6 +76,74 @@ namespace Project
             }
         }
 
+        //https://www.youtube.com/watch?v=jNZh9wppUkY
+        //https://gamedev.stackexchange.com/questions/11234/2d-ray-intersection
+        public static List<Point> BresenhamLine(int x0, int y0, int x1, int y1)
+        {
+            List<Point> result = new List<Point>();
+            bool steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
+
+            if (steep)
+            {
+                int temp = x0;
+                x0 = y0;
+                y0 = temp;
+
+                temp = x1;
+                x1 = y1;
+                y1 = temp;
+            }
+
+            //Check whether the line go left/ right
+            if (x0 > x1)
+            {
+                int temp = x0;
+                x0 = x1;
+                x1 = temp;
+
+                temp = y0;
+                y0 = y1;
+                y1 = temp;
+            }
+
+            int deltax = x1 - x0;               //difference between x value
+            int deltay = Math.Abs(y1 - y0);     //difference between y value
+            int error = 0;                      //the increment of x value before y increase
+            int ystep;
+            int y = y0;
+            if (y0 < y1) ystep = 1; else ystep = -1;    //increment of y value to reach endPoint
+            for (int x = x0; x <= x1; x++)
+            {
+                if (steep) result.Add(new Point(y, x));
+                else result.Add(new Point(x, y));
+                error += deltay;
+                if (2 * error >= deltax)
+                {
+                    y += ystep;
+                    error -= deltax;
+                }
+            }
+
+            return result;
+        }
+
+        public static bool Compute2(Vector2 start, Vector2 goal)
+        {
+            foreach (Point p in BresenhamLine((int)start.X, (int)start.Y, (int)goal.X, (int)goal.Y))
+            {
+                //Console.WriteLine(p);                  
+                for (int i = 0; i < Game1.enemyList.Count; i++)
+                {
+                    Vector2 enemyPos = new Vector2((int)Game1.enemyList[i].position.X, (int)Game1.enemyList[i].position.Y);
+                    if (enemyPos != goal && Game1.enemyList[i].BoundingBox.Contains(p))
+                    {
+                        //Console.WriteLine(Game1.enemyList[i].BoundingBox.Contains(p));
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
         //https://www.redblobgames.com/pathfinding/a-star/implementation.html
         //https://www.youtube.com/watch?v=FsParg61xGw
         public static List<Vector2> Compute(Vector2 start, Vector2 goal)
@@ -84,6 +153,15 @@ namespace Project
             PriorityQueue<Vector2, int> priorityQueue = new PriorityQueue<Vector2, int>();
             IDictionary<Vector2, Vector2> comeFrom = new Dictionary<Vector2, Vector2>();
             IDictionary<Vector2, int> costSoFar = new Dictionary<Vector2, int>();
+
+            if (Compute2(start, goal))
+            {
+                System.Diagnostics.Debug.WriteLine("compute 2");
+                List<Vector2> path = new List<Vector2>();
+                path.Add(start);
+                path.Add(goal);
+                return path;
+            }
 
             walkablePosition.Clear();
             var stopWatch = new System.Diagnostics.Stopwatch();
@@ -136,7 +214,6 @@ namespace Project
                         int priority = newCost + Heuristic(node, goal);
                         priorityQueue.Enqueue(node, priority);
                         comeFrom[node] = curr;
-                        System.Diagnostics.Debug.WriteLine("come in");
                     }
                 }
             }
