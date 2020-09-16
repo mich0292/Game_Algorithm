@@ -109,7 +109,7 @@ namespace Project
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {                
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
-                if (GameObject.InLOS(360, 400, Game1.player.position, position, orientation))
+                if (InLOS(360, 400, Game1.player.position, position, orientation))
                 {
                     EnemyBullet tempBullet = new EnemyBullet();
                     tempBullet.setOwner(this);

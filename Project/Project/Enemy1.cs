@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Project
 {
@@ -21,7 +17,7 @@ namespace Project
             orientation = 0f;
             texture = Game1.assets["enemy1"];
             position = new Vector2(0, 0);
-            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f); 
         }
 
         public override void Update(GameTime gameTime)
@@ -40,20 +36,13 @@ namespace Project
             Orientation(velocity);
         }
 
-        //https://deepnight.net/tutorial/bresenham-magic-raycasting-line-of-sight-pathfinding/
-        //https://gamedev.stackexchange.com/questions/26813/xna-2d-line-of-sight-check
-        //https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
-        //https://community.monogame.net/t/building-boundingbox/8276/8
-        //https://www.redblobgames.com/articles/visibility/
         public void LineOfSight(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
-                Console.WriteLine(InLOS(90, 300, Game1.player.position, position, orientation));
-                //Console.WriteLine(this.orientation);
-                Console.WriteLine(Game1.player.health);   
-                if (GameObject.InLOS(90, 300, Game1.player.position, position, orientation))
+                
+                if (InLOS(90, 300, Game1.player.position, position, orientation))
                 {
                     Console.WriteLine("I'm here");
                     EnemyBullet tempBullet = new EnemyBullet();
@@ -62,7 +51,8 @@ namespace Project
                     Game1.enemyBulletList.Add(tempBullet);
                 }              
             }
-        }      
+        }
+       
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
