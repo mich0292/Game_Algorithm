@@ -109,3 +109,4 @@ C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\T
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\boss.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\boss.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy_bullet.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy_bullet.xnb

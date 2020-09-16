@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 namespace Project
 {
     public class AStar
-    {       
+    {
         public static IDictionary<Vector2, bool> walkablePosition = new Dictionary<Vector2, bool>();
         public static int leftBound;
         public static int rightBound;
@@ -42,30 +42,35 @@ namespace Project
         public static void WalkablePosition(Vector2 start, Vector2 goalPosition)
         {
             bool set;
+            Vector2 position;
 
             for (int i = leftBound; i <= rightBound; i++)
             {
                 for (int j = topBound; j <= bottomBound; j++)
                 {
                     set = false;
+                    position = new Vector2(i, j);
 
-                    for (int k = 0; k < Game1.enemyList.Count; k++)
+                    if (position == goalPosition)
                     {
-                        if (goalPosition.X == i && goalPosition.Y == j) //if the i and j is equal to goal position(enemy), set the position to walkable
+                        set = true;
+                        walkablePosition.Add(position, true);
+                    }
+                    else
+                    {
+                        for (int k = 0; k < Game1.enemyList.Count; k++)
                         {
-                            set = true;
-                            walkablePosition.Add(new Vector2(goalPosition.X, goalPosition.Y), true);
-                            break;
-                        }
-                        else if ((int)Game1.enemyList[k].position.X == i && (int)Game1.enemyList[k].position.Y == j) //if the i and j is equal to enemy position, set the position to not walkable
-                        {
-                            set = true;
-                            walkablePosition.Add(new Vector2(i, j), false);
-                            break;
+                            Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
+                            if (enemyPosition == position || Game1.enemyList[k].BoundingBox.Contains(position)) //if the i and j is equal to enemy position, set the position to not walkable
+                            {
+                                set = true;
+                                walkablePosition.Add(position, false);
+                                break;
+                            }
                         }
                     }
                     if (!set)
-                        walkablePosition.Add(new Vector2(i, j), true);
+                        walkablePosition.Add(position, true);
                 }
             }
         }
@@ -81,20 +86,33 @@ namespace Project
             IDictionary<Vector2, int> costSoFar = new Dictionary<Vector2, int>();
 
             walkablePosition.Clear();
+            var stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
             WalkablePosition(start, goal);
+            stopWatch.Stop();
+            System.Diagnostics.Debug.WriteLine("walkable position: " + stopWatch.Elapsed);
 
             priorityQueue.Enqueue(start, 0);
+            stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
             IEnumerable<Vector2> validNode = walkablePosition.Where(x => x.Value).Select(x => x.Key);
+            stopWatch.Stop();
+            System.Diagnostics.Debug.WriteLine("valid node: " + stopWatch.Elapsed);
 
+            stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
             foreach (Vector2 node in validNode)
             {
                 costSoFar.Add(new KeyValuePair<Vector2, int>(node, int.MaxValue));
                 comeFrom.Add(new KeyValuePair<Vector2, Vector2>(node, Vector2.Zero));
             }
+            stopWatch.Stop();
+            System.Diagnostics.Debug.WriteLine("assign valid node: " + stopWatch.Elapsed);
 
             comeFrom[start] = start;
             costSoFar[start] = 0;
-
+            stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
             while (priorityQueue.GetCount() > -1)
             {
                 Vector2 curr = priorityQueue.Dequeue();
@@ -102,7 +120,11 @@ namespace Project
                 if (curr == goal)
                     break;
 
+                stopWatch = new System.Diagnostics.Stopwatch();
+                stopWatch.Start();
                 List<Vector2> neighbour = GetNeighbour(start, goal, curr, validNode);
+                stopWatch.Stop();
+                System.Diagnostics.Debug.WriteLine("get neighbour: " + stopWatch.Elapsed);
 
                 foreach (Vector2 node in neighbour)
                 {
@@ -114,14 +136,19 @@ namespace Project
                         int priority = newCost + Heuristic(node, goal);
                         priorityQueue.Enqueue(node, priority);
                         comeFrom[node] = curr;
+                        System.Diagnostics.Debug.WriteLine("come in");
                     }
                 }
             }
+            stopWatch.Stop();
+            System.Diagnostics.Debug.WriteLine("priority queue: " + stopWatch.Elapsed);
             return ConstructPath(comeFrom, start, goal);
         }
 
         public static List<Vector2> ConstructPath(IDictionary<Vector2, Vector2> comeFrom, Vector2 start, Vector2 goal)
         {
+            var stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();
             Vector2 curr = goal;
             List<Vector2> path = new List<Vector2>();
 
@@ -131,6 +158,8 @@ namespace Project
                 curr = comeFrom[curr];
             }
             path.Reverse();
+            stopWatch.Stop();
+            System.Diagnostics.Debug.WriteLine("construct path: " + stopWatch.Elapsed);
             return path;
         }
 
