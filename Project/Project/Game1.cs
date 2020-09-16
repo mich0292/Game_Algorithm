@@ -39,22 +39,23 @@ namespace Project
         //For measuring the screen
         public static int screenWidth;
         public static int screenHeight;
-
+        //button
         private Button startButton;
         private Button endButton;
         private Button restartButton;
+        private Button menuButton;
+        private float lastPress;
         //private Button menuButton;
         //Asteroid
         private float counter;
         //Player collision
         private float collisionTime;
-        //Menu title
+        //UI title
         private UI menuTitle;
+        private UI pauseTitle;
         //Scrolling Background
         private ScrollingBackground bg1 = new ScrollingBackground();
         private ScrollingBackground bg2 = new ScrollingBackground();
-        //pause texture
-        private Texture2D pauseTexture;
         //pause variable
         private bool pauseGame;
         private float pauseCounter;
@@ -82,10 +83,13 @@ namespace Project
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
             counter = 0;
             collisionTime = 0;
+            lastPress = 0f;
+            pauseCounter = 0;
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
             restartButton = new Button("restartButton", Game1.assets["restartButton"], screenWidth / 2 - Game1.assets["restartButton"].Width / 2, screenHeight / 2 - Game1.assets["restartButton"].Height / 2);
+            menuButton = new Button("menuButton", Game1.assets["menuButton"], screenWidth / 2 - Game1.assets["menuButton"].Width / 2, screenHeight / 2 - Game1.assets["menuButton"].Height / 2);
             player.Initialize();
             //boss
             var boss = new Boss();
@@ -119,8 +123,8 @@ namespace Project
             assets.Add("turret", Content.Load<Texture2D>("turret"));
             assets.Add("missile", Content.Load<Texture2D>("rocket")); 
             assets.Add("boss", Content.Load<Texture2D>("boss")); 
-            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
-            pauseTexture = Content.Load<Texture2D>("pause");
+            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"), Color.Black);
+            pauseTitle = new UI("Pause Game", Content.Load<SpriteFont>("font"), Color.White);
 
             //load background here
             bg1.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 500, 800, 500));
@@ -258,13 +262,14 @@ namespace Project
         }
 
         void UpdateMainMenu(GameTime deltaTime)
-        {
+        {;
             MouseState MouseInput = Mouse.GetState();
 
-            if (MouseInput.LeftButton == ButtonState.Pressed)
+            if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
             {
                 if (startButton.enterButton(MouseInput))
                 {
+                    lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
                     _state = GameState.Gameplay;
                 }
                 if (endButton.enterButton(MouseInput))
@@ -283,8 +288,29 @@ namespace Project
                 pauseCounter = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200f;
                 pauseGame = !pauseGame;
             }
+            if (pauseGame)
+            {
+                MouseState MouseInput = Mouse.GetState();
 
-            if (!pauseGame)
+                if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
+                {
+                    if (menuButton.enterButton(MouseInput))
+                    {
+                        _state = GameState.MainMenu;
+                        pauseGame = false;
+                        playerBulletList.Clear();
+                        enemyBulletList.Clear();
+                        enemyList.Clear();
+                        missileList.Clear();
+                        lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;;
+                    }
+                    if (endButton.enterButton(MouseInput))
+                    {
+                        Exit();
+                    }
+                }
+            }
+            else if (!pauseGame)
             {
                 counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
 
@@ -346,11 +372,12 @@ namespace Project
         {
             MouseState MouseInput = Mouse.GetState();
 
-            if (MouseInput.LeftButton == ButtonState.Pressed)
+            if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
             {
                 if (restartButton.enterButton(MouseInput))
                 {
                     _state = GameState.Gameplay;
+                    lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
                     //current player health is 0 ((because of gameover)
                     player.revivePlayer();
                 }
@@ -377,6 +404,7 @@ namespace Project
 
             // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
+
             //draw player
             player.Draw(spriteBatch, deltaTime);
             //draw player bullet
@@ -392,13 +420,19 @@ namespace Project
             for (int i = 0; i < missileList.Count; i++)
                 missileList[i].Draw(spriteBatch, deltaTime);
 
-            if (pauseGame)
-                spriteBatch.Draw(pauseTexture, new Vector2(screenWidth / 2.0f - pauseTexture.Width / 2f, screenHeight / 2f - pauseTexture.Height / 2f), Color.White);
-
             //draw background
             bg1.Draw(spriteBatch, deltaTime);
             bg2.Draw(spriteBatch, deltaTime);
 
+            spriteBatch.End();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            if (pauseGame)
+            {
+                pauseTitle.Draw(spriteBatch, deltaTime);
+                menuButton.Draw(spriteBatch);
+                endButton.Draw(spriteBatch);
+            }          
             spriteBatch.End();
         }
 
