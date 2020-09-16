@@ -142,7 +142,7 @@ namespace Project
         public static List<Vector2> GetNeighbour(Vector2 start, Vector2 end, Vector2 curr, IEnumerable<Vector2> validNode)
         {
             List<Vector2> neighbour = new List<Vector2>();
-            int constraint = 50;
+            int constraint = 100;
             //Vector2 diff = end - start;
             //diff.X = (int)(diff.X / 16);
             //diff.Y = (int)(diff.Y / 16);
