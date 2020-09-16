@@ -271,6 +271,10 @@ namespace Project
         {
             counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
 
+            var turret = new Turret();
+            turret.Initialize();
+            enemyList.Add(turret);
+
             if(counter >= 2)
             {
                 counter = 0;

@@ -12,7 +12,7 @@ namespace Project
             health = 1;
             speed = 100.0f;
             fireTime = 0f;
-            fireRate = 100.0f;
+            fireRate = 300.0f;
             orientation = 0f;
             texture = Game1.assets["enemy2"];
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);

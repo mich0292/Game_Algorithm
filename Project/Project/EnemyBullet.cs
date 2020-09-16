@@ -16,7 +16,7 @@ namespace Project
         public override void Initialize()
         {
             //initialize all the variables
-            speed = 300.0f;
+            speed = 250.0f;
             name = "enemyBullet";           
             texture = Game1.assets["enemyBullet"];           
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
@@ -32,6 +32,11 @@ namespace Project
         public void setOwner(GameObject owner)
         {
             this.owner = owner;
+        }
+
+        public void setSpeed(float speed)
+        {
+            this.speed = speed;
         }
        
         public override void Update(GameTime gameTime)

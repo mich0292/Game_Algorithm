@@ -19,6 +19,7 @@
     <File>D:/GameAlgorithm/Project/Project/Content/restart.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/rocket.png</File>
     <File>D:/GameAlgorithm/Project/Project/Content/start3.png</File>
+    <File>D:/GameAlgorithm/Project/Project/Content/Turret_45x60.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -36,5 +37,6 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File>start.png</File>
+    <File>turret.png</File>
   </DestFiles>
 </SourceFileCollection>

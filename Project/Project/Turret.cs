@@ -13,36 +13,28 @@ namespace Project
             health = 1;
             speed = 0.0f;
             fireTime = 0.0f;
-            fireRate = 500.0f;
+            fireRate = 700.0f;
             orientation = 0f;
             texture = Game1.assets["turret"];
-            position = new Vector2(50, 400);
-            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f); 
+            position = new Vector2(700, 200);
+            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);            
         }
 
         public override void Update(GameTime gameTime)
         {
-            KinematicSeek(gameTime);
-            LineOfSight(gameTime);
-        }
-
-        //Reference from notes Lecture 3
-        public void KinematicSeek(GameTime gameTime)
-        {
             Vector2 velocity = Game1.player.position - position;
             velocity.Normalize();
-            velocity *= speed;
-            position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
             Orientation(velocity);
+            LineOfSight(gameTime);           
         }
 
         public void LineOfSight(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
+            Vector2 originalPos = Game1.player.position;
+            if (gameTime.TotalGameTime.TotalSeconds > fireTime)
             {
-                fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
-                
-                if (InLOS(90, 300, Game1.player.position, position, orientation))
+                fireTime = (float)gameTime.TotalGameTime.TotalSeconds + fireRate;
+                if (InLOS(90, 200, Game1.player.position, position, orientation))
                 {
                     EnemyBullet tempBullet = new EnemyBullet();
                     tempBullet.setOwner(this);
