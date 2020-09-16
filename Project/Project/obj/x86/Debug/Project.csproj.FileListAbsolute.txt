@@ -112,4 +112,6 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy_bullet.xnb
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy_bullet.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy2.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\turret.xnb
-D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\pause.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\pause.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemy2.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\turret.xnb
