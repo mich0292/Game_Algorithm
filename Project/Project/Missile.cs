@@ -13,6 +13,7 @@ namespace Project
         public GameObject target;
         List<Vector2> path;
         private bool called = false;
+        private float counter = 0.5f;
 
         public override void Initialize()
         {
@@ -31,24 +32,37 @@ namespace Project
             if (Game1.enemyList.Contains(target))
             {
                 Vector2 moveToward;
-                if (!called)
+                counter += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+                if (counter >= 0.5f)
                 {
-                    var stopWatch = new System.Diagnostics.Stopwatch();
-                    stopWatch.Start();
                     AStar.Initialize(position, target.position);
                     path = AStar.Compute(position, target.position);
-                    stopWatch.Stop();
-                    System.Diagnostics.Debug.WriteLine(stopWatch.Elapsed);
-                    called = true;
+                    counter = 0f;
                 }
+                //if (!called)
+                //{
+                //    var stopWatch = new System.Diagnostics.Stopwatch();
+                //    stopWatch.Start();
+                //    AStar.Initialize(position, target.position);
+                //    path = AStar.Compute(position, target.position);
+                //    stopWatch.Stop();
+                //    System.Diagnostics.Debug.WriteLine(stopWatch.Elapsed);
+                //    called = true;
+                //    foreach (var node in path)
+                //        Console.WriteLine(node);
+                //}
 
                 if (path.Count > 0)
                 {
                     moveToward = path[0];
-                    path.RemoveAt(0);
 
                     Vector2 diff = moveToward - position;
-                    //Vector2 diff = target.position - position;
+                    Vector2 temp = diff;
+
+                    if (temp.Length() < 5f)
+                        path.RemoveAt(0);
+
                     orientation = (float)Math.Atan2(diff.Y, diff.X);
                     diff.Normalize();
 
