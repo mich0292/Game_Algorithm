@@ -46,6 +46,7 @@
     <Compile Include="Boss.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Cursor.cs" />
+    <Compile Include="Turret.cs" />
     <Compile Include="Enemy1.cs" />
     <Compile Include="Enemy2.cs" />
     <Compile Include="EnemyBullet.cs" />

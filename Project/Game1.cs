@@ -108,10 +108,9 @@ namespace Project
             assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             assets.Add("cursor", Content.Load<Texture2D>("cursor"));
-            assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); 
-            assets.Add("enemy2", Content.Load<Texture2D>("enemy2"));
-            assets.Add("turret", Content.Load<Texture2D>("turret"));
-            assets.Add("missile", Content.Load<Texture2D>("rocket")); 
+            assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); //change the file!!!
+            assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
+            assets.Add("missile", Content.Load<Texture2D>("rocket")); //change the file!!!
             assets.Add("boss", Content.Load<Texture2D>("boss")); 
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
 
@@ -183,7 +182,11 @@ namespace Project
             //detect collision between player and enemy
             for(int i = 0; i < enemyList.Count; i++)
             {
-                if (player.BoundingBox.Intersects(enemyList[i].BoundingBox))
+                if (player.position.X < enemyList[i].position.X + enemyList[i].texture.Width &&
+                    player.position.X + player.texture.Width > enemyList[i].position.X &&
+                    player.position.Y < enemyList[i].position.Y + enemyList[i].texture.Height &&
+                    player.position.Y + player.texture.Height > enemyList[i].position.Y &&
+                    gameTime.TotalGameTime.TotalSeconds > collisionTime)
                 {
                     player.health--;
                     enemyList[i].health--;
@@ -202,8 +205,10 @@ namespace Project
             {
                 for(int j = 0; j < playerBulletList.Count; j++)
                 {
-                    //Axis-Aligned Bounding Box
-                    if (enemyList[i].BoundingBox.Intersects(playerBulletList[j].BoundingBox))
+                    if (enemyList[i].position.X < playerBulletList[j].position.X + playerBulletList[j].texture.Width &&
+                    enemyList[i].position.X + enemyList[i].texture.Width > playerBulletList[j].position.X &&
+                    enemyList[i].position.Y < playerBulletList[j].position.Y + playerBulletList[j].texture.Height &&
+                    enemyList[i].position.Y + enemyList[i].texture.Height > playerBulletList[j].position.Y)
                     {
                         enemyList[i].health--;
 
@@ -219,7 +224,10 @@ namespace Project
             //detect collision between enemy bullet and player
             for (int i = 0; i < enemyBulletList.Count; i++)
             {
-                if (player.BoundingBox.Intersects(enemyBulletList[i].BoundingBox))
+                if (player.position.X < enemyBulletList[i].position.X + enemyBulletList[i].texture.Width &&
+                    player.position.X + player.texture.Width > enemyBulletList[i].position.X &&
+                    player.position.Y < enemyBulletList[i].position.Y + enemyBulletList[i].texture.Height &&
+                    player.position.Y + player.texture.Height > enemyBulletList[i].position.Y)
                 {
                     player.health--;
 
@@ -236,7 +244,11 @@ namespace Project
                 {
                     if (object.ReferenceEquals(missileList[i].target, enemyList[j]))
                     {
-                        if (missileList[i].BoundingBox.Intersects(enemyList[j].BoundingBox))
+                        if (missileList[i].position.X < enemyList[j].position.X + enemyList[j].texture.Width &&
+                            missileList[i].position.X + missileList[i].texture.Width > enemyList[j].position.X &&
+                            missileList[i].position.Y < enemyList[j].position.Y + enemyList[j].texture.Height &&
+                            missileList[i].position.Y + missileList[i].texture.Height > enemyList[j].position.Y)
+                        {
                             enemyList[j].health -= 3;
                             if (enemyList[j].health <= 0)
                                 enemyList.Remove(enemyList[j]);
@@ -244,7 +256,8 @@ namespace Project
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
 
-                            break;                       
+                            break;
+                        }
                     }
                 }
             }

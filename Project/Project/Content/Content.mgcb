@@ -75,6 +75,18 @@
 /processorParam:TextureFormat=Color
 /build:Cruiser_57x49.png;enemy1.png
 
+#begin Cruiser2_42x61.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Cruiser2_42x61.png;enemy2.png
+
 #begin cursor.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -177,4 +189,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:start3.png;start.png
+
+#begin Turret_45x60.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Turret_45x60.png;turret.png
 
