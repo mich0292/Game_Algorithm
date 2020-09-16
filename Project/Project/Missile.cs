@@ -36,8 +36,12 @@ namespace Project
 
                 if (counter >= 0.5f)
                 {
+                    var stopWatch = new System.Diagnostics.Stopwatch();
+                    stopWatch.Start();
                     AStar.Initialize(position, target.position);
                     path = AStar.Compute(position, target.position);
+                    stopWatch.Stop();
+                    System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed.TotalSeconds);
                     counter = 0f;
                 }
                 //if (!called)
@@ -47,10 +51,8 @@ namespace Project
                 //    AStar.Initialize(position, target.position);
                 //    path = AStar.Compute(position, target.position);
                 //    stopWatch.Stop();
-                //    System.Diagnostics.Debug.WriteLine(stopWatch.Elapsed);
+                //    System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed);
                 //    called = true;
-                //    foreach (var node in path)
-                //        Console.WriteLine(node);
                 //}
 
                 if (path.Count > 0)

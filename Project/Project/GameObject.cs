@@ -55,12 +55,12 @@ namespace Project
             {
                 foreach (Point p in BresenhamLine((int)PositionA.X, (int)PositionA.Y, (int)PositionB.X, (int)PositionB.Y))
                 {
-                    Console.WriteLine(p);                  
+                    //Console.WriteLine(p);                  
                     for (int i = 0; i < Game1.enemyList.Count; i++)
                     {
                         if (Game1.enemyList[i].position != position && Game1.enemyList[i].BoundingBox.Contains(p))
                         {
-                            Console.WriteLine(Game1.enemyList[i].BoundingBox.Contains(p));
+                            //Console.WriteLine(Game1.enemyList[i].BoundingBox.Contains(p));
                             return false;
                         }
                     }
