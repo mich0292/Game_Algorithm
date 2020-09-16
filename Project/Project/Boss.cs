@@ -80,6 +80,7 @@ namespace Project
 
         void UpdateAttack(GameTime gameTime)
         {
+            fireRate = 150f;
             MoveToPlayer(gameTime); 
             Fire(gameTime);
         }
