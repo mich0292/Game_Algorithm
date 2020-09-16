@@ -40,7 +40,6 @@ namespace Project
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
 
-
         //https://deepnight.net/tutorial/bresenham-magic-raycasting-line-of-sight-pathfinding/
         //https://gamedev.stackexchange.com/questions/26813/xna-2d-line-of-sight-check
         //https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
