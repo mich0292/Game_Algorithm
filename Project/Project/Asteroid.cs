@@ -50,12 +50,7 @@ namespace Project
                 velocity *= speed;
             }
             position += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            /*
-            Vector2 displacement = new Vector2(rand.Next(-1, 2) * displace, rand.Next(-1, 2) * displace);
-            velocity += displacement;
-            velocity.Normalize();
-            velocity *= speed;
-            */
+
             Orientation(velocity);
 
             if (position.X > Game1.screenWidth|| position.X < 0 || position.Y > Game1.screenHeight

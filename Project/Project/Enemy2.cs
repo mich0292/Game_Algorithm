@@ -30,8 +30,13 @@ namespace Project
         }
 
         //Pattern movement - Catmull-rom spline
-        //https://andrewhungblog.wordpress.com/2017/03/03/catmull-rom-splines-in-plain-english/
-        public void KinematicSeek(GameTime gameTime)
+        //Two ways of doing it (simplified version):
+        // https://www.habrador.com/tutorials/interpolation/1-catmull-rom-splines/
+        // https://medium.com/@PritishCh/camera-systems-part-2-adcf59aa8259
+        // More complicated way (based on matrixes?):
+        // https://andrewhungblog.wordpress.com/2017/03/03/catmull-rom-splines-in-plain-english/
+        //
+        public void PatternMovement(GameTime gameTime)
         {            
             Vector2 velocity = Game1.player.position - position;
             velocity.Normalize();
