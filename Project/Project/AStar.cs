@@ -129,15 +129,15 @@ namespace Project
 
         public static bool Compute2(Vector2 start, Vector2 goal)
         {
-            foreach (Point p in BresenhamLine((int)start.X, (int)start.Y, (int)goal.X, (int)goal.Y))
-            {
-                //Console.WriteLine(p);                  
+            List<Point> bresenham = BresenhamLine((int)start.X, (int)start.Y, (int)goal.X, (int)goal.Y);
+
+            foreach (Point p in bresenham)
+            {                 
                 for (int i = 0; i < Game1.enemyList.Count; i++)
                 {
                     Vector2 enemyPos = new Vector2((int)Game1.enemyList[i].position.X, (int)Game1.enemyList[i].position.Y);
                     if (enemyPos != goal && Game1.enemyList[i].BoundingBox.Contains(p))
                     {
-                        //Console.WriteLine(Game1.enemyList[i].BoundingBox.Contains(p));
                         return false;
                     }
                 }
@@ -156,9 +156,8 @@ namespace Project
 
             if (Compute2(start, goal))
             {
-                System.Diagnostics.Debug.WriteLine("compute 2");
+                System.Diagnostics.Debug.WriteLine("bresenham");
                 List<Vector2> path = new List<Vector2>();
-                path.Add(start);
                 path.Add(goal);
                 return path;
             }

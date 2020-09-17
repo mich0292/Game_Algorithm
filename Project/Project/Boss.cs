@@ -82,14 +82,14 @@ namespace Project
         {
             fireRate = 150f;
             MoveToPlayer(gameTime); 
-            Fire(gameTime);
+            //Fire(gameTime);
         }
 
         void UpdateAttackFaster(GameTime gameTime)
         {
             fireRate = 75f;
             MoveToPlayer(gameTime);
-            Fire(gameTime);
+            //Fire(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

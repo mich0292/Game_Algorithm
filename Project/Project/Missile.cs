@@ -12,7 +12,6 @@ namespace Project
     {
         public GameObject target;
         List<Vector2> path;
-        private bool called = false;
         private float counter = 0.5f;
 
         public override void Initialize()
@@ -44,21 +43,10 @@ namespace Project
                     System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed.TotalSeconds);
                     counter = 0f;
                 }
-                //if (!called)
-                //{
-                //    var stopWatch = new System.Diagnostics.Stopwatch();
-                //    stopWatch.Start();
-                //    AStar.Initialize(position, target.position);
-                //    path = AStar.Compute(position, target.position);
-                //    stopWatch.Stop();
-                //    System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed);
-                //    called = true;
-                //}
 
                 if (path.Count > 0)
                 {
                     moveToward = path[0];
-
                     Vector2 diff = moveToward - position;
                     Vector2 temp = diff;
 

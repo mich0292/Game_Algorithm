@@ -23,7 +23,7 @@ namespace Project
         public override void Update(GameTime gameTime)
         {
             KinematicSeek(gameTime);
-            LineOfSight(gameTime);
+            //LineOfSight(gameTime);
         }
 
         //Reference from notes Lecture 3

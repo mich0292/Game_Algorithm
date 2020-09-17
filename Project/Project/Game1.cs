@@ -255,7 +255,6 @@ namespace Project
 
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
-
                             break;
                         }                                          
                     }
@@ -316,9 +315,9 @@ namespace Project
             {
                 counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
 
-                var turret = new Turret();
-                turret.Initialize();
-                enemyList.Add(turret);
+                //var turret = new Turret();
+                //turret.Initialize();
+                //enemyList.Add(turret);
 
                 if (counter >= 2)
                 {
@@ -419,7 +418,6 @@ namespace Project
             for (int i = 0; i < enemyList.Count; i++)
                 enemyList[i].Draw(spriteBatch, deltaTime);
             //draw missile
-            System.Diagnostics.Debug.WriteLine("missile count: " + missileList.Count);
             for (int i = 0; i < missileList.Count; i++)
                 missileList[i].Draw(spriteBatch, deltaTime);
 
