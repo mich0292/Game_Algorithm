@@ -10,6 +10,7 @@ namespace Project
     public class AStar
     {
         public static IDictionary<Vector2, bool> walkablePosition = new Dictionary<Vector2, bool>();
+        public static Vector2 lastPoint;
         public static int leftBound;
         public static int rightBound;
         public static int topBound;
@@ -17,11 +18,7 @@ namespace Project
 
         public static void Initialize(Vector2 start, Vector2 goal)
         {
-            int constraint = 43; //all enemy texture maximum height width / 2
-            //leftBound = 0;
-            //topBound = 0;
-            //rightBound = Game1.screenWidth;
-            //bottomBound = Game1.screenHeight;
+            int constraint = 0; //all enemy texture maximum height width / 2
             if (start.X > goal.X)
             {
                 leftBound = (int)goal.X - constraint;
@@ -60,56 +57,20 @@ namespace Project
             foreach (var point in points)
             {
                 set = false;
-                if (point == goalPosition)
+                for (int k = 0; k < Game1.enemyList.Count; k++)
                 {
-                    set = true;
-                    walkablePosition.Add(point, true);
-                }
-                else
-                {
-                    for (int k = 0; k < Game1.enemyList.Count; k++)
+                    Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
+
+                    if (enemyPosition != goalPosition && Game1.enemyList[k].BoundingBox.Contains(point)) //if the i and j is equal to enemy position, set the position to not walkable
                     {
-                        Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
-                        if (Game1.enemyList[k].position == point) //if the i and j is equal to enemy position, set the position to not walkable
-                        {
-                            set = true;
-                            walkablePosition.Add(point, false);
-                            break;
-                        }
+                        set = true;
+                        walkablePosition.Add(point, false);
+                        break;
                     }
                 }
                 if (!set)
                     walkablePosition.Add(point, true);
             }
-            //for (int i = leftBound; i <= rightBound; i++)
-            //{
-            //    for (int j = topBound; j <= bottomBound; j++)
-            //    {
-            //        set = false;
-            //        position = new Vector2(i, j);
-
-            //        if (position == goalPosition)
-            //        {
-            //            set = true;
-            //            walkablePosition.Add(position, true);
-            //        }
-            //        else
-            //        {
-            //            for (int k = 0; k < Game1.enemyList.Count; k++)
-            //            {
-            //                Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
-            //                if (enemyPosition == position) //if the i and j is equal to enemy position, set the position to not walkable
-            //                {
-            //                    set = true;
-            //                    walkablePosition.Add(position, false);
-            //                    break;
-            //                }
-            //            }
-            //        }
-            //        if (!set)
-            //            walkablePosition.Add(position, true);
-            //    }
-            //}
         }
 
         //https://www.youtube.com/watch?v=jNZh9wppUkY
@@ -167,13 +128,17 @@ namespace Project
         {
             List<Point> bresenham = BresenhamLine((int)start.X, (int)start.Y, (int)goal.X, (int)goal.Y);
 
-            foreach (Point p in bresenham)
+            for (int i = 0; i < bresenham.Count; i++)
             {
-                for (int i = 0; i < Game1.enemyList.Count; i++)
+                for (int j = 0; j < Game1.enemyList.Count; j++)
                 {
-                    Vector2 enemyPos = new Vector2((int)Game1.enemyList[i].position.X, (int)Game1.enemyList[i].position.Y);
-                    if (enemyPos != goal && Game1.enemyList[i].BoundingBox.Contains(p))
+                    Vector2 enemyPos = new Vector2((int)Game1.enemyList[j].position.X, (int)Game1.enemyList[j].position.Y);
+                    if (enemyPos != goal && Game1.enemyList[j].BoundingBox.Contains(bresenham[i]))
                     {
+                        if (i == 0)
+                            lastPoint = Vector2.Zero;
+                        else
+                            lastPoint = new Vector2(bresenham[i - 1].X, bresenham[i - 1].Y);
                         return false;
                     }
                 }
@@ -197,7 +162,13 @@ namespace Project
                 path.Add(goal);
                 return path;
             }
-
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
+                if (lastPoint != Vector2.Zero)
+                    start = lastPoint;
+            }
+            Initialize(start, goal);
             walkablePosition.Clear();
             var stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();
