@@ -17,26 +17,31 @@ namespace Project
 
         public static void Initialize(Vector2 start, Vector2 goal)
         {
+            int constraint = 43; //all enemy texture maximum height width / 2
+            //leftBound = 0;
+            //topBound = 0;
+            //rightBound = Game1.screenWidth;
+            //bottomBound = Game1.screenHeight;
             if (start.X > goal.X)
             {
-                leftBound = (int)goal.X;
-                rightBound = (int)start.X;
+                leftBound = (int)goal.X - constraint;
+                rightBound = (int)start.X + constraint;
             }
             else
             {
-                leftBound = (int)start.X;
-                rightBound = (int)goal.X;
+                leftBound = (int)start.X - constraint;
+                rightBound = (int)goal.X + constraint;
             }
 
             if (start.Y > goal.Y)
             {
-                topBound = (int)goal.Y;
-                bottomBound = (int)start.Y;
+                topBound = (int)goal.Y - constraint;
+                bottomBound = (int)start.Y + constraint;
             }
             else
             {
-                topBound = (int)start.Y;
-                bottomBound = (int)goal.Y;
+                topBound = (int)start.Y - constraint;
+                bottomBound = (int)goal.Y + constraint;
             }
         }
 
@@ -44,36 +49,67 @@ namespace Project
         {
             bool set;
             Vector2 position;
+            List<Vector2> points = new List<Vector2>();
 
             for (int i = leftBound; i <= rightBound; i++)
             {
                 for (int j = topBound; j <= bottomBound; j++)
-                {
-                    set = false;
-                    position = new Vector2(i, j);
+                    points.Add(new Vector2(i, j));
+            }
 
-                    if (position == goalPosition)
+            foreach (var point in points)
+            {
+                set = false;
+                if (point == goalPosition)
+                {
+                    set = true;
+                    walkablePosition.Add(point, true);
+                }
+                else
+                {
+                    for (int k = 0; k < Game1.enemyList.Count; k++)
                     {
-                        set = true;
-                        walkablePosition.Add(position, true);
-                    }
-                    else
-                    {
-                        for (int k = 0; k < Game1.enemyList.Count; k++)
+                        Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
+                        if (Game1.enemyList[k].position == point) //if the i and j is equal to enemy position, set the position to not walkable
                         {
-                            Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
-                            if (enemyPosition == position) //if the i and j is equal to enemy position, set the position to not walkable
-                            {
-                                set = true;
-                                walkablePosition.Add(position, false);
-                                break;
-                            }
+                            set = true;
+                            walkablePosition.Add(point, false);
+                            break;
                         }
                     }
-                    if (!set)
-                        walkablePosition.Add(position, true);
                 }
+                if (!set)
+                    walkablePosition.Add(point, true);
             }
+            //for (int i = leftBound; i <= rightBound; i++)
+            //{
+            //    for (int j = topBound; j <= bottomBound; j++)
+            //    {
+            //        set = false;
+            //        position = new Vector2(i, j);
+
+            //        if (position == goalPosition)
+            //        {
+            //            set = true;
+            //            walkablePosition.Add(position, true);
+            //        }
+            //        else
+            //        {
+            //            for (int k = 0; k < Game1.enemyList.Count; k++)
+            //            {
+            //                Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
+            //                if (enemyPosition == position) //if the i and j is equal to enemy position, set the position to not walkable
+            //                {
+            //                    set = true;
+            //                    walkablePosition.Add(position, false);
+            //                    break;
+            //                }
+            //            }
+            //        }
+            //        if (!set)
+            //            walkablePosition.Add(position, true);
+            //    }
+            //}
         }
 
         //https://www.youtube.com/watch?v=jNZh9wppUkY
@@ -132,7 +168,7 @@ namespace Project
             List<Point> bresenham = BresenhamLine((int)start.X, (int)start.Y, (int)goal.X, (int)goal.Y);
 
             foreach (Point p in bresenham)
-            {                 
+            {
                 for (int i = 0; i < Game1.enemyList.Count; i++)
                 {
                     Vector2 enemyPos = new Vector2((int)Game1.enemyList[i].position.X, (int)Game1.enemyList[i].position.Y);
@@ -179,10 +215,7 @@ namespace Project
             stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();
             foreach (Vector2 node in validNode)
-            {
                 costSoFar.Add(new KeyValuePair<Vector2, int>(node, int.MaxValue));
-                comeFrom.Add(new KeyValuePair<Vector2, Vector2>(node, Vector2.Zero));
-            }
             stopWatch.Stop();
             System.Diagnostics.Debug.WriteLine("assign valid node: " + stopWatch.Elapsed);
 
@@ -212,7 +245,10 @@ namespace Project
                         costSoFar[node] = newCost;
                         int priority = newCost + Heuristic(node, goal);
                         priorityQueue.Enqueue(node, priority);
-                        comeFrom[node] = curr;
+                        if (!comeFrom.ContainsKey(node))
+                            comeFrom.Add(new KeyValuePair<Vector2, Vector2>(node, curr));
+                        else
+                            comeFrom[node] = curr;
                     }
                 }
             }
@@ -248,17 +284,13 @@ namespace Project
         {
             List<Vector2> neighbour = new List<Vector2>();
             int constraint = 100;
-            //Vector2 diff = end - start;
-            //diff.X = (int)(diff.X / 16);
-            //diff.Y = (int)(diff.Y / 16);
             Vector2 temp;
-            //System.Diagnostics.Debug.WriteLine("current node: " + curr);
-            if (Math.Abs(curr.X - end.X) >= constraint || Math.Abs(curr.Y - end.Y) >= constraint)
+
+            if (Math.Abs(curr.X - end.X) > constraint || Math.Abs(curr.Y - end.Y) > constraint)
             {
                 if (curr.X + constraint <= rightBound) //right neighbour
                 {
                     temp = curr;
-                    //temp.X += diff.X;        
                     temp.X += constraint;
                     if (validNode.Contains(temp))
                         neighbour.Add(temp);
@@ -266,7 +298,6 @@ namespace Project
                 if (curr.X - constraint >= leftBound) //left neighbour
                 {
                     temp = curr;
-                    //temp.X -= diff.X;
                     temp.X -= constraint;
                     if (validNode.Contains(temp))
                         neighbour.Add(temp);
@@ -274,7 +305,6 @@ namespace Project
                 if (curr.Y - constraint >= topBound) //top neighbour
                 {
                     temp = curr;
-                    //temp.Y -= diff.Y;
                     temp.Y -= constraint;
                     if (validNode.Contains(temp))
                         neighbour.Add(temp);
@@ -282,7 +312,6 @@ namespace Project
                 if (curr.Y + constraint <= bottomBound) //bottom neighbour
                 {
                     temp = curr;
-                    //temp.Y += diff.Y;
                     temp.Y += constraint;
                     if (validNode.Contains(temp))
                         neighbour.Add(temp);
@@ -291,8 +320,6 @@ namespace Project
                 if (curr.X - constraint >= leftBound && curr.Y - constraint >= topBound) //top left neighbour
                 {
                     temp = curr;
-                    //temp.X -= diff.X;
-                    //temp.Y -= diff.Y;
                     temp.X -= constraint;
                     temp.Y -= constraint;
                     if (validNode.Contains(temp))
@@ -301,8 +328,6 @@ namespace Project
                 if (curr.X + constraint <= rightBound && curr.Y - constraint >= topBound) //top right neighbour
                 {
                     temp = curr;
-                    //temp.X += diff.X;
-                    //temp.Y -= diff.Y;
                     temp.X += constraint;
                     temp.Y -= constraint;
                     if (validNode.Contains(temp))
@@ -311,8 +336,6 @@ namespace Project
                 if (curr.Y + constraint <= bottomBound && curr.X - constraint >= leftBound) //bottom left neighbour
                 {
                     temp = curr;
-                    //temp.Y += diff.Y;
-                    //temp.X -= diff.X;
                     temp.Y += constraint;
                     temp.X -= constraint;
                     if (validNode.Contains(temp))
@@ -321,8 +344,6 @@ namespace Project
                 if (curr.Y + constraint <= bottomBound && curr.X + constraint <= rightBound) //bottom right neighbour
                 {
                     temp = curr;
-                    //temp.Y += diff.Y;
-                    //temp.X += diff.X;
                     temp.Y += constraint;
                     temp.X += constraint;
                     if (validNode.Contains(temp))
