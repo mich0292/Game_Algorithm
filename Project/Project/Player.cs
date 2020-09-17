@@ -81,7 +81,9 @@ namespace Project
                 missile.target = Cursor.target;
                 Cursor.target = null;
                 Cursor.counter = 0; //after fire missile, reset the counter
+                System.Diagnostics.Debug.WriteLine("Fire missile==========================================");
                 Game1.missileList.Add(missile);
+                System.Diagnostics.Debug.WriteLine("missile count: " + Game1.missileList.Count);
             }
 
             //Check whether the player is dead to end the game

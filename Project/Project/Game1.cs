@@ -248,6 +248,7 @@ namespace Project
                     if (object.ReferenceEquals(missileList[i].target, enemyList[j]))
                     {
                         if (missileList[i].BoundingBox.Intersects(enemyList[j].BoundingBox))
+                        {
                             enemyList[j].health -= 3;
                             if (enemyList[j].health <= 0)
                                 enemyList.Remove(enemyList[j]);
@@ -255,7 +256,8 @@ namespace Project
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
 
-                            break;                       
+                            break;
+                        }                                          
                     }
                 }
             }
@@ -417,6 +419,7 @@ namespace Project
             for (int i = 0; i < enemyList.Count; i++)
                 enemyList[i].Draw(spriteBatch, deltaTime);
             //draw missile
+            System.Diagnostics.Debug.WriteLine("missile count: " + missileList.Count);
             for (int i = 0; i < missileList.Count; i++)
                 missileList[i].Draw(spriteBatch, deltaTime);
 
@@ -426,14 +429,16 @@ namespace Project
 
             spriteBatch.End();
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            
             if (pauseGame)
             {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
                 pauseTitle.Draw(spriteBatch, deltaTime);
                 menuButton.Draw(spriteBatch);
                 endButton.Draw(spriteBatch);
+                spriteBatch.End();
             }          
-            spriteBatch.End();
+            
         }
 
         void DrawGameOver(GameTime deltaTime)
