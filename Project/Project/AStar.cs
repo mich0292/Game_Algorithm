@@ -45,7 +45,6 @@ namespace Project
         public static void WalkablePosition(Vector2 start, Vector2 goalPosition)
         {
             bool set;
-            Vector2 position;
             List<Vector2> points = new List<Vector2>();
 
             for (int i = leftBound; i <= rightBound; i++)
@@ -156,19 +155,19 @@ namespace Project
             IDictionary<Vector2, Vector2> comeFrom = new Dictionary<Vector2, Vector2>();
             IDictionary<Vector2, int> costSoFar = new Dictionary<Vector2, int>();
 
-            //if (Compute2(start, goal))
-            //{
-            //    System.Diagnostics.Debug.WriteLine("bresenham");
-            //    List<Vector2> path = new List<Vector2>();
-            //    path.Add(goal);
-            //    return path;
-            //}
-            //else
-            //{
-            //    System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
-            //    if (lastPoint != Vector2.Zero)
-            //        start = lastPoint;
-            //}
+            if (Compute2(start, goal))
+            {
+                System.Diagnostics.Debug.WriteLine("bresenham");
+                List<Vector2> path = new List<Vector2>();
+                path.Add(goal);
+                return path;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
+                if (lastPoint != Vector2.Zero)
+                    start = lastPoint;
+            }
             Initialize(start, goal);
             walkablePosition.Clear();
             var stopWatch = new System.Diagnostics.Stopwatch();
