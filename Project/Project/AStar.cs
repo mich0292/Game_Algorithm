@@ -54,14 +54,14 @@ namespace Project
                     points.Add(new Vector2(i, j));
             }
 
-            foreach (var point in points)
+            foreach (Vector2 point in points)
             {
                 set = false;
                 for (int k = 0; k < Game1.enemyList.Count; k++)
                 {
                     Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
 
-                    if (enemyPosition != goalPosition && Game1.enemyList[k].BoundingBox.Contains(point)) //if the i and j is equal to enemy position, set the position to not walkable
+                    if (enemyPosition != goalPosition && Game1.enemyList[k].BoundingBox.Contains(point)) 
                     {
                         set = true;
                         walkablePosition.Add(point, false);
@@ -145,6 +145,7 @@ namespace Project
             }
             return true;
         }
+
         //https://www.redblobgames.com/pathfinding/a-star/implementation.html
         //https://www.youtube.com/watch?v=FsParg61xGw
         public static List<Vector2> Compute(Vector2 start, Vector2 goal)
@@ -155,19 +156,19 @@ namespace Project
             IDictionary<Vector2, Vector2> comeFrom = new Dictionary<Vector2, Vector2>();
             IDictionary<Vector2, int> costSoFar = new Dictionary<Vector2, int>();
 
-            if (Compute2(start, goal))
-            {
-                System.Diagnostics.Debug.WriteLine("bresenham");
-                List<Vector2> path = new List<Vector2>();
-                path.Add(goal);
-                return path;
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
-                if (lastPoint != Vector2.Zero)
-                    start = lastPoint;
-            }
+            //if (Compute2(start, goal))
+            //{
+            //    System.Diagnostics.Debug.WriteLine("bresenham");
+            //    List<Vector2> path = new List<Vector2>();
+            //    path.Add(goal);
+            //    return path;
+            //}
+            //else
+            //{
+            //    System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
+            //    if (lastPoint != Vector2.Zero)
+            //        start = lastPoint;
+            //}
             Initialize(start, goal);
             walkablePosition.Clear();
             var stopWatch = new System.Diagnostics.Stopwatch();

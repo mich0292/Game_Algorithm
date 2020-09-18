@@ -45,9 +45,6 @@ namespace Project
 
         public static void SelectTarget()
         {
-            System.Diagnostics.Debug.WriteLine("Select Target");
-            System.Diagnostics.Debug.WriteLine("Counter: " + counter);
-            System.Diagnostics.Debug.WriteLine("Enemy Count: " + Game1.enemyList.Count);
             for (int i = counter; i < Game1.enemyList.Count; counter++, i++)
             {
                 if (target != Game1.enemyList[i])

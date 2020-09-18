@@ -10,10 +10,13 @@ namespace Project
 {
     public class Boss : GameObject
     {
-        public enum BossState { avoid, attack, attack_faster};
+        public enum BossState { avoid, attack, attack_faster };
         public static BossState currentState;
 
+
         private int oriHealth;
+        private float avoidCounter; //if the boss avoid for more than 10 seconds, boss cannot avoid and enter attack state for 10 seconds
+        private bool canAvoid; //boss can avoid the bullet if this boolean is true
 
         public override void Initialize()
         {
@@ -22,18 +25,31 @@ namespace Project
             oriHealth = health;
             fireRate = 150f; //in miliseconds
             fireTime = 0f;  //in miliseconds
-            speed = 300.0f;
+            speed = 200.0f;
             name = "boss";
             texture = Game1.assets["boss"];
             position.X = Game1.screenWidth / 2;
             position.Y = 50;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
+            avoidCounter = 0f;
+            canAvoid = true;
         }
 
         public override void Update(GameTime gameTime)
         {
             int temp = oriHealth * 30 / 100;
+
+            if (canAvoid == false && currentState == BossState.avoid)
+            {
+                currentState = BossState.attack;
+                avoidCounter -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (avoidCounter <= 0f)
+                {
+                    avoidCounter = 0f;
+                    canAvoid = true;
+                }
+            }
 
             if (health < temp && currentState == BossState.attack)
                 currentState = BossState.attack_faster;
@@ -42,19 +58,25 @@ namespace Project
             {
                 case BossState.avoid:
                     UpdateAvoid(gameTime);
+                    avoidCounter += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (avoidCounter >= 10)
+                    {
+                        canAvoid = false;
+                        avoidCounter = 10f;
+                    }
                     break;
                 case BossState.attack:
                     UpdateAttack(gameTime);
                     break;
                 case BossState.attack_faster:
                     UpdateAttackFaster(gameTime);
-                    break;                 
+                    break;
             }
         }
 
         void UpdateAvoid(GameTime gameTime)
-        {            
-            if (Game1.player.previousPos.X - Game1.player.position.X < 0 && position.X < Game1.screenWidth - texture.Width / 2 
+        {
+            if (Game1.player.previousPos.X - Game1.player.position.X < 0 && position.X < Game1.screenWidth - texture.Width / 2
                 && Game1.player.position.X < position.X) //player move from left to right and player is on left side of boss
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
             else if (Game1.player.previousPos.X - Game1.player.position.X < 0 && position.X > 0 + texture.Width / 2 && Game1.player.position.X > position.X) //player move from left to right and player is on right side of boss
@@ -63,11 +85,11 @@ namespace Project
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
             else if (Game1.player.previousPos.X - Game1.player.position.X > 0 && position.X > 0 + texture.Width / 2 && Game1.player.position.X > position.X) //player move from right to left and player is on right side of boss
                 position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet
-            else if(Game1.player.previousPos.X - Game1.player.position.X == 0) //player stand still
+            else if (Game1.player.previousPos.X - Game1.player.position.X == 0) //player stand still
             {
-                if(Game1.player.position.X >= Game1.screenWidth - Game1.player.texture.Width / 2 && position.X > 0 + texture.Width / 2)  //player reach the maximum right side
+                if (Game1.player.position.X >= Game1.screenWidth - Game1.player.texture.Width / 2 && position.X > 0 + texture.Width / 2)  //player reach the maximum right side
                     position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet
-                else if(Game1.player.position.X <= 0 + Game1.player.texture.Width / 2 && position.X < Game1.screenWidth - texture.Width / 2) //player reach the maximum left side
+                else if (Game1.player.position.X <= 0 + Game1.player.texture.Width / 2 && position.X < Game1.screenWidth - texture.Width / 2) //player reach the maximum left side
                     position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
                 else if (Game1.player.position.X < position.X && position.X < Game1.screenWidth - texture.Width / 2) //player on the boss left side
                     position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet                   
@@ -81,15 +103,15 @@ namespace Project
         void UpdateAttack(GameTime gameTime)
         {
             fireRate = 150f;
-            MoveToPlayer(gameTime); 
-            //Fire(gameTime);
+            MoveToPlayer(gameTime);
+            Fire(gameTime);
         }
 
         void UpdateAttackFaster(GameTime gameTime)
         {
             fireRate = 75f;
             MoveToPlayer(gameTime);
-            //Fire(gameTime);
+            Fire(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -108,7 +130,7 @@ namespace Project
         public void Fire(GameTime gameTime)
         {
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
-            {                
+            {
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
                 if (InLOS(360, 400, Game1.player.position, position, orientation))
                 {
