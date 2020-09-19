@@ -33,7 +33,7 @@ namespace Project
                 Vector2 moveToward;
                 counter += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (counter >= 0.5f)
+                if (counter >= 0.2f)
                 {
                     var stopWatch = new System.Diagnostics.Stopwatch();
                     stopWatch.Start();

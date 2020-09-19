@@ -20,7 +20,7 @@ namespace Project
             fireRate = 150f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             missileTime = 0f; //in seconds
-            missileRate = 10f; //in seconds
+            missileRate = 1f; //in seconds
             speed = 300.0f;
             name = "player";
             texture = Game1.assets["player"];

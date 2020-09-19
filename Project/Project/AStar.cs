@@ -56,15 +56,23 @@ namespace Project
             foreach (Vector2 point in points)
             {
                 set = false;
-                for (int k = 0; k < Game1.enemyList.Count; k++)
+                if(point == goalPosition)
                 {
-                    Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
-
-                    if (enemyPosition != goalPosition && Game1.enemyList[k].BoundingBox.Contains(point)) 
+                    set = true;
+                    walkablePosition.Add(point, true);
+                }
+                else
+                {
+                    for (int k = 0; k < Game1.enemyList.Count; k++)
                     {
-                        set = true;
-                        walkablePosition.Add(point, false);
-                        break;
+                        Vector2 enemyPosition = new Vector2((int)Game1.enemyList[k].position.X, (int)Game1.enemyList[k].position.Y);
+
+                        if (enemyPosition != goalPosition && Game1.enemyList[k].BoundingBox.Contains(point))
+                        {
+                            set = true;
+                            walkablePosition.Add(point, false);
+                            break;
+                        }
                     }
                 }
                 if (!set)
@@ -185,8 +193,9 @@ namespace Project
 
             stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();
-            foreach (Vector2 node in validNode)
+            foreach (Vector2 node in validNode)                
                 costSoFar.Add(new KeyValuePair<Vector2, int>(node, int.MaxValue));
+                
             stopWatch.Stop();
             System.Diagnostics.Debug.WriteLine("assign valid node: " + stopWatch.Elapsed);
 
@@ -209,17 +218,25 @@ namespace Project
 
                 foreach (Vector2 node in neighbour)
                 {
-                    int newCost = costSoFar[curr] + 1; //the cost to another node always 1
+                    int newCost = costSoFar[curr] + Heuristic(curr,goal); //the cost to another node always 1
 
-                    if (costSoFar[node] == costSoFar[goal] || newCost < costSoFar[node])
+                    try
                     {
-                        costSoFar[node] = newCost;
-                        int priority = newCost + Heuristic(node, goal);
-                        priorityQueue.Enqueue(node, priority);
-                        if (!comeFrom.ContainsKey(node))
-                            comeFrom.Add(new KeyValuePair<Vector2, Vector2>(node, curr));
-                        else
-                            comeFrom[node] = curr;
+                        if (costSoFar[node] == costSoFar[goal] || newCost < costSoFar[node])
+                        {
+                            costSoFar[node] = newCost;
+                            int priority = newCost + Heuristic(node, goal);
+                            priorityQueue.Enqueue(node, priority);
+                            if(!comeFrom.ContainsKey(node))
+                                comeFrom.Add(new KeyValuePair<Vector2, Vector2>(node, curr));
+                            else
+                                comeFrom[node] = curr;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("cost so far contains: " + node + " boolean: " + costSoFar.ContainsKey(node));
+                        Console.WriteLine("cost so far contains goal: " + goal + " boolean: " + costSoFar.ContainsKey(goal));
                     }
                 }
             }
