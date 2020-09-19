@@ -23,8 +23,8 @@ namespace Project
             get
             {
                 return new Rectangle(
-                    (int)position.X,
-                    (int)position.Y,
+                    (int)position.X - texture.Width/2, 
+                    (int)position.Y - texture.Height/2,
                     texture.Width,
                     texture.Height
                     );
