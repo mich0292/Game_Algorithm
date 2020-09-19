@@ -170,12 +170,12 @@ namespace Project
                 path.Add(goal);
                 return path;
             }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
-                if (lastPoint != Vector2.Zero)
-                    start = lastPoint;
-            }
+            //else
+            //{
+            //    System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
+            //    if (lastPoint != Vector2.Zero)
+            //        start = lastPoint;
+            //}
             Initialize(start, goal);
             walkablePosition.Clear();
             var stopWatch = new System.Diagnostics.Stopwatch();
@@ -257,6 +257,7 @@ namespace Project
                 path.Add(curr);
                 curr = comeFrom[curr];
             }
+            path.Add(start);
             path.Reverse();
             stopWatch.Stop();
             System.Diagnostics.Debug.WriteLine("construct path: " + stopWatch.Elapsed);

@@ -37,7 +37,6 @@ namespace Project
                 {
                     var stopWatch = new System.Diagnostics.Stopwatch();
                     stopWatch.Start();
-                    AStar.Initialize(position, target.position);
                     path = AStar.Compute(position, target.position);
                     stopWatch.Stop();
                     System.Diagnostics.Debug.WriteLine("Astar total: " + stopWatch.Elapsed.TotalSeconds);
