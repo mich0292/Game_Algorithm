@@ -10,7 +10,7 @@ namespace Project
         public override void Initialize()
         {
             //initialize all the variables
-            health = 1;
+            health = 5;
             speed = 100.0f;
             fireTime = 0.0f;
             fireRate = 500.0f;
