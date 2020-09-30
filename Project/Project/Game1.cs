@@ -59,7 +59,9 @@ namespace Project
         //pause variable
         private bool pauseGame;
         private float pauseCounter;
-
+        //boss
+        private float distance;
+        private int currentBoss;
 
         public Game1()
         {
@@ -85,16 +87,14 @@ namespace Project
             collisionTime = 0;
             lastPress = 0f;
             pauseCounter = 0;
+            distance = 0f;
+            currentBoss = 0;
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
             restartButton = new Button("restartButton", Game1.assets["restartButton"], screenWidth / 2 - Game1.assets["restartButton"].Width / 2, screenHeight / 2 - Game1.assets["restartButton"].Height / 2);
             menuButton = new Button("menuButton", Game1.assets["menuButton"], screenWidth / 2 - Game1.assets["menuButton"].Width / 2, screenHeight / 2 - Game1.assets["menuButton"].Height / 2);
             player.Initialize();
-            //boss
-            var boss = new Boss();
-            boss.Initialize();
-            enemyList.Add(boss);
         }
 
         /// <summary>
@@ -160,6 +160,7 @@ namespace Project
                     UpdateMainMenu(gameTime);
                     break;
                 case GameState.Gameplay:
+                    System.Diagnostics.Debug.WriteLine("Distance: " + distance);
                     UpdateGameplay(gameTime);
                     break;
                 case GameState.GameOver:
@@ -315,6 +316,14 @@ namespace Project
             {
                 counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
 
+                if(distance == 2000 && currentBoss == 0)
+                {
+                    //boss
+                    var boss = new Boss();
+                    boss.Initialize();
+                    enemyList.Add(boss);
+                    currentBoss = 1;
+                }
                 //var turret = new Turret();
                 //turret.Initialize();
                 //enemyList.Add(turret);
@@ -348,10 +357,17 @@ namespace Project
                     missileList[i].Update(deltaTime);
                 //update background
                 if (bg1.rec.Y >= 500)
+                {
                     bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
+                    distance += 500;
+                }                    
 
                 if (bg2.rec.Y >= 500)
+                {
                     bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
+                    distance += 500;
+                }
+                    
                 bg1.Update();
                 bg2.Update();
 
@@ -381,6 +397,8 @@ namespace Project
                     lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
                     //current player health is 0 ((because of gameover)
                     player.revivePlayer();
+                    currentBoss = 0;
+                    distance = 0;
                 }
                 if (endButton.enterButton(MouseInput))
                 {
