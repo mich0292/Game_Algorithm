@@ -394,19 +394,22 @@ namespace Project
                 for (int i = 0; i < missileList.Count; i++)
                     missileList[i].Update(deltaTime);
 
-                //update background
+                //update background              
                 if (bg1.rec.Y >= 500)
                 {
                     bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
-                    distance += 500;
                 }                    
 
                 if (bg2.rec.Y >= 500)
                 {
                     bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
-                    distance += 500;
                 }
-                    
+
+                if (bg1.rec.Y % 10 == 0 || bg2.rec.Y % 10 == 0)
+                {
+                    distance+= 10;
+                }
+
                 bg1.Update();
                 bg2.Update();
 
@@ -480,23 +483,22 @@ namespace Project
                 missileList[i].Draw(spriteBatch, deltaTime);
 
             //draw background
-            //bg1.Draw(spriteBatch, deltaTime);
-            //bg2.Draw(spriteBatch, deltaTime);
+            bg1.Draw(spriteBatch, deltaTime);
+            bg2.Draw(spriteBatch, deltaTime);
 
             //draw simple UI
             if (player.health != 0)
             {
                 for (int i = 0; i < player.health; i++)
                 {
-                    spriteBatch.DrawString(roboto, "Health: ", new Vector2(10, 10), Color.White);
-                    Vector2 length = roboto.MeasureString("Health: ");
-                    spriteBatch.Draw(Game1.assets["heart"], new Vector2(length.X + 10 + 20*i, 10));
+                    spriteBatch.Draw(Game1.assets["heart"], new Vector2(10 + 20 * i, 10));
                 }
             }
-            
-            spriteBatch.DrawString(roboto, "Score: " + score, new Vector2(10, 30), Color.White);
+            spriteBatch.DrawString(roboto, score.ToString(), new Vector2(10, 40), Color.White);
+
             //spriteBatch.DrawString(roboto, "Health: " + player.health, new Vector2(10, 30), Color.White);
-            //spriteBatch.DrawString(roboto, "Missile Cooldown: " + score, new Vector2(10, 460), Color.White);           
+            Vector2 length = roboto.MeasureString(distance + "M");
+            spriteBatch.DrawString(roboto, distance + "M", new Vector2(screenWidth - length.X - 10, 10), Color.White);           
 
             spriteBatch.End();
 
