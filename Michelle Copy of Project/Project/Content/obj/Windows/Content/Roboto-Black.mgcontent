@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/GameAlgorithm/Michelle Copy of Project/Project/Content/Roboto-Black.spritefont</SourceFile>
+  <SourceTime>2020-08-10T22:17:25.1977655+08:00</SourceTime>
+  <DestFile>D:/GameAlgorithm/Michelle Copy of Project/Project/Content/bin/Windows/Content/Roboto-Black.xnb</DestFile>
+  <DestTime>2020-10-07T23:00:56.5761892+08:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2018-12-09T00:35:54+08:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2018-12-09T00:35:54+08:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
