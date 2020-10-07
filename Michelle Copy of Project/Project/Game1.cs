@@ -487,13 +487,11 @@ namespace Project
             bg2.Draw(spriteBatch, deltaTime);
 
             //draw simple UI
-            if (player.health != 0)
+            for (int i = 0; i < player.health; i++)
             {
-                for (int i = 0; i < player.health; i++)
-                {
-                    spriteBatch.Draw(Game1.assets["heart"], new Vector2(10 + 20 * i, 10));
-                }
+                spriteBatch.Draw(Game1.assets["heart"], new Vector2(10 + 20 * i, 10), Color.White);
             }
+
             spriteBatch.DrawString(roboto, score.ToString(), new Vector2(10, 40), Color.White);
 
             //spriteBatch.DrawString(roboto, "Health: " + player.health, new Vector2(10, 30), Color.White);
