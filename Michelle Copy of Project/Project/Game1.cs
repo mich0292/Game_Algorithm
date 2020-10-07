@@ -487,16 +487,20 @@ namespace Project
             bg2.Draw(spriteBatch, deltaTime);
 
             //draw simple UI
+            spriteBatch.DrawString(roboto, "Health: ", new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            Vector2 length = roboto.MeasureString("Health: ");
+
             for (int i = 0; i < player.health; i++)
             {
-                spriteBatch.Draw(Game1.assets["heart"], new Vector2(10 + 20 * i, 10), Color.White);
+
+                spriteBatch.Draw(Game1.assets["heart"], new Vector2(length.X + 10 + 20 * i, 10), null, Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
             }
 
-            spriteBatch.DrawString(roboto, score.ToString(), new Vector2(10, 40), Color.White);
+            spriteBatch.DrawString(roboto, "Score: " + score, new Vector2(10, 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f); 
 
             //spriteBatch.DrawString(roboto, "Health: " + player.health, new Vector2(10, 30), Color.White);
-            Vector2 length = roboto.MeasureString(distance + "M");
-            spriteBatch.DrawString(roboto, distance + "M", new Vector2(screenWidth - length.X - 10, 10), Color.White);           
+            //Vector2 length = roboto.MeasureString(distance + "M");
+            //spriteBatch.DrawString(roboto, distance + "M", new Vector2(screenWidth - length.X - 10, 10), Color.White);           
 
             spriteBatch.End();
 

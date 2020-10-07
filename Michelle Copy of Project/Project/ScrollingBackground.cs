@@ -27,7 +27,7 @@ namespace Project
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            spriteBatch.Draw(texture, rec, Color.White);
+            spriteBatch.Draw(texture, rec, null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0.1f);
         }
     }
 }
