@@ -45,9 +45,11 @@ namespace Project
         private Button restartButton;
         private Button menuButton;
         private float lastPress;
-        //private Button menuButton;
-        //Asteroid
+
+        //enemyCounter
         private float counter;
+        //turret counter
+        private float turretCounter;
         //Player collision
         private float collisionTime;
         //UI title
@@ -59,9 +61,13 @@ namespace Project
         //pause variable
         private bool pauseGame;
         private float pauseCounter;
-        //boss
+        //boss out
+        private Boss boss;
         private float distance;
-        private int currentBoss;
+        private bool bossOut;
+        //background image
+        private Texture2D bgImage;
+
 
         public Game1()
         {
@@ -84,11 +90,12 @@ namespace Project
             screenWidth = graphics.GraphicsDevice.Viewport.Width; // or Window.ClientBounds.Width
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
             counter = 0;
+            turretCounter = 0;
             collisionTime = 0;
             lastPress = 0f;
             pauseCounter = 0;
             distance = 0f;
-            currentBoss = 0;
+            bossOut = false;
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
@@ -125,10 +132,11 @@ namespace Project
             assets.Add("boss", Content.Load<Texture2D>("boss")); 
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"), Color.Black);
             pauseTitle = new UI("Pause Game", Content.Load<SpriteFont>("font"), Color.White);
+            bgImage = Content.Load<Texture2D>("background1");
 
             //load background here
-            bg1.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 500, 800, 500));
-            bg2.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 0, 800, 500));
+            bg1.Initialize(Content.Load<Texture2D>("sky"), new Rectangle(0, 500, 800, 500));
+            bg2.Initialize(Content.Load<Texture2D>("sky"), new Rectangle(0, 0, 800, 500));
         }
 
         /// <summary>
@@ -315,31 +323,35 @@ namespace Project
             else if (!pauseGame)
             {
                 counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+                turretCounter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
 
-                if(distance == 2000 && currentBoss == 0)
+                if (distance == 2000 && !bossOut)
                 {
                     //boss
-                    var boss = new Boss();
+                    boss = new Boss();
                     boss.Initialize();
                     enemyList.Add(boss);
-                    currentBoss = 1;
+                    bossOut = true;
                 }
-                //var turret = new Turret();
-                //turret.Initialize();
-                //enemyList.Add(turret);
+
+                if(turretCounter >= 5)
+                {
+                    turretCounter = 0;
+                    var turret = new Turret();
+                    turret.Initialize();
+                    enemyList.Add(turret);
+                }
+
 
                 if (counter >= 2)
                 {
                     counter = 0;
-                    for (int i = 0; i < 1; i++)
-                    {
-                        var asteroid = new Asteroid();
-                        var enemy = new Enemy1();
-                        asteroid.Initialize();
-                        enemy.Initialize();
-                        enemyList.Add(enemy);
-                        enemyList.Add(asteroid);
-                    }
+                    var asteroid = new Asteroid();
+                    var enemy = new Enemy1();
+                    asteroid.Initialize();
+                    enemy.Initialize();
+                    enemyList.Add(enemy);
+                    enemyList.Add(asteroid);
                 }
                 //update player
                 player.Update(deltaTime);
@@ -397,7 +409,7 @@ namespace Project
                     lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
                     //current player health is 0 ((because of gameover)
                     player.revivePlayer();
-                    currentBoss = 0;
+                    bossOut = false;
                     distance = 0;
                 }
                 if (endButton.enterButton(MouseInput))

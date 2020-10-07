@@ -175,3 +175,4 @@ C:\Users\E\Google Drive\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\
 C:\Users\E\Google Drive\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.csproj.CopyComplete
 C:\Users\E\Google Drive\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.exe
 C:\Users\E\Google Drive\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\obj\x86\Debug\Project.pdb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\sky.xnb
