@@ -18,13 +18,18 @@ namespace Project
             fireRate = 600.0f;
             orientation = 0f;
             texture = Game1.assets["turret"];
-            position = new Vector2(random.Next(Game1.screenWidth - texture.Width/2), random.Next(Game1.screenHeight - texture.Height/2));
+            position = new Vector2(700, 200);
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);            
         }
 
         public override void Update(GameTime gameTime)
         {
             Vector2 velocity = Game1.player.position - position;
+            position.Y += 2;
+            if (position.Y > Game1.screenHeight)
+            {
+                Game1.enemyList.Remove(this);
+            }
             velocity.Normalize();
             Orientation(velocity);
             LineOfSight(gameTime);           
