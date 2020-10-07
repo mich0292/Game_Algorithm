@@ -15,7 +15,7 @@ namespace Project
             health = 10;
             speed = 0.0f;
             fireTime = 0.0f;
-            fireRate = 700.0f;
+            fireRate = 600.0f;
             orientation = 0f;
             texture = Game1.assets["turret"];
             position = new Vector2(random.Next(Game1.screenWidth - texture.Width/2), random.Next(Game1.screenHeight - texture.Height/2));
@@ -32,10 +32,9 @@ namespace Project
 
         public void LineOfSight(GameTime gameTime)
         {
-            Vector2 originalPos = Game1.player.position;
-            if (gameTime.TotalGameTime.TotalSeconds > fireTime)
+            if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {
-                fireTime = (float)gameTime.TotalGameTime.TotalSeconds + fireRate;
+                fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
                 if (InLOS(90, 200, Game1.player.position, position, orientation))
                 {
                     EnemyBullet tempBullet = new EnemyBullet();

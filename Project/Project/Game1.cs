@@ -363,13 +363,13 @@ namespace Project
 
                 if (counter >= 2)
                 {
-                    counter = 0;
-                    var asteroid = new Asteroid();
-                    var enemy = new Enemy1();
-                    asteroid.Initialize();
-                    enemy.Initialize();
-                    enemyList.Add(enemy);
-                    enemyList.Add(asteroid);
+                    //counter = 0;
+                    //var asteroid = new Asteroid();
+                    //var enemy = new Enemy1();
+                    //asteroid.Initialize();
+                    //enemy.Initialize();
+                    //enemyList.Add(enemy);
+                    //enemyList.Add(asteroid);
                 }
                 //update player
                 player.Update(deltaTime);
