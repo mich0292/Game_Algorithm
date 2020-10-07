@@ -18,7 +18,7 @@ namespace Project
             fireRate = 700.0f;
             orientation = 0f;
             texture = Game1.assets["turret"];
-            position = new Vector2(random.Next(Game1.screenWidth), random.Next(Game1.screenHeight));
+            position = new Vector2(random.Next(Game1.screenWidth - texture.Width/2), random.Next(Game1.screenHeight - texture.Height/2));
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);            
         }
 

@@ -62,11 +62,12 @@ namespace Project
         private bool pauseGame;
         private float pauseCounter;
         //boss out
-        private Boss boss;
         private float distance;
         private bool bossOut;
         //background image
         private Texture2D bgImage;
+        //level
+        private int currentLevel;
 
 
         public Game1()
@@ -95,6 +96,7 @@ namespace Project
             lastPress = 0f;
             pauseCounter = 0;
             distance = 0f;
+            currentLevel = 1;
             bossOut = false;
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
@@ -129,7 +131,8 @@ namespace Project
             assets.Add("enemy2", Content.Load<Texture2D>("enemy2"));
             assets.Add("turret", Content.Load<Texture2D>("turret"));
             assets.Add("missile", Content.Load<Texture2D>("rocket")); 
-            assets.Add("boss", Content.Load<Texture2D>("boss")); 
+            assets.Add("boss", Content.Load<Texture2D>("boss"));
+            assets.Add("boss2", Content.Load<Texture2D>("boss2"));
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"), Color.Black);
             pauseTitle = new UI("Pause Game", Content.Load<SpriteFont>("font"), Color.White);
             bgImage = Content.Load<Texture2D>("background1");
@@ -168,7 +171,6 @@ namespace Project
                     UpdateMainMenu(gameTime);
                     break;
                 case GameState.Gameplay:
-                    System.Diagnostics.Debug.WriteLine("Distance: " + distance);
                     UpdateGameplay(gameTime);
                     break;
                 case GameState.GameOver:
@@ -228,7 +230,20 @@ namespace Project
                         enemyList[i].health--;
 
                         if (enemyList[i].health <= 0)
-                            enemyList.Remove(enemyList[i]);                            
+                        {
+                            if(enemyList[i].GetType() == typeof(Boss))
+                            {
+                                distance = 0;
+                                enemyList.Clear();
+                                currentLevel = 2;
+                                bossOut = false;
+                                bg1.Initialize(bgImage, new Rectangle(0, 500, 800, 500));
+                                bg2.Initialize(bgImage, new Rectangle(0, 0, 800, 500));
+                            }
+                            else
+                                enemyList.Remove(enemyList[i]);
+                        }
+                                          
 
                         playerBulletList.Remove(playerBulletList[j]);
                         break;
@@ -272,7 +287,7 @@ namespace Project
         }
 
         void UpdateMainMenu(GameTime deltaTime)
-        {;
+        {
             MouseState MouseInput = Mouse.GetState();
 
             if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
@@ -328,13 +343,16 @@ namespace Project
                 if (distance == 2000 && !bossOut)
                 {
                     //boss
-                    boss = new Boss();
-                    boss.Initialize();
+                    var boss = new Boss();
+                    if (currentLevel == 1)
+                        boss.Initialize2();
+                    else
+                        boss.Initialize();
                     enemyList.Add(boss);
                     bossOut = true;
                 }
 
-                if(turretCounter >= 5)
+                if (turretCounter >= 10)
                 {
                     turretCounter = 0;
                     var turret = new Turret();
@@ -411,6 +429,7 @@ namespace Project
                     player.revivePlayer();
                     bossOut = false;
                     distance = 0;
+                    currentLevel = 1;
                 }
                 if (endButton.enterButton(MouseInput))
                 {

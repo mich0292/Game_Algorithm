@@ -18,7 +18,7 @@ namespace Project
         private float avoidCounter; //if the boss avoid for more than 10 seconds, boss cannot avoid and enter attack state for 10 seconds
         private bool canAvoid; //boss can avoid the bullet if this boolean is true
 
-        public override void Initialize()
+        public override void Initialize() //initialize for level 2
         {
             //initialize all the variables
             health = 50;
@@ -28,6 +28,24 @@ namespace Project
             speed = 200.0f;
             name = "boss";
             texture = Game1.assets["boss"];
+            position.X = Game1.screenWidth / 2;
+            position.Y = 50;
+            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            orientation = 0f;
+            avoidCounter = 0f;
+            canAvoid = true;
+        }
+
+        public void Initialize2() //initialize for level 1
+        {
+            //initialize all the variables
+            health = 25;
+            oriHealth = health;
+            fireRate = 150f; //in miliseconds
+            fireTime = 0f;  //in miliseconds
+            speed = 200.0f;
+            name = "boss";
+            texture = Game1.assets["boss2"];
             position.X = Game1.screenWidth / 2;
             position.Y = 50;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);

@@ -226,3 +226,15 @@
 /processorParam:TextureFormat=Color
 /build:Turret_45x60.png;turret.png
 
+#begin Z8FreedomFighter_Blade_110x110.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Z8FreedomFighter_Blade_110x110.png;boss2.png
+
