@@ -69,6 +69,7 @@ namespace Project
 
         void UpdateAvoid(GameTime gameTime)
         {
+
             if (Game1.player.previousPos.X - Game1.player.position.X < 0 && position.X < Game1.screenWidth - texture.Width / 2
                 && Game1.player.position.X < position.X) //player move from left to right and player is on left side of boss
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to avoid the bullet
@@ -99,7 +100,6 @@ namespace Project
                     currentState = BossState.attack;
                 else
                     currentState = BossState.attack_faster;
-
                 avoidCounter = 0.0f;
             }
 
@@ -131,6 +131,13 @@ namespace Project
             {
                  currentState = BossState.attack_faster;
             }
+
+            avoidCounter += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (avoidCounter >= 2.0f)
+            {
+                canAvoid = true;
+                avoidCounter = 0.0f;
+            }
         }
 
         void UpdateAttackFaster(GameTime gameTime)
@@ -144,6 +151,13 @@ namespace Project
             if (keyboard.IsKeyDown(Keys.Space) && canAvoid)
             {
                 currentState = BossState.avoid; //boss dodge the bullet 
+            }
+
+            avoidCounter += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (avoidCounter >= 1.0f)
+            {
+                canAvoid = true;
+                avoidCounter = 0.0f;
             }
         }
 

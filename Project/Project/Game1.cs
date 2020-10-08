@@ -345,10 +345,6 @@ namespace Project
                     bossOut = true;    
                 }
 
-                //Check whether the boss is dead
-                if (bossOut && enemyList[0].GetType() == typeof(Boss))
-                    if (enemyList[0].health <= 0) bossOut = false;
-
                 if (turretCounter >= 10 && !bossOut)
                 {
                     turretCounter = 0;
@@ -357,7 +353,7 @@ namespace Project
                     enemyList.Add(turret);
                 }
 
-                if (distance == 500 && powerUpCounter == 0)
+                if (currentLevel == 2 && distance == 500 && powerUpCounter == 0)
                 {
                     var pu = new PowerUp();
                     pu.Initialize();
