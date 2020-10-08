@@ -44,8 +44,10 @@
     <Compile Include="AStar.cs" />
     <Compile Include="Asteroid.cs" />
     <Compile Include="Boss.cs" />
+    <Compile Include="BulletPattern.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Cursor.cs" />
+    <Compile Include="PowerUp.cs" />
     <Compile Include="Turret.cs" />
     <Compile Include="Enemy1.cs" />
     <Compile Include="Enemy2.cs" />

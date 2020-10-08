@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Project
 {
@@ -57,6 +54,15 @@ namespace Project
         public override void Update(GameTime gameTime)
         {
             int temp = oriHealth * 30 / 100;
+
+            KeyboardState keyboard = Keyboard.GetState();
+            //player fire bullet
+            if (keyboard.IsKeyDown(Keys.Space))
+            {
+                Boss.currentState = Boss.BossState.avoid; //boss dodge the bullet 
+            }
+            else
+                Boss.currentState = Boss.BossState.attack;
 
             if (canAvoid == false && currentState == BossState.avoid)
             {
@@ -132,11 +138,6 @@ namespace Project
             Fire(gameTime);
         }
 
-        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-            spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 0.99f);
-        }
-
         public void MoveToPlayer(GameTime gameTime)
         {
             if (Game1.player.position.X < position.X && Math.Abs(Game1.player.position.X - position.X) > 0.1)
@@ -159,5 +160,10 @@ namespace Project
                 }
             }
         }
+
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            spriteBatch.Draw(texture, position, null, Color.White, orientation, origin, 1.0f, SpriteEffects.None, 0.99f);
+        }        
     }
 }

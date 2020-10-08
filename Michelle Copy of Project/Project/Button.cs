@@ -38,8 +38,7 @@ namespace Project
         }
 
         public bool enterButton(MouseState mouseInput)
-        {
-          
+        {         
             if (mouseInput.X < posX + texture.Width &&
                     mouseInput.X > posX &&
                     mouseInput.Y < posY + texture.Height &&

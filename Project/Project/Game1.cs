@@ -12,20 +12,11 @@ using System.Collections.Generic;
 
 namespace Project
 {
-    public enum GameState
-    {
-        MainMenu,
-        Gameplay,
-        GameOver,
-    }
+    public enum GameState { MainMenu, Gameplay, GameOver}
 
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Game1 : Game
     {
         public static GameState _state;
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -39,22 +30,26 @@ namespace Project
         //For measuring the screen
         public static int screenWidth;
         public static int screenHeight;
+
         //button
         private Button startButton;
         private Button endButton;
         private Button restartButton;
         private Button menuButton;
-        private float lastPress;
 
+        private float lastPress;
         //enemyCounter
         private float counter;
         //turret counter
         private float turretCounter;
+        //powerup Counter
+        private int powerUpCounter;
         //Player collision
         private float collisionTime;
         //UI title
         private UI menuTitle;
         private UI pauseTitle;
+        private SpriteFont roboto;
         //Scrolling Background
         private ScrollingBackground bg1 = new ScrollingBackground();
         private ScrollingBackground bg2 = new ScrollingBackground();
@@ -68,7 +63,8 @@ namespace Project
         private Texture2D bgImage;
         //level
         private int currentLevel;
-
+        //score
+        private int score;
 
         public Game1()
         {
@@ -76,12 +72,6 @@ namespace Project
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -90,8 +80,10 @@ namespace Project
 
             screenWidth = graphics.GraphicsDevice.Viewport.Width; // or Window.ClientBounds.Width
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
+            score = 0;
             counter = 0;
             turretCounter = 0;
+            powerUpCounter = 0;
             collisionTime = 0;
             lastPress = 0f;
             pauseCounter = 0;
@@ -106,10 +98,6 @@ namespace Project
             player.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -133,8 +121,12 @@ namespace Project
             assets.Add("missile", Content.Load<Texture2D>("rocket")); 
             assets.Add("boss", Content.Load<Texture2D>("boss"));
             assets.Add("boss2", Content.Load<Texture2D>("boss2"));
+            assets.Add("powerup", Content.Load<Texture2D>("powerup"));
+            assets.Add("powerBullet", Content.Load<Texture2D>("flowerBullet2"));
+            assets.Add("heart", Content.Load<Texture2D>("heart"));
             menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"), Color.Black);
             pauseTitle = new UI("Pause Game", Content.Load<SpriteFont>("font"), Color.White);
+            roboto = Content.Load<SpriteFont>("Roboto-Black");
             bgImage = Content.Load<Texture2D>("background1");
 
             //load background here
@@ -142,26 +134,15 @@ namespace Project
             bg2.Initialize(Content.Load<Texture2D>("sky"), new Rectangle(0, 0, 800, 500));
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
 
@@ -179,10 +160,6 @@ namespace Project
             }
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
@@ -207,14 +184,22 @@ namespace Project
             {
                 if (player.BoundingBox.Intersects(enemyList[i].BoundingBox))
                 {
-                    player.health--;
-                    enemyList[i].health--;
-                    collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
-
-                    if(enemyList[i].health <= 0)
-                        enemyList.Remove(enemyList[i]);
-                        
-
+                    //detect collision between player and powerup 
+                    if (enemyList[i].GetType() == typeof(PowerUp))
+                    {
+                        player.powerUp = true;
+                        enemyList[i].health--;
+                        playerBulletList.Clear();
+                        collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
+                    }
+                    else
+                    {
+                        player.health--;
+                        enemyList[i].health--;
+                        collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;     
+                    }
+                    if (enemyList[i].health <= 0)
+                        enemyList.Remove(enemyList[i]);                   
                     break;
                 }
             }
@@ -227,11 +212,16 @@ namespace Project
                     //Axis-Aligned Bounding Box
                     if (enemyList[i].BoundingBox.Intersects(playerBulletList[j].BoundingBox))
                     {
-                        enemyList[i].health--;
-
+                        if (enemyList[i].GetType() != typeof(PowerUp))
+                        {
+                            enemyList[i].health--;
+                            score += 10;
+                        }
+                            
                         if (enemyList[i].health <= 0)
                         {
-                            if(enemyList[i].GetType() == typeof(Boss))
+                            score += 50;
+                            if (enemyList[i].GetType() == typeof(Boss))
                             {
                                 distance = 0;
                                 enemyList.Clear();
@@ -244,7 +234,6 @@ namespace Project
                                 enemyList.Remove(enemyList[i]);
                         }
                                           
-
                         playerBulletList.Remove(playerBulletList[j]);
                         break;
                     }
@@ -273,6 +262,7 @@ namespace Project
                     {
                         if (missileList[i].BoundingBox.Intersects(enemyList[j].BoundingBox))
                         {
+                            score += 20;
                             enemyList[j].health -= 3;
                             if (enemyList[j].health <= 0)
                                 enemyList.Remove(enemyList[j]);
@@ -313,6 +303,7 @@ namespace Project
                 pauseCounter = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200f;
                 pauseGame = !pauseGame;
             }
+
             if (pauseGame)
             {
                 MouseState MouseInput = Mouse.GetState();
@@ -360,16 +351,23 @@ namespace Project
                     enemyList.Add(turret);
                 }
 
-
+                if (distance == 500 && powerUpCounter == 0)
+                {
+                    var pu = new PowerUp();
+                    pu.Initialize();
+                    enemyList.Add(pu);
+                    powerUpCounter++;
+                }
+                   
                 if (counter >= 2)
                 {
-                    //counter = 0;
-                    //var asteroid = new Asteroid();
+                    counter = 0;
+                    var asteroid = new Asteroid();
                     //var enemy = new Enemy1();
-                    //asteroid.Initialize();
+                    asteroid.Initialize();
                     //enemy.Initialize();
                     //enemyList.Add(enemy);
-                    //enemyList.Add(asteroid);
+                    enemyList.Add(asteroid);
                 }
                 //update player
                 player.Update(deltaTime);
@@ -385,19 +383,23 @@ namespace Project
                 //update missile
                 for (int i = 0; i < missileList.Count; i++)
                     missileList[i].Update(deltaTime);
-                //update background
+
+                //update background              
                 if (bg1.rec.Y >= 500)
                 {
                     bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
-                    distance += 500;
                 }                    
 
                 if (bg2.rec.Y >= 500)
                 {
                     bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
-                    distance += 500;
                 }
-                    
+
+                if (bg1.rec.Y % 10 == 0 || bg2.rec.Y % 10 == 0)
+                {
+                    distance+= 10;
+                }
+
                 bg1.Update();
                 bg2.Update();
 
@@ -430,6 +432,9 @@ namespace Project
                     bossOut = false;
                     distance = 0;
                     currentLevel = 1;
+                    powerUpCounter = 0;
+                    counter = 0;
+                    turretCounter = 0;
                 }
                 if (endButton.enterButton(MouseInput))
                 {
@@ -451,8 +456,6 @@ namespace Project
         void DrawGameplay(GameTime deltaTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
 
             //draw player
@@ -474,9 +477,32 @@ namespace Project
             bg1.Draw(spriteBatch, deltaTime);
             bg2.Draw(spriteBatch, deltaTime);
 
+            //draw simple UI
+            spriteBatch.DrawString(roboto, "Health: ", new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            Vector2 length = roboto.MeasureString("Health: ");
+
+            for (int i = 0; i < player.health; i++)
+            {
+                spriteBatch.Draw(Game1.assets["heart"], new Vector2(length.X + 10 + 20 * i, 10), null, Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            }
+
+            spriteBatch.DrawString(roboto, "Score: " + score, new Vector2(10, 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f); 
+            length = roboto.MeasureString(distance + "M");
+            spriteBatch.DrawString(roboto, distance + "M", new Vector2(screenWidth - length.X - 10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            spriteBatch.DrawString(roboto, "Missile: ", new Vector2(10, screenHeight - 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            length = roboto.MeasureString("Missile: "); 
+            if (player.returnMissileCooldown() > 0.0f)
+            {
+                int temp = (int)player.returnMissileCooldown() + 1;
+                spriteBatch.DrawString(roboto, temp + "s", new Vector2(length.X + 10, screenHeight - 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            }
+            else {
+                spriteBatch.DrawString(roboto, "Ready" , new Vector2(length.X + 10, screenHeight - 30), Color.Red, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            }
+            
+
             spriteBatch.End();
 
-            
             if (pauseGame)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
@@ -484,8 +510,7 @@ namespace Project
                 menuButton.Draw(spriteBatch);
                 endButton.Draw(spriteBatch);
                 spriteBatch.End();
-            }          
-            
+            }                     
         }
 
         void DrawGameOver(GameTime deltaTime)
@@ -495,6 +520,7 @@ namespace Project
             restartButton.Draw(spriteBatch);
             endButton.Draw(spriteBatch);
             spriteBatch.End();
+            score = 0;
         }
     }
 }
