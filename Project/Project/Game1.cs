@@ -439,6 +439,8 @@ namespace Project
                     powerUpCounter = 0;
                     counter = 0;
                     turretCounter = 0;
+                    bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
+                    bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
                 }
                 if (endButton.enterButton(MouseInput))
                 {
