@@ -8,10 +8,9 @@ namespace Project
     public class Boss : GameObject
     {
         public enum BossState { avoid, attack, attack_faster };
-        public static BossState currentState;
+        public static BossState currentState = BossState.attack;
 
-
-        private int oriHealth;
+        private int attackFasterHealth;
         private float avoidCounter; //if the boss avoid for more than 10 seconds, boss cannot avoid and enter attack state for 10 seconds
         private bool canAvoid; //boss can avoid the bullet if this boolean is true
 
@@ -19,8 +18,8 @@ namespace Project
         {
             //initialize all the variables
             health = 50;
-            oriHealth = health;
-            fireRate = 150f; //in miliseconds
+            attackFasterHealth = health * 30/100;
+            fireRate = 200f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             speed = 200.0f;
             name = "boss";
@@ -37,8 +36,8 @@ namespace Project
         {
             //initialize all the variables
             health = 25;
-            oriHealth = health;
-            fireRate = 150f; //in miliseconds
+            attackFasterHealth = health * 30 / 100;
+            fireRate = 250f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             speed = 200.0f;
             name = "boss";
@@ -53,41 +52,11 @@ namespace Project
 
         public override void Update(GameTime gameTime)
         {
-            int temp = oriHealth * 30 / 100;
-
-            KeyboardState keyboard = Keyboard.GetState();
-            //player fire bullet
-            if (keyboard.IsKeyDown(Keys.Space))
-            {
-                Boss.currentState = Boss.BossState.avoid; //boss dodge the bullet 
-            }
-            else
-                Boss.currentState = Boss.BossState.attack;
-
-            if (canAvoid == false && currentState == BossState.avoid)
-            {
-                currentState = BossState.attack;
-                avoidCounter -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (avoidCounter <= 0f)
-                {
-                    avoidCounter = 0f;
-                    canAvoid = true;
-                }
-            }
-
-            if (health < temp && currentState == BossState.attack)
-                currentState = BossState.attack_faster;
-
+            Console.WriteLine(currentState);
             switch (currentState)
             {
                 case BossState.avoid:
                     UpdateAvoid(gameTime);
-                    avoidCounter += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (avoidCounter >= 10)
-                    {
-                        canAvoid = false;
-                        avoidCounter = 10f;
-                    }
                     break;
                 case BossState.attack:
                     UpdateAttack(gameTime);
@@ -122,20 +91,60 @@ namespace Project
                 else if (Math.Abs(Game1.player.position.X - position.X) < 0.1) //player in front of boss
                     position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to avoid the bullet 
             }
+
+            //Prevent boss from forever avoiding player's bullets
+            KeyboardState keyboard = Keyboard.GetState();
+            if (!keyboard.IsKeyDown(Keys.Space) || !canAvoid){
+                if (health > attackFasterHealth)
+                    currentState = BossState.attack;
+                else
+                    currentState = BossState.attack_faster;
+
+                avoidCounter = 0.0f;
+            }
+
+            if (keyboard.IsKeyDown(Keys.Space))
+            {
+                avoidCounter += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (avoidCounter >= 1.0f)
+                {
+                    canAvoid = false;
+                    avoidCounter = 0.0f;
+                }
+            }
         }
 
         void UpdateAttack(GameTime gameTime)
         {
-            fireRate = 150f;
             MoveToPlayer(gameTime);
             Fire(gameTime);
+
+            KeyboardState keyboard = Keyboard.GetState();
+            //player fire bullet
+            if (keyboard.IsKeyDown(Keys.Space) && canAvoid)
+            {
+                currentState = BossState.avoid; //boss dodge the bullet 
+            }
+
+            //boss cannot avoid player's bullet
+            if (!canAvoid && health <= attackFasterHealth)
+            {
+                 currentState = BossState.attack_faster;
+            }
         }
 
         void UpdateAttackFaster(GameTime gameTime)
         {
-            fireRate = 75f;
+            fireRate = 160f;
             MoveToPlayer(gameTime);
             Fire(gameTime);
+
+            KeyboardState keyboard = Keyboard.GetState();
+            //player fire bullet
+            if (keyboard.IsKeyDown(Keys.Space) && canAvoid)
+            {
+                currentState = BossState.avoid; //boss dodge the bullet 
+            }
         }
 
         public void MoveToPlayer(GameTime gameTime)
@@ -151,7 +160,7 @@ namespace Project
             if (gameTime.TotalGameTime.TotalMilliseconds > fireTime)
             {
                 fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
-                if (InLOS(360, 400, Game1.player.position, position, orientation))
+                if (InLOS(360, Game1.screenHeight, Game1.player.position, position, orientation))
                 {
                     EnemyBullet tempBullet = new EnemyBullet();
                     tempBullet.setOwner(this);

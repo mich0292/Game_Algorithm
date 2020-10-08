@@ -21,7 +21,7 @@ namespace Project
         public override void Initialize()
         {
             //initialize all the variables
-            health = 5;
+            health = 10;
             fireRate = 150f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             missileTime = 0f; //in seconds
@@ -67,7 +67,6 @@ namespace Project
             {
                 if(gameTime.TotalGameTime.TotalMilliseconds > fireTime)
                 {
-                    Console.WriteLine(powerUp);
                     if (!powerUp)
                     {
                         fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
@@ -113,7 +112,6 @@ namespace Project
             {                
                 missileTime = (float)gameTime.TotalGameTime.TotalSeconds + missileRate;
                 missileCooldown = missileRate;
-                Console.WriteLine(missileTime);
                 var missile = new Missile();
                 missile.Initialize();
                 missile.target = Cursor.target;
@@ -123,7 +121,7 @@ namespace Project
             }
 
             //Check whether the player is dead to end the game
-            if (health == 0)
+            if (health <= 0)
                 playerAlive = false;
         }
 

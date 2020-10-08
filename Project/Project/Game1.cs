@@ -331,19 +331,25 @@ namespace Project
                 counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
                 turretCounter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
 
-                if (distance == 2000 && !bossOut)
+                if (distance == 2000)
                 {
                     //boss
+                    enemyList.Clear();
+                    enemyBulletList.Clear();
                     var boss = new Boss();
                     if (currentLevel == 1)
                         boss.Initialize2();
                     else
                         boss.Initialize();
                     enemyList.Add(boss);
-                    bossOut = true;
+                    bossOut = true;    
                 }
 
-                if (turretCounter >= 10)
+                //Check whether the boss is dead
+                if (bossOut && enemyList[0].GetType() == typeof(Boss))
+                    if (enemyList[0].health <= 0) bossOut = false;
+
+                if (turretCounter >= 10 && !bossOut)
                 {
                     turretCounter = 0;
                     var turret = new Turret();
@@ -359,7 +365,7 @@ namespace Project
                     powerUpCounter++;
                 }
                    
-                if (counter >= 2)
+                if (counter >= 2 && !bossOut)
                 {
                     counter = 0;
                     var asteroid = new Asteroid();
