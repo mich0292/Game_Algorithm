@@ -22,7 +22,7 @@ namespace Project
         {
             //initialize all the variables
             health = 10;
-            fireRate = 150f; //in miliseconds
+            fireRate = 300f; //in miliseconds
             fireTime = 0f;  //in miliseconds
             missileTime = 0f; //in seconds
             missileRate = 5f; //in seconds

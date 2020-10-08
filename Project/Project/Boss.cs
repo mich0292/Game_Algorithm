@@ -179,6 +179,10 @@ namespace Project
                     EnemyBullet tempBullet = new EnemyBullet();
                     tempBullet.setOwner(this);
                     tempBullet.Initialize();
+                    if (currentState == BossState.attack)
+                        tempBullet.speed = 350.0f;
+                    else
+                        tempBullet.speed = 450.0f;
                     Game1.enemyBulletList.Add(tempBullet);
                 }
             }
