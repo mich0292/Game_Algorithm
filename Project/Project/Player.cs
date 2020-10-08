@@ -133,7 +133,7 @@ namespace Project
 
         public void revivePlayer()
         {
-            health = 5;
+            health = 10;
             playerAlive = true;
         }
     }

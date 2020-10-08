@@ -61,6 +61,7 @@ namespace Project
         private bool bossOut;
         //background image
         private Texture2D bgImage;
+        private Texture2D bgImage2;
         //level
         private int currentLevel;
         //score
@@ -128,10 +129,11 @@ namespace Project
             pauseTitle = new UI("Pause Game", Content.Load<SpriteFont>("font"), Color.White);
             roboto = Content.Load<SpriteFont>("Roboto-Black");
             bgImage = Content.Load<Texture2D>("background1");
+            bgImage2 = Content.Load<Texture2D>("sky");
 
             //load background here
-            bg1.Initialize(Content.Load<Texture2D>("sky"), new Rectangle(0, 500, 800, 500));
-            bg2.Initialize(Content.Load<Texture2D>("sky"), new Rectangle(0, 0, 800, 500));
+            bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
+            bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
         }
 
         protected override void UnloadContent()
