@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using System.Collections.Generic;
 
 // References used:
@@ -26,6 +27,9 @@ namespace Project
         public static List<GameObject> enemyList = new List<GameObject>();
         public static List<GameObject> enemyBulletList = new List<GameObject>();
         public static List<Missile> missileList = new List<Missile>();
+
+        //sound effect
+        public static SoundEffect soundEffect;
 
         //For measuring the screen
         public static int screenWidth;
@@ -66,6 +70,7 @@ namespace Project
         private int currentLevel;
         //score
         private int score;
+        
 
         public Game1()
         {
@@ -134,6 +139,9 @@ namespace Project
             //load background here
             bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
             bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
+
+            //load sound effect
+            soundEffect = Content.Load<SoundEffect>("bulletSoundEffect");
         }
 
         protected override void UnloadContent()

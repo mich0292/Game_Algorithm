@@ -63,6 +63,12 @@
 /processorParam:TextureFormat=Color
 /build:bullet.png
 
+#begin bulletSoundEffect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:bulletSoundEffect.wav
+
 #begin Cruiser_57x49.png
 /importer:TextureImporter
 /processor:TextureProcessor

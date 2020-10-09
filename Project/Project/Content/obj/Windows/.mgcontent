@@ -8,6 +8,7 @@
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/background1.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/boss.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/bullet.png</File>
+    <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/bulletSoundEffect.wav</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/Cruiser_57x49.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/Cruiser2_42x61.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/cursor.png</File>
@@ -21,6 +22,7 @@
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/Player.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/powerup.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/restart.png</File>
+    <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/Roboto-Black.spritefont</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/rocket.png</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/sky.jpg</File>
     <File>C:/Users/asus/Google Drive (foofangjee@gmail.com)/MMU/Degree/Year 3/Semester 1/TGD3351/Assignment/Project/GameAlgorithm/Project/Project/Content/start3.png</File>
@@ -32,8 +34,10 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File>enemy1.png</File>
     <File>enemy2.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

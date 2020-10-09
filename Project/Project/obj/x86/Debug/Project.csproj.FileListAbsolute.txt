@@ -183,3 +183,8 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\flowerBullet2.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\powerup.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\heart.xnb
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\Roboto-Black.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\flowerBullet2.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\heart.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\powerup.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\Roboto-Black.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\bulletSoundEffect.xnb

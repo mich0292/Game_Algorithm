@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using System;
 
 namespace Project
@@ -11,6 +12,7 @@ namespace Project
         private float missileRate; //in seconds             
         private float missileCooldown; //in seconds
         private float tabTime;
+        private SoundEffect soundEffect;
         private BulletPattern _BulletPattern;
 
         public static bool playerAlive = true;   
@@ -35,7 +37,8 @@ namespace Project
             position.X = Game1.screenWidth / 2;
             position.Y = Game1.screenHeight / 2;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
-            orientation = 0f;           
+            orientation = 0f;
+            soundEffect = Game1.soundEffect;
             Cursor.Initialize();
         }
 
@@ -67,6 +70,7 @@ namespace Project
             {
                 if(gameTime.TotalGameTime.TotalMilliseconds > fireTime)
                 {
+                    soundEffect.Play();
                     if (!powerUp)
                     {
                         fireTime = (float)gameTime.TotalGameTime.TotalMilliseconds + fireRate;
