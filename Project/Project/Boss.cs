@@ -163,9 +163,9 @@ namespace Project
 
         public void MoveToPlayer(GameTime gameTime)
         {
-            if (Game1.player.position.X < position.X && Math.Abs(Game1.player.position.X - position.X) > 0.1)
+            if (Game1.player.position.X < position.X && Math.Abs(Game1.player.position.X - position.X) > 5)
                 position.X -= speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to left to chase the player
-            else if (Game1.player.position.X > position.X && Math.Abs(Game1.player.position.X - position.X) > 0.1)
+            else if (Game1.player.position.X > position.X && Math.Abs(Game1.player.position.X - position.X) > 5)
                 position.X += speed * (float)gameTime.ElapsedGameTime.TotalSeconds; //move to right to chase the player
         }
 

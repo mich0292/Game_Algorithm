@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Project
 {
-    public enum GameState { MainMenu, Gameplay, GameOver}
+    public enum GameState { MainMenu, Gameplay, GameOver, Win }
 
     public class Game1 : Game
     {
@@ -53,6 +53,8 @@ namespace Project
         //UI title
         private UI menuTitle;
         private UI pauseTitle;
+        private UI winTitle;
+        private UI loseTitle;
         private SpriteFont roboto;
         //Scrolling Background
         private ScrollingBackground bg1 = new ScrollingBackground();
@@ -70,7 +72,7 @@ namespace Project
         private int currentLevel;
         //score
         private int score;
-        
+
 
         public Game1()
         {
@@ -121,17 +123,19 @@ namespace Project
             assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             assets.Add("cursor", Content.Load<Texture2D>("cursor"));
-            assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); 
+            assets.Add("enemy1", Content.Load<Texture2D>("enemy1"));
             assets.Add("enemy2", Content.Load<Texture2D>("enemy2"));
             assets.Add("turret", Content.Load<Texture2D>("turret"));
-            assets.Add("missile", Content.Load<Texture2D>("rocket")); 
+            assets.Add("missile", Content.Load<Texture2D>("rocket"));
             assets.Add("boss", Content.Load<Texture2D>("boss"));
             assets.Add("boss2", Content.Load<Texture2D>("boss2"));
             assets.Add("powerup", Content.Load<Texture2D>("powerup"));
             assets.Add("powerBullet", Content.Load<Texture2D>("flowerBullet2"));
             assets.Add("heart", Content.Load<Texture2D>("heart"));
-            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"), Color.Black);
+            menuTitle = new UI("Space Battle!", Content.Load<SpriteFont>("font"), Color.Black);
             pauseTitle = new UI("Pause Game", Content.Load<SpriteFont>("font"), Color.White);
+            winTitle = new UI("You Win !", Content.Load<SpriteFont>("font"), Color.Black);
+            loseTitle = new UI("You Lose !", Content.Load<SpriteFont>("font"), Color.Black);
             roboto = Content.Load<SpriteFont>("Roboto-Black");
             bgImage = Content.Load<Texture2D>("background1");
             bgImage2 = Content.Load<Texture2D>("sky");
@@ -167,6 +171,9 @@ namespace Project
                 case GameState.GameOver:
                     UpdateGameOver(gameTime);
                     break;
+                case GameState.Win:
+                    UpdateWin(gameTime);
+                    break;
             }
         }
 
@@ -184,13 +191,16 @@ namespace Project
                 case GameState.GameOver:
                     DrawGameOver(gameTime);
                     break;
-            }    
+                case GameState.Win:
+                    DrawWin(gameTime);
+                    break;
+            }
         }
 
         public void DetectCollision(GameTime gameTime)
         {
             //detect collision between player and enemy
-            for(int i = 0; i < enemyList.Count; i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
                 if (player.BoundingBox.Intersects(enemyList[i].BoundingBox))
                 {
@@ -206,18 +216,18 @@ namespace Project
                     {
                         player.health--;
                         enemyList[i].health--;
-                        collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;     
+                        collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
                     }
                     if (enemyList[i].health <= 0)
-                        enemyList.Remove(enemyList[i]);                   
+                        enemyList.Remove(enemyList[i]);
                     break;
                 }
             }
 
             //detect collision between player bullet and enemy
-            for(int i = 0; i < enemyList.Count; i++)
+            for (int i = 0; i < enemyList.Count; i++)
             {
-                for(int j = 0; j < playerBulletList.Count; j++)
+                for (int j = 0; j < playerBulletList.Count; j++)
                 {
                     //Axis-Aligned Bounding Box
                     if (enemyList[i].BoundingBox.Intersects(playerBulletList[j].BoundingBox))
@@ -227,12 +237,16 @@ namespace Project
                             enemyList[i].health--;
                             score += 10;
                         }
-                            
+
                         if (enemyList[i].health <= 0)
                         {
                             score += 50;
                             if (enemyList[i].GetType() == typeof(Boss))
                             {
+                                if (currentLevel == 2)
+                                {
+                                    _state = GameState.Win;
+                                }
                                 distance = 0;
                                 enemyList.Clear();
                                 currentLevel = 2;
@@ -243,7 +257,7 @@ namespace Project
                             else
                                 enemyList.Remove(enemyList[i]);
                         }
-                                          
+
                         playerBulletList.Remove(playerBulletList[j]);
                         break;
                     }
@@ -280,7 +294,7 @@ namespace Project
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
                             break;
-                        }                                          
+                        }
                     }
                 }
             }
@@ -328,7 +342,7 @@ namespace Project
                         enemyBulletList.Clear();
                         enemyList.Clear();
                         missileList.Clear();
-                        lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;;
+                        lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200; ;
                     }
                     if (endButton.enterButton(MouseInput))
                     {
@@ -352,7 +366,7 @@ namespace Project
                     else
                         boss.Initialize();
                     enemyList.Add(boss);
-                    bossOut = true;    
+                    bossOut = true;
                 }
 
                 if (turretCounter >= 10 && !bossOut)
@@ -370,7 +384,7 @@ namespace Project
                     enemyList.Add(pu);
                     powerUpCounter++;
                 }
-                   
+
                 if (counter >= 2 && !bossOut)
                 {
                     counter = 0;
@@ -400,7 +414,7 @@ namespace Project
                 if (bg1.rec.Y >= 500)
                 {
                     bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
-                }                    
+                }
 
                 if (bg2.rec.Y >= 500)
                 {
@@ -409,7 +423,7 @@ namespace Project
 
                 if (bg1.rec.Y % 10 == 0 || bg2.rec.Y % 10 == 0)
                 {
-                    distance+= 10;
+                    distance += 10;
                 }
 
                 bg1.Update();
@@ -426,10 +440,38 @@ namespace Project
                     enemyList.Clear();
                     missileList.Clear();
                 }
-            }            
+            }
         }
 
         void UpdateGameOver(GameTime deltaTime)
+        {
+            MouseState MouseInput = Mouse.GetState();
+
+            if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
+            {
+                if (restartButton.enterButton(MouseInput))
+                {
+                    _state = GameState.Gameplay;
+                    lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
+                    //current player health is 0 ((because of gameover)
+                    player.revivePlayer();
+                    bossOut = false;
+                    distance = 0;
+                    currentLevel = 1;
+                    powerUpCounter = 0;
+                    counter = 0;
+                    turretCounter = 0;
+                    bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
+                    bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
+                }
+                if (endButton.enterButton(MouseInput))
+                {
+                    Exit();
+                }
+            }
+        }
+
+        void UpdateWin(GameTime deltaTime)
         {
             MouseState MouseInput = Mouse.GetState();
 
@@ -500,20 +542,21 @@ namespace Project
                 spriteBatch.Draw(Game1.assets["heart"], new Vector2(length.X + 10 + 20 * i, 10), null, Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
             }
 
-            spriteBatch.DrawString(roboto, "Score: " + score, new Vector2(10, 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f); 
+            spriteBatch.DrawString(roboto, "Score: " + score, new Vector2(10, 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
             length = roboto.MeasureString(distance + "M");
             spriteBatch.DrawString(roboto, distance + "M", new Vector2(screenWidth - length.X - 10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
             spriteBatch.DrawString(roboto, "Missile: ", new Vector2(10, screenHeight - 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
-            length = roboto.MeasureString("Missile: "); 
+            length = roboto.MeasureString("Missile: ");
             if (player.returnMissileCooldown() > 0.0f)
             {
                 int temp = (int)player.returnMissileCooldown() + 1;
                 spriteBatch.DrawString(roboto, temp + "s", new Vector2(length.X + 10, screenHeight - 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
             }
-            else {
-                spriteBatch.DrawString(roboto, "Ready" , new Vector2(length.X + 10, screenHeight - 30), Color.Red, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            else
+            {
+                spriteBatch.DrawString(roboto, "Ready", new Vector2(length.X + 10, screenHeight - 30), Color.Red, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
             }
-            
+
 
             spriteBatch.End();
 
@@ -524,17 +567,28 @@ namespace Project
                 menuButton.Draw(spriteBatch);
                 endButton.Draw(spriteBatch);
                 spriteBatch.End();
-            }                     
+            }
         }
 
         void DrawGameOver(GameTime deltaTime)
         {
             GraphicsDevice.Clear(Color.AntiqueWhite);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            loseTitle.Draw(spriteBatch, deltaTime);
             restartButton.Draw(spriteBatch);
             endButton.Draw(spriteBatch);
             spriteBatch.End();
             score = 0;
+        }
+
+        void DrawWin(GameTime deltaTime)
+        {
+            GraphicsDevice.Clear(Color.AntiqueWhite);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+            winTitle.Draw(spriteBatch, deltaTime);
+            restartButton.Draw(spriteBatch);
+            endButton.Draw(spriteBatch);
+            spriteBatch.End();
         }
     }
 }
