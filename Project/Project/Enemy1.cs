@@ -9,17 +9,19 @@ namespace Project
     class Enemy1:GameObject
     {
         private SoundEffect soundEffect;
+        private Random random;
 
         public override void Initialize()
         {
             //initialize all the variables
+            random = new Random();
             health = 5;
             speed = 100.0f;
             fireTime = 0.0f;
             fireRate = 500.0f;
             orientation = 0f;
             texture = Game1.assets["enemy1"];
-            position = new Vector2(0, 0);
+            position = new Vector2(random.Next(0, Game1.screenWidth), 0);
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             soundEffect = Game1.soundEffect["enemy"];
         }

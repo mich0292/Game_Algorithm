@@ -208,7 +208,7 @@ namespace Project
 
         public void DetectCollision(GameTime gameTime)
         {
-            if (_state != GameState.Gameplay)
+            if (_state != GameState.Tutorial)
             {
                 //detect collision between player and enemy
                 for (int i = 0; i < enemyList.Count; i++)
@@ -414,6 +414,7 @@ namespace Project
                 case 7:
                     enemyList.Clear();
                     playerBulletList.Clear();
+                    missileList.Clear();
                     player.Initialize();
                     counter = 0;
                     score = 0;
@@ -494,10 +495,10 @@ namespace Project
                 {
                     counter = 0;
                     var asteroid = new Asteroid();
-                    //var enemy = new Enemy1();
+                    var enemy = new Enemy1();
                     asteroid.Initialize();
-                    //enemy.Initialize();
-                    //enemyList.Add(enemy);
+                    enemy.Initialize();
+                    enemyList.Add(enemy);
                     enemyList.Add(asteroid);
                 }
                 //update player
