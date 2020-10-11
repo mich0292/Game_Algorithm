@@ -189,3 +189,5 @@ C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\T
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\Roboto-Black.xnb
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\bulletSoundEffect.xnb
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemyBulletSoundEffect.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\bulletSoundEffect.xnb
+D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemyBulletSoundEffect.xnb
