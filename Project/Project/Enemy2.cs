@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -6,6 +7,8 @@ namespace Project
 {
     class Enemy2:GameObject
     {
+        private List<Vector2> controlPointsList;
+
         public override void Initialize()
         {
             //initialize all the variables
@@ -16,6 +19,10 @@ namespace Project
             orientation = 0f;
             texture = Game1.assets["enemy2"];
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            controlPointsList = new List<Vector2>
+            {
+                new Vector2()
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -56,7 +63,7 @@ namespace Project
             Vector2 d = -p0 + 3f * p1 - 3f * p2 + p3;
 
             //The cubic polynomial: a + b * t + c * t^2 + d * t^3
-            Vector2 pos =  a + (b * distance) + (c * distance * distance) + (d * distance * distance * distance);
+            Vector2 pos = 0.5f * (a + (b * distance) + (c * distance * distance) + (d * distance * distance * distance));
 
             return pos;
         }
