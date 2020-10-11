@@ -15,10 +15,10 @@ namespace Project
         {
             //initialize all the variables
             random = new Random();
-            health = 5;
+            health = 3;
             speed = 100.0f;
             fireTime = 0.0f;
-            fireRate = 500.0f;
+            fireRate = 700.0f;
             orientation = 0f;
             texture = Game1.assets["enemy1"];
             position = new Vector2(random.Next(0, Game1.screenWidth), 0);

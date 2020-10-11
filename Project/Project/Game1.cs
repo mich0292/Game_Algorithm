@@ -44,6 +44,8 @@ namespace Project
         private float counter;
         //turret counter
         private float turretCounter;
+        //enemy2 enemy2Counter
+        private int enemy2Counter = 0;
         //powerup Counter
         private int powerUpCounter;
         //Player collision
@@ -508,12 +510,26 @@ namespace Project
                 {
                     counter = 0;
                     var asteroid = new Asteroid();
-                    //var enemy = new Enemy1();
+                    if (currentLevel == 1)
+                    {
+                        var enemy = new Enemy1();
+                        enemy.Initialize();
+                        enemyList.Add(enemy);
+                    }
+                    else {
+                        if (enemy2Counter < 8)
+                        {
+                            var enemy = new Enemy2();
+                            enemy.Initialize();
+                            enemyList.Add(enemy);
+                            enemy2Counter++;
+                        }
+                    }
                     asteroid.Initialize();
-                    //enemy.Initialize();
-                    //enemyList.Add(enemy);
-                    enemyList.Add(asteroid);
+                    enemyList.Add(asteroid);                   
                 }
+
+
                 //update player
                 player.Update(deltaTime);
                 //update player bullet
@@ -578,9 +594,10 @@ namespace Project
                     distance = 0;
                     currentLevel = 1;
                     powerUpCounter = 0;
+                    enemy2Counter = 0;
                     counter = 0;
                     turretCounter = 0;
-                    bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
+                    bg1.Initialize(bgImage1, new Rectangle(0, 500, 800, 500));
                     bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
                 }
                 if (endButton.enterButton(MouseInput))
