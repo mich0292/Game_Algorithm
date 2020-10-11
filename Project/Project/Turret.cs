@@ -20,7 +20,7 @@ namespace Project
             fireRate = 600.0f;
             orientation = 0f;
             texture = Game1.assets["turret"];
-            position = new Vector2(700, 200);
+            position = new Vector2(700, random.Next(0, (int)Game1.player.position.Y));
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             soundEffect = Game1.soundEffect["enemy"];
         }

@@ -495,10 +495,10 @@ namespace Project
                 {
                     counter = 0;
                     var asteroid = new Asteroid();
-                    var enemy = new Enemy1();
+                    //var enemy = new Enemy1();
                     asteroid.Initialize();
-                    enemy.Initialize();
-                    enemyList.Add(enemy);
+                    //enemy.Initialize();
+                    //enemyList.Add(enemy);
                     enemyList.Add(asteroid);
                 }
                 //update player
