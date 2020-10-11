@@ -13,7 +13,7 @@ using System.Collections.Generic;
 
 namespace Project
 {
-    public enum GameState { MainMenu, Gameplay, GameOver, Win }
+    public enum GameState { MainMenu, Tutorial, Gameplay, GameOver, Win }
 
     public class Game1 : Game
     {
@@ -70,7 +70,9 @@ namespace Project
         private int currentLevel;
         //score
         private int score;
-
+        //tutorial 
+        private int tutorialStep;
+        private bool missileCollision;
 
         public Game1()
         {
@@ -95,7 +97,9 @@ namespace Project
             pauseCounter = 0;
             distance = 0f;
             currentLevel = 1;
+            tutorialStep = 1;
             bossOut = false;
+            missileCollision = false;
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
@@ -164,6 +168,9 @@ namespace Project
                 case GameState.MainMenu:
                     UpdateMainMenu(gameTime);
                     break;
+                case GameState.Tutorial:
+                    UpdateTutorial(gameTime);
+                    break;
                 case GameState.Gameplay:
                     UpdateGameplay(gameTime);
                     break;
@@ -184,6 +191,9 @@ namespace Project
                 case GameState.MainMenu:
                     DrawMainMenu(gameTime);
                     break;
+                case GameState.Tutorial:
+                    DrawTutorial(gameTime);
+                    break;
                 case GameState.Gameplay:
                     DrawGameplay(gameTime);
                     break;
@@ -198,28 +208,44 @@ namespace Project
 
         public void DetectCollision(GameTime gameTime)
         {
-            //detect collision between player and enemy
-            for (int i = 0; i < enemyList.Count; i++)
+            if (_state != GameState.Gameplay)
             {
-                if (player.BoundingBox.Intersects(enemyList[i].BoundingBox))
+                //detect collision between player and enemy
+                for (int i = 0; i < enemyList.Count; i++)
                 {
-                    //detect collision between player and powerup 
-                    if (enemyList[i].GetType() == typeof(PowerUp))
+                    if (player.BoundingBox.Intersects(enemyList[i].BoundingBox))
                     {
-                        player.powerUp = true;
-                        enemyList[i].health--;
-                        playerBulletList.Clear();
-                        collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
+                        //detect collision between player and powerup 
+                        if (enemyList[i].GetType() == typeof(PowerUp))
+                        {
+                            player.powerUp = true;
+                            enemyList[i].health--;
+                            playerBulletList.Clear();
+                            collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
+                        }
+                        else
+                        {
+                            player.health--;
+                            enemyList[i].health--;
+                            collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
+                        }
+                        if (enemyList[i].health <= 0)
+                            enemyList.Remove(enemyList[i]);
+                        break;
                     }
-                    else
+                }
+
+                //detect collision between enemy bullet and player
+                for (int i = 0; i < enemyBulletList.Count; i++)
+                {
+                    if (player.BoundingBox.Intersects(enemyBulletList[i].BoundingBox))
                     {
                         player.health--;
-                        enemyList[i].health--;
-                        collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
+
+                        enemyBulletList.Remove(enemyBulletList[i]);
+
+                        break;
                     }
-                    if (enemyList[i].health <= 0)
-                        enemyList.Remove(enemyList[i]);
-                    break;
                 }
             }
 
@@ -263,19 +289,6 @@ namespace Project
                 }
             }
 
-            //detect collision between enemy bullet and player
-            for (int i = 0; i < enemyBulletList.Count; i++)
-            {
-                if (player.BoundingBox.Intersects(enemyBulletList[i].BoundingBox))
-                {
-                    player.health--;
-
-                    enemyBulletList.Remove(enemyBulletList[i]);
-
-                    break;
-                }
-            }
-
             //detect collision between missile and target
             for (int i = 0; i < missileList.Count; i++)
             {
@@ -292,6 +305,8 @@ namespace Project
 
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
+                            if (_state == GameState.Tutorial)
+                                missileCollision = true;
                             break;
                         }
                     }
@@ -308,13 +323,104 @@ namespace Project
                 if (startButton.enterButton(MouseInput))
                 {
                     lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
-                    _state = GameState.Gameplay;
+                    _state = GameState.Tutorial;
                 }
                 if (endButton.enterButton(MouseInput))
                 {
                     Exit();
                 }
             }
+        }
+
+        void UpdateTutorial(GameTime deltaTime)
+        {
+            KeyboardState keyboard = Keyboard.GetState();
+            counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+            //update player bullet
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Update(deltaTime);
+
+            //update missile 
+            for (int i = 0; i < missileList.Count; i++)
+                missileList[i].Update(deltaTime);
+
+            //update enemy
+            for (int i = 0; i < enemyList.Count; i++)
+                enemyList[i].Update(deltaTime);
+
+            //update background    
+            bg1.Update();
+            bg2.Update();
+            if (bg1.rec.Y >= 500)
+            {
+                bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
+            }
+
+            if (bg2.rec.Y >= 500)
+            {
+                bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
+            }
+
+            switch (tutorialStep)
+            {
+                case 1:
+                    if (keyboard.IsKeyDown(Keys.Up))
+                    {
+                        player.Update(deltaTime);
+                        tutorialStep++;
+                    }
+
+                    break;
+                case 2:
+                    if (keyboard.IsKeyDown(Keys.Down))
+                    {
+                        player.Update(deltaTime);
+                        tutorialStep++;
+                    }
+                    break;
+                case 3:
+                    if (keyboard.IsKeyDown(Keys.Left))
+                    {
+                        player.Update(deltaTime);
+                        tutorialStep++;
+                    }
+                    break;
+                case 4:
+                    if (keyboard.IsKeyDown(Keys.Right))
+                    {
+                        player.Update(deltaTime);
+                        tutorialStep++;
+                    }
+                    break;
+                case 5:
+                    if (keyboard.IsKeyDown(Keys.Space))
+                    {
+                        player.Update(deltaTime);
+                        tutorialStep++;
+                    }
+                    break;
+                case 6:
+                    if (counter >= 2 && !bossOut)
+                    {
+                        counter = 0;
+                        var asteroid = new Asteroid();
+                        asteroid.Initialize();
+                        enemyList.Add(asteroid);
+                    }
+                    player.Update(deltaTime);
+                    if (missileCollision)
+                        tutorialStep++;
+                    break;
+                case 7:
+                    enemyList.Clear();
+                    playerBulletList.Clear();
+                    player.Initialize();
+                    counter = 0;
+                    score = 0;
+                    _state = GameState.Gameplay;
+                    break;
+            }
+            DetectCollision(deltaTime);
         }
 
         void UpdateGameplay(GameTime deltaTime)
@@ -581,6 +687,86 @@ namespace Project
             winTitle.Draw(spriteBatch, deltaTime);
             menuButton.Draw(spriteBatch);
             endButton.Draw(spriteBatch);
+            spriteBatch.End();
+        }
+
+        void DrawTutorial(GameTime deltaTime)
+        {
+            string text;
+            Vector2 length;
+
+            spriteBatch.Begin(SpriteSortMode.FrontToBack);
+            //draw player
+            player.Draw(spriteBatch, deltaTime);
+            //draw player bullet
+            for (int i = 0; i < playerBulletList.Count; i++)
+                playerBulletList[i].Draw(spriteBatch, deltaTime);
+            //draw enemy bullet
+            for (int i = 0; i < enemyBulletList.Count; i++)
+                enemyBulletList[i].Draw(spriteBatch, deltaTime);
+            //draw enemy 
+            for (int i = 0; i < enemyList.Count; i++)
+                enemyList[i].Draw(spriteBatch, deltaTime);
+            //draw missile
+            for (int i = 0; i < missileList.Count; i++)
+                missileList[i].Draw(spriteBatch, deltaTime);
+
+            //draw background
+            bg1.Draw(spriteBatch, deltaTime);
+            bg2.Draw(spriteBatch, deltaTime);
+
+            //draw simple UI
+            spriteBatch.DrawString(roboto, "Missile: ", new Vector2(10, screenHeight - 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            length = roboto.MeasureString("Missile: ");
+            if (player.returnMissileCooldown() > 0.0f)
+            {
+                int temp = (int)player.returnMissileCooldown() + 1;
+                spriteBatch.DrawString(roboto, temp + "s", new Vector2(length.X + 10, screenHeight - 30), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            }
+            else
+            {
+                spriteBatch.DrawString(roboto, "Ready", new Vector2(length.X + 10, screenHeight - 30), Color.Red, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+            }
+
+            switch (tutorialStep)
+            {
+                case 1:
+                    //draw simple UI
+                    text = "Press up arrow to move up";
+                    spriteBatch.DrawString(roboto, text, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+                    length = roboto.MeasureString(text);
+                    break;
+                case 2:
+                    //draw simple UI
+                    text = "Press down arrow to move down";
+                    spriteBatch.DrawString(roboto, text, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+                    length = roboto.MeasureString(text);
+                    break;
+                case 3:
+                    //draw simple UI
+                    text = "Press left arrow to move left";
+                    spriteBatch.DrawString(roboto, text, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+                    length = roboto.MeasureString(text);
+                    break;
+                case 4:
+                    //draw simple UI
+                    text = "Press right arrow to move right";
+                    spriteBatch.DrawString(roboto, text, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+                    length = roboto.MeasureString(text);
+                    break;
+                case 5:
+                    //draw simple UI
+                    text = "Press space bar to fire bullet";
+                    spriteBatch.DrawString(roboto, text, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+                    length = roboto.MeasureString(text);
+                    break;
+                case 6:
+                    //draw simple UI
+                    text = "Press Z to fire missile and tab to select target";
+                    spriteBatch.DrawString(roboto, text, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
+                    length = roboto.MeasureString(text);
+                    break;
+            }
             spriteBatch.End();
         }
     }
