@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Project
 {
     class Enemy1:GameObject
     {
+        private SoundEffect soundEffect;
+
         public override void Initialize()
         {
             //initialize all the variables
@@ -17,7 +20,8 @@ namespace Project
             orientation = 0f;
             texture = Game1.assets["enemy1"];
             position = new Vector2(0, 0);
-            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f); 
+            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            soundEffect = Game1.soundEffect["enemy"];
         }
 
         public override void Update(GameTime gameTime)
@@ -48,6 +52,7 @@ namespace Project
                     tempBullet.setOwner(this);
                     tempBullet.Initialize();
                     Game1.enemyBulletList.Add(tempBullet);
+                    soundEffect.Play();
                 }              
             }
         }

@@ -2,11 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Project
 {
     public class Boss : GameObject
     {
+        private SoundEffect soundEffect; 
+
         public enum BossState { avoid, attack, attack_faster };
         public static BossState currentState = BossState.attack;
 
@@ -30,6 +33,7 @@ namespace Project
             orientation = 0f;
             avoidCounter = 0f;
             canAvoid = true;
+            soundEffect = Game1.soundEffect["enemy"];
         }
 
         public void Initialize2() //initialize for level 1
@@ -48,6 +52,7 @@ namespace Project
             orientation = 0f;
             avoidCounter = 0f;
             canAvoid = true;
+            soundEffect = Game1.soundEffect["enemy"];
         }
 
         public override void Update(GameTime gameTime)
@@ -184,6 +189,7 @@ namespace Project
                     else
                         tempBullet.speed = 450.0f;
                     Game1.enemyBulletList.Add(tempBullet);
+                    soundEffect.Play();
                 }
             }
         }

@@ -38,7 +38,7 @@ namespace Project
             position.Y = Game1.screenHeight / 2;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
             orientation = 0f;
-            soundEffect = Game1.soundEffect;
+            soundEffect = Game1.soundEffect["player"];
             Cursor.Initialize();
         }
 

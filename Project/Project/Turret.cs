@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Project
 {
     class Turret:GameObject
     {
         private Random random = new Random();
+        private SoundEffect soundEffect;
 
         public override void Initialize()
         {
@@ -19,7 +21,8 @@ namespace Project
             orientation = 0f;
             texture = Game1.assets["turret"];
             position = new Vector2(700, 200);
-            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);            
+            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            soundEffect = Game1.soundEffect["enemy"];
         }
 
         public override void Update(GameTime gameTime)
@@ -46,6 +49,7 @@ namespace Project
                     tempBullet.setOwner(this);
                     tempBullet.Initialize();
                     Game1.enemyBulletList.Add(tempBullet);
+                    soundEffect.Play();
                 }              
             }
         }

@@ -22,14 +22,12 @@ namespace Project
         SpriteBatch spriteBatch;
 
         public static Dictionary<string, Texture2D> assets = new Dictionary<string, Texture2D>();
+        public static Dictionary<string, SoundEffect> soundEffect = new Dictionary<string, SoundEffect>();
         public static Player player = new Player();
         public static List<GameObject> playerBulletList = new List<GameObject>();
         public static List<GameObject> enemyList = new List<GameObject>();
         public static List<GameObject> enemyBulletList = new List<GameObject>();
         public static List<Missile> missileList = new List<Missile>();
-
-        //sound effect
-        public static SoundEffect soundEffect;
 
         //For measuring the screen
         public static int screenWidth;
@@ -145,7 +143,8 @@ namespace Project
             bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
 
             //load sound effect
-            soundEffect = Content.Load<SoundEffect>("bulletSoundEffect");
+            soundEffect.Add("player", Content.Load<SoundEffect>("bulletSoundEffect"));
+            soundEffect.Add("enemy", Content.Load<SoundEffect>("enemyBulletSoundEffect"));
         }
 
         protected override void UnloadContent()

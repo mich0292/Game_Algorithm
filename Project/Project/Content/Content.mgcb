@@ -117,6 +117,12 @@
 /processorParam:TextureFormat=Color
 /build:enemy_bullet.png
 
+#begin enemyBulletSoundEffect (online-audio-converter.com).wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:enemyBulletSoundEffect (online-audio-converter.com).wav;enemyBulletSoundEffect.wav
+
 #begin exit.png
 /importer:TextureImporter
 /processor:TextureProcessor
