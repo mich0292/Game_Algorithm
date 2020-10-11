@@ -64,9 +64,10 @@ namespace Project
         private float distance;
         private bool bossOut;
         //background image
-        private Texture2D bgImage;
+        private Texture2D bgImage1;
         private Texture2D bgImage2;
         private Texture2D bgImage3;
+        private Texture2D bgImage4;
         //level
         private int currentLevel;
         //score
@@ -140,13 +141,14 @@ namespace Project
             winTitle = new UI("You Win !", Content.Load<SpriteFont>("font"), Color.Black);
             loseTitle = new UI("You Lose !", Content.Load<SpriteFont>("font"), Color.Black);
             roboto = Content.Load<SpriteFont>("Roboto-Black");
-            bgImage = Content.Load<Texture2D>("background1");
-            bgImage2 = Content.Load<Texture2D>("test");
-            bgImage3 = Content.Load<Texture2D>("test1");
+            bgImage1 = Content.Load<Texture2D>("test");
+            bgImage2 = Content.Load<Texture2D>("test1");
+            bgImage3 = Content.Load<Texture2D>("test2");
+            bgImage4 = Content.Load<Texture2D>("test2-1");
 
             //load background here
-            bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
-            bg2.Initialize(bgImage3, new Rectangle(0, 0, 800, 500));
+            bg1.Initialize(bgImage1, new Rectangle(0, 500, 800, 500));
+            bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
 
             //load sound effect
             soundEffect.Add("player", Content.Load<SoundEffect>("bulletSoundEffect"));
@@ -278,8 +280,8 @@ namespace Project
                                 enemyList.Clear();
                                 currentLevel = 2;
                                 bossOut = false;
-                                bg1.Initialize(bgImage, new Rectangle(0, 500, 800, 500));
-                                bg2.Initialize(bgImage, new Rectangle(0, 0, 800, 500));
+                                bg1.Initialize(bgImage3, new Rectangle(0, 500, 800, 500));
+                                bg2.Initialize(bgImage4, new Rectangle(0, 0, 800, 500));
                             }
                             else
                                 enemyList.Remove(enemyList[i]);

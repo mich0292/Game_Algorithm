@@ -11,24 +11,24 @@ namespace Project
 
         public override void Initialize()
         {
-            //initialize all the variables
-            health = 7;
-            speed = 100.0f;
-            fireTime = 0f;
-            fireRate = 300.0f;
-            orientation = 0f;
-            texture = Game1.assets["enemy2"];
-            origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
-            controlPointsList = new List<Vector2>
-            {
-                new Vector2()
-            }
+            ////initialize all the variables
+            //health = 7;
+            //speed = 100.0f;
+            //fireTime = 0f;
+            //fireRate = 300.0f;
+            //orientation = 0f;
+            //texture = Game1.assets["enemy2"];
+            //origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
+            //controlPointsList = new List<Vector2>
+            //{
+            //    new Vector2()
+            //}
         }
 
         public override void Update(GameTime gameTime)
         {
-            PatternMovement(gameTime);
-            LineOfSight(gameTime);
+            //PatternMovement(gameTime);
+            //LineOfSight(gameTime);
         }
 
         //Pattern movement - Catmull-rom spline

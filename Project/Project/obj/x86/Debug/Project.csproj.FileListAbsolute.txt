@@ -193,3 +193,5 @@ D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\bulletSoundEffect
 D:\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\enemyBulletSoundEffect.xnb
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\test.xnb
 C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\test1.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\test2-1.xnb
+C:\Users\asus\Google Drive (foofangjee@gmail.com)\MMU\Degree\Year 3\Semester 1\TGD3351\Assignment\Project\GameAlgorithm\Project\Project\bin\Windows\x86\Debug\Content\test2.xnb
