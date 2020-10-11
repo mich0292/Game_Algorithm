@@ -170,12 +170,12 @@ namespace Project
                 path.Add(goal);
                 return path;
             }
-            //else
-            //{
-            //    System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
-            //    if (lastPoint != Vector2.Zero)
-            //        start = lastPoint;
-            //}
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("bresenham to reduce the node");
+                if (lastPoint != Vector2.Zero)
+                    start = lastPoint;
+            }
             Initialize(start, goal);
             walkablePosition.Clear();
             var stopWatch = new System.Diagnostics.Stopwatch();
@@ -252,10 +252,17 @@ namespace Project
             Vector2 curr = goal;
             List<Vector2> path = new List<Vector2>();
 
-            while (curr != start)
+            try
             {
-                path.Add(curr);
-                curr = comeFrom[curr];
+                while (curr != start)
+                {
+                    path.Add(curr);
+                    curr = comeFrom[curr];
+                }
+            }
+            catch
+            {
+                //do nothing
             }
             path.Add(start);
             path.Reverse();
