@@ -341,7 +341,7 @@ namespace Project
                         enemyBulletList.Clear();
                         enemyList.Clear();
                         missileList.Clear();
-                        lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200; ;
+                        lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
                     }
                     if (endButton.enterButton(MouseInput))
                     {
@@ -476,20 +476,14 @@ namespace Project
 
             if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
             {
-                if (restartButton.enterButton(MouseInput))
+                if (menuButton.enterButton(MouseInput))
                 {
-                    _state = GameState.Gameplay;
+                    _state = GameState.MainMenu;
+                    playerBulletList.Clear();
+                    enemyBulletList.Clear();
+                    enemyList.Clear();
+                    missileList.Clear();
                     lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
-                    //current player health is 0 ((because of gameover)
-                    player.revivePlayer();
-                    bossOut = false;
-                    distance = 0;
-                    currentLevel = 1;
-                    powerUpCounter = 0;
-                    counter = 0;
-                    turretCounter = 0;
-                    bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
-                    bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
                 }
                 if (endButton.enterButton(MouseInput))
                 {
@@ -585,7 +579,7 @@ namespace Project
             GraphicsDevice.Clear(Color.AntiqueWhite);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
             winTitle.Draw(spriteBatch, deltaTime);
-            restartButton.Draw(spriteBatch);
+            menuButton.Draw(spriteBatch);
             endButton.Draw(spriteBatch);
             spriteBatch.End();
         }
