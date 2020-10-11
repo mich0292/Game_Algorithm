@@ -75,6 +75,7 @@ namespace Project
         //tutorial 
         private int tutorialStep;
         private bool missileCollision;
+        private SpriteFont font;
 
         public Game1()
         {
@@ -141,6 +142,7 @@ namespace Project
             winTitle = new UI("You Win !", Content.Load<SpriteFont>("font"), Color.Black);
             loseTitle = new UI("You Lose !", Content.Load<SpriteFont>("font"), Color.Black);
             roboto = Content.Load<SpriteFont>("Roboto-Black");
+            font = Content.Load<SpriteFont>("font");
             bgImage1 = Content.Load<Texture2D>("test");
             bgImage2 = Content.Load<Texture2D>("test1");
             bgImage3 = Content.Load<Texture2D>("test2");
@@ -416,6 +418,13 @@ namespace Project
                         tutorialStep++;
                     break;
                 case 7:
+                    if (keyboard.IsKeyDown(Keys.Enter))
+                    {
+                        pauseCounter = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200f;
+                        tutorialStep++;
+                    }
+                    break;
+                case 8:
                     enemyList.Clear();
                     playerBulletList.Clear();
                     missileList.Clear();
@@ -770,6 +779,12 @@ namespace Project
                     text = "Press Z to fire missile and tab to select target";
                     spriteBatch.DrawString(roboto, text, new Vector2(10, 10), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
                     length = roboto.MeasureString(text);
+                    break;
+                case 7:
+                    //draw simple UI
+                    text = "Press ENTER to start the game";
+                    length = roboto.MeasureString(text);
+                    spriteBatch.DrawString(roboto, text, new Vector2(screenWidth/2 - length.X/2, screenHeight/2 - length.Y/2), Color.White, 0f, Vector2.Zero, 1.0f, SpriteEffects.None, 1.0f);
                     break;
             }
             spriteBatch.End();
