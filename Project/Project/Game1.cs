@@ -66,6 +66,7 @@ namespace Project
         //background image
         private Texture2D bgImage;
         private Texture2D bgImage2;
+        private Texture2D bgImage3;
         //level
         private int currentLevel;
         //score
@@ -140,11 +141,12 @@ namespace Project
             loseTitle = new UI("You Lose !", Content.Load<SpriteFont>("font"), Color.Black);
             roboto = Content.Load<SpriteFont>("Roboto-Black");
             bgImage = Content.Load<Texture2D>("background1");
-            bgImage2 = Content.Load<Texture2D>("sky");
+            bgImage2 = Content.Load<Texture2D>("test");
+            bgImage3 = Content.Load<Texture2D>("test1");
 
             //load background here
             bg1.Initialize(bgImage2, new Rectangle(0, 500, 800, 500));
-            bg2.Initialize(bgImage2, new Rectangle(0, 0, 800, 500));
+            bg2.Initialize(bgImage3, new Rectangle(0, 0, 800, 500));
 
             //load sound effect
             soundEffect.Add("player", Content.Load<SoundEffect>("bulletSoundEffect"));
