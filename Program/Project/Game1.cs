@@ -101,7 +101,7 @@ namespace Project
             lastPress = 0f;
             pauseCounter = 0;
             distance = 0f;
-            currentLevel = 1;
+            currentLevel = 2;
             tutorialStep = 1;
             bossOut = false;
             missileCollision = false;
