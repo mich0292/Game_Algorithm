@@ -14,7 +14,7 @@ namespace Project
         public override void Initialize()
         {
             //initialize all the variables
-            random = new Random();
+            random = new Random(DateTime.Now.Ticks.GetHashCode());
             health = 3;
             speed = 100.0f;
             fireTime = 0.0f;

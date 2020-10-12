@@ -8,12 +8,13 @@ namespace Project
 {
     class Turret:GameObject
     {
-        private Random random = new Random();
+        private Random random;
         private SoundEffect soundEffect;
 
         public override void Initialize()
         {
             //initialize all the variables
+            random = new Random(DateTime.Now.Ticks.GetHashCode());
             health = 10;
             speed = 0.0f;
             fireTime = 0.0f;
