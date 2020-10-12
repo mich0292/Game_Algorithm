@@ -33,7 +33,7 @@ namespace Project
             texture = Game1.assets["asteroid"];
             orientation = 0f;
             origin = new Vector2(texture.Width / 2.0f, texture.Height / 2.0f);
-            rand = new Random();
+            rand = new Random(DateTime.Now.Ticks.GetHashCode());
             velocity = new Vector2(0.0f, 1.0f);
             position = new Vector2(rand.Next(0, Game1.screenWidth), 0);
             wanderTime = 0.0f;
