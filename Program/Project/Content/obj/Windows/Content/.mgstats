@@ -1,6 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "D:/GameAlgorithm/Program/Project/Content/asteroid.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/asteroid.xnb","TextureProcessor","Texture2DContent",3275,16469,0.1686513
-"D:/GameAlgorithm/Program/Project/Content/background1.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/background1.xnb","TextureProcessor","Texture2DContent",7346,646501,0.0170037
 "D:/GameAlgorithm/Program/Project/Content/boss.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/boss.xnb","TextureProcessor","Texture2DContent",10530,28305,0.0040017
 "D:/GameAlgorithm/Program/Project/Content/bullet.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/bullet.xnb","TextureProcessor","Texture2DContent",408,2789,0.0025511
 "D:/GameAlgorithm/Program/Project/Content/bulletSoundEffect.wav","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/bulletSoundEffect.xnb","SoundEffectProcessor","SoundEffectContent",131594,131621,0.1991947
