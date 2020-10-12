@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/GameAlgorithm/Project/Project/Content/bulletSoundEffect.wav</SourceFile>
+  <SourceTime>2020-10-12T00:14:29.470306+08:00</SourceTime>
+  <DestFile>D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/bulletSoundEffect.xnb</DestFile>
+  <DestTime>2020-10-12T11:41:26.4158112+08:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-12-09T00:35:54+08:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-12-09T00:35:54+08:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
