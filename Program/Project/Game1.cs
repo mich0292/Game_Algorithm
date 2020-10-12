@@ -238,7 +238,24 @@ namespace Project
                             collisionTime = (float)gameTime.TotalGameTime.TotalSeconds + 0.5f;
                         }
                         if (enemyList[i].health <= 0)
-                            enemyList.Remove(enemyList[i]);
+                        {
+                            if (enemyList[i].GetType() == typeof(Boss))
+                            {
+                                if (currentLevel == 2)
+                                {
+                                    _state = GameState.Win;
+                                }
+                                distance = 0;
+                                enemyList.Clear();
+                                currentLevel = 2;
+                                bossOut = false;
+                                bg1.Initialize(bgImage3, new Rectangle(0, 500, 800, 500));
+                                bg2.Initialize(bgImage4, new Rectangle(0, 0, 800, 500));
+                            }
+                            else
+                                enemyList.Remove(enemyList[i]);
+                        }
+                            
                         break;
                     }
                 }
@@ -308,8 +325,24 @@ namespace Project
                         {
                             score += 20;
                             enemyList[j].health -= 3;
-                            if (enemyList[j].health <= 0)
-                                enemyList.Remove(enemyList[j]);
+                            if (enemyList[i].health <= 0)
+                            {
+                                if (enemyList[i].GetType() == typeof(Boss))
+                                {
+                                    if (currentLevel == 2)
+                                    {
+                                        _state = GameState.Win;
+                                    }
+                                    distance = 0;
+                                    enemyList.Clear();
+                                    currentLevel = 2;
+                                    bossOut = false;
+                                    bg1.Initialize(bgImage3, new Rectangle(0, 500, 800, 500));
+                                    bg2.Initialize(bgImage4, new Rectangle(0, 0, 800, 500));
+                                }
+                                else
+                                    enemyList.Remove(enemyList[i]);
+                            }
 
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
