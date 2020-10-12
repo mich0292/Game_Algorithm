@@ -178,47 +178,29 @@ namespace Project
             }
             Initialize(start, goal);
             walkablePosition.Clear();
-            var stopWatch = new System.Diagnostics.Stopwatch();
-            stopWatch.Start();
             WalkablePosition(start, goal);
-            stopWatch.Stop();
-            System.Diagnostics.Debug.WriteLine("walkable position: " + stopWatch.Elapsed);
 
             priorityQueue.Enqueue(start, 0);
-            stopWatch = new System.Diagnostics.Stopwatch();
-            stopWatch.Start();
             IEnumerable<Vector2> validNode = walkablePosition.Where(x => x.Value).Select(x => x.Key);
-            stopWatch.Stop();
-            System.Diagnostics.Debug.WriteLine("valid node: " + stopWatch.Elapsed);
 
-            stopWatch = new System.Diagnostics.Stopwatch();
-            stopWatch.Start();
             foreach (Vector2 node in validNode)                
                 costSoFar.Add(new KeyValuePair<Vector2, int>(node, int.MaxValue));
-                
-            stopWatch.Stop();
-            System.Diagnostics.Debug.WriteLine("assign valid node: " + stopWatch.Elapsed);
 
             comeFrom[start] = start;
             costSoFar[start] = 0;
-            stopWatch = new System.Diagnostics.Stopwatch();
-            stopWatch.Start();
+            
             while (priorityQueue.GetCount() > -1)
             {
                 Vector2 curr = priorityQueue.Dequeue();
 
                 if (curr == goal)
                     break;
-
-                stopWatch = new System.Diagnostics.Stopwatch();
-                stopWatch.Start();
+               
                 List<Vector2> neighbour = GetNeighbour(start, goal, curr, validNode);
-                stopWatch.Stop();
-                System.Diagnostics.Debug.WriteLine("get neighbour: " + stopWatch.Elapsed);
 
                 foreach (Vector2 node in neighbour)
                 {
-                    int newCost = costSoFar[curr] + Heuristic(curr,goal); //the cost to another node always 1
+                    int newCost = costSoFar[curr] + Heuristic(curr,goal); 
 
                     try
                     {
@@ -235,20 +217,15 @@ namespace Project
                     }
                     catch
                     {
-                        Console.WriteLine("cost so far contains: " + node + " boolean: " + costSoFar.ContainsKey(node));
-                        Console.WriteLine("cost so far contains goal: " + goal + " boolean: " + costSoFar.ContainsKey(goal));
+                        //do nothing
                     }
                 }
             }
-            stopWatch.Stop();
-            System.Diagnostics.Debug.WriteLine("priority queue: " + stopWatch.Elapsed);
             return ConstructPath(comeFrom, start, goal);
         }
 
         public static List<Vector2> ConstructPath(IDictionary<Vector2, Vector2> comeFrom, Vector2 start, Vector2 goal)
         {
-            var stopWatch = new System.Diagnostics.Stopwatch();
-            stopWatch.Start();
             Vector2 curr = goal;
             List<Vector2> path = new List<Vector2>();
 
@@ -266,8 +243,6 @@ namespace Project
             }
             path.Add(start);
             path.Reverse();
-            stopWatch.Stop();
-            System.Diagnostics.Debug.WriteLine("construct path: " + stopWatch.Elapsed);
             return path;
         }
 
