@@ -8,15 +8,11 @@ using System.Collections.Generic;
 // Camera -> https://stackoverflow.com/questions/17452808/moving-a-camera-in-xna-c-sharp
 // Camera -> https://www.youtube.com/watch?v=zPdmkFDT5Qo
 //UI (Sprite Fonts) -> https://www.youtube.com/watch?v=x_c19loJ9Ds
+//pause -> https://www.youtube.com/watch?v=RKmJsjLaNFM
 
 namespace Project
 {
-    public enum GameState
-    {
-        MainMenu,
-        Gameplay,
-        GameOver,
-    }
+    public enum GameState { MainMenu, Gameplay, GameOver }
 
     /// <summary>
     /// This is the main type for your game.
@@ -38,21 +34,36 @@ namespace Project
         //For measuring the screen
         public static int screenWidth;
         public static int screenHeight;
-
+        //button
         private Button startButton;
         private Button endButton;
         private Button restartButton;
-        //private Button menuButton;
-        //Asteroid
+        private Button menuButton;
+        private float lastPress;
+
+        //enemyCounter
         private float counter;
+        //turret counter
+        private float turretCounter;
         //Player collision
         private float collisionTime;
-        //Menu title
+        //UI title
         private UI menuTitle;
+        private UI pauseTitle;
         //Scrolling Background
         private ScrollingBackground bg1 = new ScrollingBackground();
         private ScrollingBackground bg2 = new ScrollingBackground();
-        
+        //pause variable
+        private bool pauseGame;
+        private float pauseCounter;
+        //boss out
+        private float distance;
+        private bool bossOut;
+        //background image
+        private Texture2D bgImage;
+        //level
+        private int currentLevel;
+
 
         public Game1()
         {
@@ -75,16 +86,19 @@ namespace Project
             screenWidth = graphics.GraphicsDevice.Viewport.Width; // or Window.ClientBounds.Width
             screenHeight = graphics.GraphicsDevice.Viewport.Height;
             counter = 0;
+            turretCounter = 0;
             collisionTime = 0;
+            lastPress = 0f;
+            pauseCounter = 0;
+            distance = 0f;
+            currentLevel = 1;
+            bossOut = false;
 
             startButton = new Button("startButton", Game1.assets["startButton"], screenWidth / 2 - Game1.assets["startButton"].Width / 2, screenHeight / 2 - Game1.assets["startButton"].Height / 2);
             endButton = new Button("endButton", Game1.assets["endButton"], screenWidth / 2 - Game1.assets["endButton"].Width / 2, screenHeight / 2 + Game1.assets["endButton"].Height / 2);
             restartButton = new Button("restartButton", Game1.assets["restartButton"], screenWidth / 2 - Game1.assets["restartButton"].Width / 2, screenHeight / 2 - Game1.assets["restartButton"].Height / 2);
+            menuButton = new Button("menuButton", Game1.assets["menuButton"], screenWidth / 2 - Game1.assets["menuButton"].Width / 2, screenHeight / 2 - Game1.assets["menuButton"].Height / 2);
             player.Initialize();
-            //boss
-            var boss = new Boss();
-            boss.Initialize();
-            enemyList.Add(boss);
         }
 
         /// <summary>
@@ -108,15 +122,19 @@ namespace Project
             assets.Add("menuButton", Content.Load<Texture2D>("menu"));
             assets.Add("asteroid", Content.Load<Texture2D>("asteroid"));
             assets.Add("cursor", Content.Load<Texture2D>("cursor"));
-            assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); //change the file!!!
-            assets.Add("enemy2", Content.Load<Texture2D>("cursor")); //change the file!!!
-            assets.Add("missile", Content.Load<Texture2D>("rocket")); //change the file!!!
-            assets.Add("boss", Content.Load<Texture2D>("boss")); 
-            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"));
+            assets.Add("enemy1", Content.Load<Texture2D>("enemy1")); 
+            assets.Add("enemy2", Content.Load<Texture2D>("enemy2"));
+            assets.Add("turret", Content.Load<Texture2D>("turret"));
+            assets.Add("missile", Content.Load<Texture2D>("rocket")); 
+            assets.Add("boss", Content.Load<Texture2D>("boss"));
+            assets.Add("boss2", Content.Load<Texture2D>("boss2"));
+            menuTitle = new UI("Space Battle", Content.Load<SpriteFont>("font"), Color.Black);
+            pauseTitle = new UI("Pause Game", Content.Load<SpriteFont>("font"), Color.White);
+            bgImage = Content.Load<Texture2D>("background1");
 
             //load background here
-            bg1.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 500, 800, 500));
-            bg2.Initialize(Content.Load<Texture2D>("background1"), new Rectangle(0, 0, 800, 500));
+            bg1.Initialize(Content.Load<Texture2D>("sky"), new Rectangle(0, 500, 800, 500));
+            bg2.Initialize(Content.Load<Texture2D>("sky"), new Rectangle(0, 0, 800, 500));
         }
 
         /// <summary>
@@ -182,11 +200,7 @@ namespace Project
             //detect collision between player and enemy
             for(int i = 0; i < enemyList.Count; i++)
             {
-                if (player.position.X < enemyList[i].position.X + enemyList[i].texture.Width &&
-                    player.position.X + player.texture.Width > enemyList[i].position.X &&
-                    player.position.Y < enemyList[i].position.Y + enemyList[i].texture.Height &&
-                    player.position.Y + player.texture.Height > enemyList[i].position.Y &&
-                    gameTime.TotalGameTime.TotalSeconds > collisionTime)
+                if (player.BoundingBox.Intersects(enemyList[i].BoundingBox))
                 {
                     player.health--;
                     enemyList[i].health--;
@@ -205,15 +219,26 @@ namespace Project
             {
                 for(int j = 0; j < playerBulletList.Count; j++)
                 {
-                    if (enemyList[i].position.X < playerBulletList[j].position.X + playerBulletList[j].texture.Width &&
-                    enemyList[i].position.X + enemyList[i].texture.Width > playerBulletList[j].position.X &&
-                    enemyList[i].position.Y < playerBulletList[j].position.Y + playerBulletList[j].texture.Height &&
-                    enemyList[i].position.Y + enemyList[i].texture.Height > playerBulletList[j].position.Y)
+                    //Axis-Aligned Bounding Box
+                    if (enemyList[i].BoundingBox.Intersects(playerBulletList[j].BoundingBox))
                     {
                         enemyList[i].health--;
 
                         if (enemyList[i].health <= 0)
-                            enemyList.Remove(enemyList[i]);                            
+                        {
+                            if(enemyList[i].GetType() == typeof(Boss))
+                            {
+                                distance = 0;
+                                enemyList.Clear();
+                                currentLevel = 2;
+                                bossOut = false;
+                                bg1.Initialize(bgImage, new Rectangle(0, 500, 800, 500));
+                                bg2.Initialize(bgImage, new Rectangle(0, 0, 800, 500));
+                            }
+                            else
+                                enemyList.Remove(enemyList[i]);
+                        }
+                                          
 
                         playerBulletList.Remove(playerBulletList[j]);
                         break;
@@ -224,10 +249,7 @@ namespace Project
             //detect collision between enemy bullet and player
             for (int i = 0; i < enemyBulletList.Count; i++)
             {
-                if (player.position.X < enemyBulletList[i].position.X + enemyBulletList[i].texture.Width &&
-                    player.position.X + player.texture.Width > enemyBulletList[i].position.X &&
-                    player.position.Y < enemyBulletList[i].position.Y + enemyBulletList[i].texture.Height &&
-                    player.position.Y + player.texture.Height > enemyBulletList[i].position.Y)
+                if (player.BoundingBox.Intersects(enemyBulletList[i].BoundingBox))
                 {
                     player.health--;
 
@@ -244,10 +266,7 @@ namespace Project
                 {
                     if (object.ReferenceEquals(missileList[i].target, enemyList[j]))
                     {
-                        if (missileList[i].position.X < enemyList[j].position.X + enemyList[j].texture.Width &&
-                            missileList[i].position.X + missileList[i].texture.Width > enemyList[j].position.X &&
-                            missileList[i].position.Y < enemyList[j].position.Y + enemyList[j].texture.Height &&
-                            missileList[i].position.Y + missileList[i].texture.Height > enemyList[j].position.Y)
+                        if (missileList[i].BoundingBox.Intersects(enemyList[j].BoundingBox))
                         {
                             enemyList[j].health -= 3;
                             if (enemyList[j].health <= 0)
@@ -255,9 +274,8 @@ namespace Project
 
                             missileList[i].target = null;
                             missileList.Remove(missileList[i]);
-
                             break;
-                        }
+                        }                                          
                     }
                 }
             }
@@ -267,10 +285,11 @@ namespace Project
         {
             MouseState MouseInput = Mouse.GetState();
 
-            if (MouseInput.LeftButton == ButtonState.Pressed)
+            if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
             {
                 if (startButton.enterButton(MouseInput))
                 {
+                    lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
                     _state = GameState.Gameplay;
                 }
                 if (endButton.enterButton(MouseInput))
@@ -282,68 +301,130 @@ namespace Project
 
         void UpdateGameplay(GameTime deltaTime)
         {
-            counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+            KeyboardState keyboard = Keyboard.GetState();
 
-            if(counter >= 2)
+            if (keyboard.IsKeyDown(Keys.Enter) && deltaTime.TotalGameTime.TotalMilliseconds > pauseCounter)
             {
-                counter = 0;
-                for (int i = 0; i < 1; i++)
+                pauseCounter = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200f;
+                pauseGame = !pauseGame;
+            }
+            if (pauseGame)
+            {
+                MouseState MouseInput = Mouse.GetState();
+
+                if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
                 {
-                    var asteroid = new Asteroid();
-                    var enemy = new Enemy1();
-                    asteroid.Initialize();
-                    enemy.Initialize();
-                    enemyList.Add(enemy);
-                    enemyList.Add(asteroid);
+                    if (menuButton.enterButton(MouseInput))
+                    {
+                        _state = GameState.MainMenu;
+                        pauseGame = false;
+                        playerBulletList.Clear();
+                        enemyBulletList.Clear();
+                        enemyList.Clear();
+                        missileList.Clear();
+                        lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;;
+                    }
+                    if (endButton.enterButton(MouseInput))
+                    {
+                        Exit();
+                    }
                 }
             }
-            //update player
-            player.Update(deltaTime);
-            //update player bullet
-            for (int i = 0; i < playerBulletList.Count; i++)
-                playerBulletList[i].Update(deltaTime);
-            //update enemy bullet
-            for (int i = 0; i < enemyBulletList.Count; i++)
-                enemyBulletList[i].Update(deltaTime);
-            //update enemy 
-            for (int i = 0; i < enemyList.Count; i++)
-                enemyList[i].Update(deltaTime);
-            //update missile
-            for (int i = 0; i < missileList.Count; i++)
-                missileList[i].Update(deltaTime);
-            //update background
-            if (bg1.rec.Y >= 500)
-                bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
-
-            if (bg2.rec.Y >= 500)
-                bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
-            bg1.Update();
-            bg2.Update();
-
-            //detect collision
-            DetectCollision(deltaTime);
-
-            if (!Player.playerAlive)
+            else if (!pauseGame)
             {
-                _state = GameState.GameOver;
-                playerBulletList.Clear();
-                enemyBulletList.Clear();
-                enemyList.Clear();
-                missileList.Clear();
-            }
+                counter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+                turretCounter += (float)deltaTime.ElapsedGameTime.TotalSeconds;
+
+                if (distance == 2000 && !bossOut)
+                {
+                    //boss
+                    var boss = new Boss();
+                    if (currentLevel == 1)
+                        boss.Initialize2();
+                    else
+                        boss.Initialize();
+                    enemyList.Add(boss);
+                    bossOut = true;
+                }
+
+                if (turretCounter >= 10)
+                {
+                    turretCounter = 0;
+                    var turret = new Turret();
+                    turret.Initialize();
+                    enemyList.Add(turret);
+                }
+
+
+                if (counter >= 2)
+                {
+                    //counter = 0;
+                    //var asteroid = new Asteroid();
+                    //var enemy = new Enemy1();
+                    //asteroid.Initialize();
+                    //enemy.Initialize();
+                    //enemyList.Add(enemy);
+                    //enemyList.Add(asteroid);
+                }
+                //update player
+                player.Update(deltaTime);
+                //update player bullet
+                for (int i = 0; i < playerBulletList.Count; i++)
+                    playerBulletList[i].Update(deltaTime);
+                //update enemy bullet
+                for (int i = 0; i < enemyBulletList.Count; i++)
+                    enemyBulletList[i].Update(deltaTime);
+                //update enemy 
+                for (int i = 0; i < enemyList.Count; i++)
+                    enemyList[i].Update(deltaTime);
+                //update missile
+                for (int i = 0; i < missileList.Count; i++)
+                    missileList[i].Update(deltaTime);
+                //update background
+                if (bg1.rec.Y >= 500)
+                {
+                    bg1.rec.Y = bg2.rec.Y - bg2.rec.Height;
+                    distance += 500;
+                }                    
+
+                if (bg2.rec.Y >= 500)
+                {
+                    bg2.rec.Y = bg1.rec.Y - bg1.rec.Height;
+                    distance += 500;
+                }
+                    
+                bg1.Update();
+                bg2.Update();
+
+                //detect collision
+                DetectCollision(deltaTime);
+
+                if (!Player.playerAlive)
+                {
+                    _state = GameState.GameOver;
+                    playerBulletList.Clear();
+                    enemyBulletList.Clear();
+                    enemyList.Clear();
+                    missileList.Clear();
+                }
+            }            
         }
 
         void UpdateGameOver(GameTime deltaTime)
         {
             MouseState MouseInput = Mouse.GetState();
 
-            if (MouseInput.LeftButton == ButtonState.Pressed)
+            if (MouseInput.LeftButton == ButtonState.Pressed && deltaTime.TotalGameTime.TotalMilliseconds > lastPress)
             {
                 if (restartButton.enterButton(MouseInput))
                 {
                     _state = GameState.Gameplay;
+                    lastPress = (float)deltaTime.TotalGameTime.TotalMilliseconds + 200;
                     //current player health is 0 ((because of gameover)
                     player.revivePlayer();
+                    bossOut = false;
+                    distance = 0;
+                    currentLevel = 1;
                 }
                 if (endButton.enterButton(MouseInput))
                 {
@@ -368,6 +449,7 @@ namespace Project
 
             // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
+
             //draw player
             player.Draw(spriteBatch, deltaTime);
             //draw player bullet
@@ -388,6 +470,17 @@ namespace Project
             bg2.Draw(spriteBatch, deltaTime);
 
             spriteBatch.End();
+
+            
+            if (pauseGame)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+                pauseTitle.Draw(spriteBatch, deltaTime);
+                menuButton.Draw(spriteBatch);
+                endButton.Draw(spriteBatch);
+                spriteBatch.End();
+            }          
+            
         }
 
         void DrawGameOver(GameTime deltaTime)

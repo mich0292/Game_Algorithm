@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/GameAlgorithm/Project/Project/Content/background1.png</SourceFile>
+  <SourceFile>D:/GameAlgorithm/Program/Project/Content/background1.png</SourceFile>
   <SourceTime>2020-08-27T00:43:27.5759379+08:00</SourceTime>
-  <DestFile>D:/GameAlgorithm/Project/Project/Content/bin/Windows/Content/background1.xnb</DestFile>
-  <DestTime>2020-10-12T11:41:25.2796032+08:00</DestTime>
+  <DestFile>D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/background1.xnb</DestFile>
+  <DestTime>2020-10-12T12:11:05.3918352+08:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-09T00:35:54+08:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
