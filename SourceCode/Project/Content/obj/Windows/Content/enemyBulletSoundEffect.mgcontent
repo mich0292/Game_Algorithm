@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/GameAlgorithm/Program/Project/Content/enemyBulletSoundEffect (online-audio-converter.com).wav</SourceFile>
+  <SourceTime>2020-10-12T00:14:28+08:00</SourceTime>
+  <DestFile>D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/enemyBulletSoundEffect.xnb</DestFile>
+  <DestTime>2021-08-03T17:10:04.2029276+08:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2018-12-09T00:35:54+08:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2018-12-09T00:35:54+08:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

@@ -1,0 +1,29 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/GameAlgorithm/Program/Project/Content/asteroid.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/asteroid.xnb","TextureProcessor","Texture2DContent",3275,16469,0.359082
+"D:/GameAlgorithm/Program/Project/Content/background1.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/background1.xnb","TextureProcessor","Texture2DContent",7346,646501,0.0470111
+"D:/GameAlgorithm/Program/Project/Content/boss.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/boss.xnb","TextureProcessor","Texture2DContent",10530,28305,0.0220043
+"D:/GameAlgorithm/Program/Project/Content/bullet.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/bullet.xnb","TextureProcessor","Texture2DContent",408,2789,0.0200042
+"D:/GameAlgorithm/Program/Project/Content/bulletSoundEffect.wav","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/bulletSoundEffect.xnb","SoundEffectProcessor","SoundEffectContent",131594,131621,0.5081147
+"D:/GameAlgorithm/Program/Project/Content/Cruiser_57x49.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/enemy1.xnb","TextureProcessor","Texture2DContent",2273,11257,0.0330076
+"D:/GameAlgorithm/Program/Project/Content/Cruiser2_42x61.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/enemy2.xnb","TextureProcessor","Texture2DContent",2341,10333,0.0070019
+"D:/GameAlgorithm/Program/Project/Content/cursor.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/cursor.xnb","TextureProcessor","Texture2DContent",1086,4985,0.0050012
+"D:/GameAlgorithm/Program/Project/Content/enemy_bullet.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/enemy_bullet.xnb","TextureProcessor","Texture2DContent",1244,449,0.006001
+"D:/GameAlgorithm/Program/Project/Content/enemyBulletSoundEffect (online-audio-converter.com).wav","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/enemyBulletSoundEffect.xnb","SoundEffectProcessor","SoundEffectContent",76298,76325,0.2650618
+"D:/GameAlgorithm/Program/Project/Content/exit.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/exit.xnb","TextureProcessor","Texture2DContent",13371,100885,0.0070017
+"D:/GameAlgorithm/Program/Project/Content/flowerBullet2.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/flowerBullet2.xnb","TextureProcessor","Texture2DContent",2116,869,0.1120253
+"D:/GameAlgorithm/Program/Project/Content/font.spritefont","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/font.xnb","FontDescriptionProcessor","SpriteFontContent",2075,70673,0.287065
+"D:/GameAlgorithm/Program/Project/Content/heart.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/heart.xnb","TextureProcessor","Texture2DContent",1850,869,0.004002
+"D:/GameAlgorithm/Program/Project/Content/menu.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/menu.xnb","TextureProcessor","Texture2DContent",12964,100885,0.0190043
+"D:/GameAlgorithm/Program/Project/Content/pause.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/pause.xnb","TextureProcessor","Texture2DContent",1400,202585,0.0330081
+"D:/GameAlgorithm/Program/Project/Content/Player.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/Player.xnb","TextureProcessor","Texture2DContent",6012,25461,0.0130047
+"D:/GameAlgorithm/Program/Project/Content/powerup.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/powerup.xnb","TextureProcessor","Texture2DContent",1984,3101,0.0050002
+"D:/GameAlgorithm/Program/Project/Content/restart.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/restart.xnb","TextureProcessor","Texture2DContent",14026,100885,0.0070013
+"D:/GameAlgorithm/Program/Project/Content/Roboto-Black.spritefont","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/Roboto-Black.xnb","FontDescriptionProcessor","SpriteFontContent",2015,21521,0.0330077
+"D:/GameAlgorithm/Program/Project/Content/rocket.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/rocket.xnb","TextureProcessor","Texture2DContent",1799,10469,0.036009
+"D:/GameAlgorithm/Program/Project/Content/start3.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/start.xnb","TextureProcessor","Texture2DContent",18725,100885,0.0260054
+"D:/GameAlgorithm/Program/Project/Content/test.jpg","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/test.xnb","TextureProcessor","Texture2DContent",198226,9437269,0.4340983
+"D:/GameAlgorithm/Program/Project/Content/test1.jpg","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/test1.xnb","TextureProcessor","Texture2DContent",547973,9437269,0.3820025
+"D:/GameAlgorithm/Program/Project/Content/test2.jpg","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/test2.xnb","TextureProcessor","Texture2DContent",44450,1935829,0.1010221
+"D:/GameAlgorithm/Program/Project/Content/test2-1.jpg","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/test2-1.xnb","TextureProcessor","Texture2DContent",198236,1935829,0.1360328
+"D:/GameAlgorithm/Program/Project/Content/Turret_45x60.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/turret.xnb","TextureProcessor","Texture2DContent",2471,10885,0.0040003
+"D:/GameAlgorithm/Program/Project/Content/Z8FreedomFighter_Blade_110x110.png","D:/GameAlgorithm/Program/Project/Content/bin/Windows/Content/boss2.xnb","TextureProcessor","Texture2DContent",5951,48485,0.0110037
