@@ -32,7 +32,20 @@ The player loses all of their health bars.
    Z	|   Fire missile  
   Tab	|   Select enemy (missile)
   Enter	|   Pause Game
-   
+
+## Character Design
+
+Game Object	    | Health bar| Destroyable	| Can shoot? | Bullet damage | Clash damage | Movement | Line of sight | Decision-making
+----------------| --------- |-------------|------------|---------------|--------------|----------|---------------|------------------
+Player’s avatar	|  10	      |  ✔️	|✔️ |(bullet, missile)|	1	|1	|Player controlled	|Player’s	|❌
+Missile	        |            | ❌	|❌	|❌	|3	|3	|Pathfinding	|❌	|❌|
+Asteroid	      |    1	 |✔️	|❌	|❌	|1	|Dynamic wander	|❌	|❌
+Turret	        |    10	|✔️	|✔️	|1	|1	|Stationary	|✔️	|✔️
+Enemy1	        |    3	|✔️	|✔️	|1	|1	|Kinematic seek	|✔️	|❌
+Enemy2	        |    7	|✔️	|✔️	|1	|1	|Pattern movement	|✔️	|❌
+Boss (Level 1)	|    25	|✔️	|✔️	|1	|1	|Stationary	|✔️	|✔️
+Boss (Level 2)	|    50	|✔️	|✔️	|1	|1	|Stationary	|✔️	|✔️
+
 ## Mechanics
 1.  Move around and dodge bullets from enemies
 2.  Fire bullets to kill enemies
@@ -40,7 +53,7 @@ The player loses all of their health bars.
 
 <img src="https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/missiles.png" alt="Missile fired" width="50%" height="50%">
 
-## ❓How to install our game❓
+## ❓How to play our game❓
 1.  Open the Project.sln file with Microsoft Visual Studio.
 2.  Press Start
 
