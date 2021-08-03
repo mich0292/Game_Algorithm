@@ -7,11 +7,12 @@
 The game, Space Battle is a shoot ‘em up game with a top-down perspective.\
 There are a few objects in this game: asteroids, turrets, enemies, boss, missile, and player’s avatar.\
 Since the assignment is for the Game Algorithm subject, the focus is on algorithms such as:
-* kinematic seek
-* dynamic wander 
-* pattern movement (CatmullRomSpline) 
-* line of sight (Bresenham's line), pathfinding (A* algorithm) 
-* decision-making (finite state machine)
+* Kinematic seek
+* Dynamic wander 
+* Pattern movement (Catmull-Rom Spline) 
+* Line of sight (Bresenham's line)
+* Pathfinding (A* algorithm) 
+* Decision-making (finite state machine)
 
 ## Win Condition
 
