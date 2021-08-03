@@ -1,6 +1,6 @@
 # GameAlgorithm 🛸👾 Space Battle 
 
-![Game Just Started](https://github.com/mich0292/Game_Physics/blob/51ac23eb160a2f651e0c7878f30723fcdfc2871e/Screenshots/Starting%20Game.png)
+![Level 1 Gameplay](https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/gameplay%20-%20level%201.png)
 
 *Note: This game uses MonoGame framework.*
 
@@ -22,22 +22,23 @@ The player needs to progress through the stage without getting destroyed by the 
 The player loses all of their health bars.
 
 **Controls**
-  Keys	 |   In-game action
-------- | ------------------------------
-   ↑	   |   Move forward
-   ↓	   |   Move backward
-   ←	   |   Move left
-   →	   |   Move right 
-  Space |   Fire bullet
-   Z	   |   Fire missile  
-   Tab	 |   Select enemy to fire missile
+  Keys	|   In-game action
+------- | --------------------------
+   ↑	|   Move forward
+   ↓	|   Move backward
+   ←	|   Move left
+   →	|   Move right 
+ Space  |   Fire bullet
+   Z	|   Fire missile  
+  Tab	|   Select enemy (missile)
   Enter	|   Pause Game
    
 **Mechanics:**
-1.  Control the angle of the ship’s trajectory
-2.  Strength of the trajectory
+1.  Move around and dodge bullets from enemies
+2.  Fire bullets to kill enemies
+3.  Fire missile to kill enemies
 
-![Charge Bar](https://github.com/mich0292/Game_Physics/blob/51ac23eb160a2f651e0c7878f30723fcdfc2871e/Screenshots/Mechanics%20-%20Charging%20Bar.png)
+![Missile fired](https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/missiles.png)
 
 ❓**How to install our game**❓
 1.  Ensure that you are at the directory of the game folder in cmd. 
