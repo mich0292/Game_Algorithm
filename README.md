@@ -37,14 +37,30 @@ The player loses all of their health bars.
 
 Game Object	    | Health bar| Destroyable	| Can shoot? | Bullet damage   | Clash damage | Movement         | Line of sight | Decision-making
 :--------------:| :-------: |:-----------:|:----------:|:---------------:|:------------:|:----------------:|:-------------:|:----------------:
-Player’s avatar <img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/player.png" alt="player" width="50" height="40">	|  10	      |  ✔️	       |✔️(bullet, missile)|	1	      |1	           |Player controlled	|Player’s	      |❌
-Missile	<img src="https://github.com/mich0292/Game_Algorithm/blob/330090679d5cf4a97666bcf0395a6766387c3686/SourceCode/Project/Content/missile.png" alt="missile" width="50" height="40">        |   ❌      | ❌	       |❌	         | 3               |3	         	  |Pathfinding	     |❌	           |❌
-Asteroid	<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/asteroid.png" alt="asteroid" width="50" height="40">      |    1	    |✔️	         |❌	         |❌	              |1	            |Dynamic wander	  |❌	          |❌
-Turret.\	<img src="https://github.com/mich0292/Game_Algorithm/blob/e945e4f6ee024c132f1c3aed3fc567cbbbffd7a4/SourceCode/Project/Content/turret.png" alt="turret" width="50" height="40">        |    10	    |✔️	         |✔️	        |1	              |1	            |Stationary	       |✔️	          |✔️
-Enemy1	<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/enemy1.png" alt="enemy1" width="50" height="40">        |    3	    |✔️	         |✔️	        |1	              |1	            |Kinematic seek	   |✔️	          |❌
-Enemy2	<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/enemy2.png" alt="enemy2" width="50" height="40">        |    7	    |✔️	         |✔️	        |1	              |1	            |Pattern movement	 |✔️	          |❌
-Boss (Level 1) <img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/boss1.png" alt="boss1" width="50" height="40">	|    25	    |✔️	         |✔️	        |1	              |1	            |Stationary	       |✔️	          |✔️
-Boss (Level 2) <img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/boss2.png" alt="boss2" width="50" height="40">	|    50	    |✔️	         |✔️	        |1	              |1	            |Stationary	       |✔️	          |✔️
+Player’s avatar 
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/player.png" alt="player" width="50" height="40">	|  10	      |  ✔️	       |✔️(bullet, missile)|	1	      |1	           |Player controlled	|Player’s	      |❌
+Missile	
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/330090679d5cf4a97666bcf0395a6766387c3686/SourceCode/Project/Content/missile.png" alt="missile" width="50" height="40">        |   ❌      | ❌	       |❌	         | 3               |3	         	  |Pathfinding	     |❌	           |❌
+Asteroid	
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/asteroid.png" alt="asteroid" width="50" height="40">      |    1	    |✔️	         |❌	         |❌	              |1	            |Dynamic wander	  |❌	          |❌
+Turret	
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/e945e4f6ee024c132f1c3aed3fc567cbbbffd7a4/SourceCode/Project/Content/turret.png" alt="turret" width="50" height="40">        |    10	    |✔️	         |✔️	        |1	              |1	            |Stationary	       |✔️	          |✔️
+Enemy1	
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/enemy1.png" alt="enemy1" width="50" height="40">        |    3	    |✔️	         |✔️	        |1	              |1	            |Kinematic seek	   |✔️	          |❌
+Enemy2	
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/enemy2.png" alt="enemy2" width="50" height="40">        |    7	    |✔️	         |✔️	        |1	              |1	            |Pattern movement	 |✔️	          |❌
+Boss (Level 1) 
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/boss1.png" alt="boss1" width="50" height="40">	|    25	    |✔️	         |✔️	        |1	              |1	            |Stationary	       |✔️	          |✔️
+Boss (Level 2) 
+
+<img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/boss2.png" alt="boss2" width="50" height="40">	|    50	    |✔️	         |✔️	        |1	              |1	            |Stationary	       |✔️	          |✔️
 
 ## Mechanics
 1.  Move around and dodge bullets from enemies
