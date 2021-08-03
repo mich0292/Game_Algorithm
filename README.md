@@ -33,7 +33,7 @@ The player loses all of their health bars.
   Tab	|   Select enemy (missile)
   Enter	|   Pause Game
    
-## Mechanics:
+## Mechanics
 1.  Move around and dodge bullets from enemies
 2.  Fire bullets to kill enemies
 3.  Fire missile to kill enemies
@@ -58,5 +58,4 @@ The player loses all of their health bars.
 3. Pattern movement - The enemy2 moves in a pattern, which is based on our predefined list of control points.
 4. Challenging boss - Our boss has the ability to dodge player’s bullets and the ability to attack faster during low health.
 
-***
-Please check out our [documentation](https://github.com/mich0292/Game_Algorithm/blob/c4bc46e7d496711917a0ee01d8e7e60706344cc7/Documentation%20&%20Presentation/SpaceBattle_1171101517_1171100973.pdf) for more details! 😀
+#### Please check out our [documentation](https://github.com/mich0292/Game_Algorithm/blob/c4bc46e7d496711917a0ee01d8e7e60706344cc7/Documentation%20&%20Presentation/SpaceBattle_1171101517_1171100973.pdf) for more details! 😀
