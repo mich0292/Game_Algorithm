@@ -36,8 +36,8 @@ The player loses all of their health bars.
 ## Character Design
 
 Game Object	    | Health bar| Destroyable	| Can shoot? | Bullet damage   | Clash damage | Movement         | Line of sight | Decision-making
-----------------| --------- |-------------|------------|-----------------|--------------|------------------|---------------|------------------
-Player’s avatar	|  10	      |  ✔️	       |✔️(bullet, missile)|	1	      |1	           |Player controlled	|Player’s	      |❌
+----------------| :-------: |:-----------:|:----------:|:---------------:|:------------:|:----------------:|:-------------:|:----------------:
+Player’s avatar <img src="https://github.com/mich0292/Game_Algorithm/blob/fc0bc605342fbb9d488ae448c7b8e2c31dd67366/SourceCode/Project/Content/player.png" alt="player" width="50" height="40">	|  10	      |  ✔️	       |✔️(bullet, missile)|	1	      |1	           |Player controlled	|Player’s	      |❌
 Missile	        |   ❌      | ❌	       |❌	         | 3               |3	         	  |Pathfinding	     |❌	           |❌
 Asteroid	      |    1	    |✔️	         |❌	         |❌	              |1	            |Dynamic wander	  |❌	          |❌
 Turret	        |    10	    |✔️	         |✔️	        |1	              |1	            |Stationary	       |✔️	          |✔️
