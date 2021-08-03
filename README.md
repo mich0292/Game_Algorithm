@@ -1,6 +1,6 @@
 # GameAlgorithm 🛸👾 Space Battle 
 
-![Level 1 Gameplay](https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/gameplay%20-%20level%201.png)
+<img src="https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/gameplay%20-%20level%201.png" alt="Level 1 Gameplay" width="80%" height="80%">
 
 *Note: This game uses MonoGame framework.*
 
@@ -38,7 +38,7 @@ The player loses all of their health bars.
 2.  Fire bullets to kill enemies
 3.  Fire missile to kill enemies
 
-![Missile fired](https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/missiles.png)
+<img src="https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/missiles.png" alt="Missile fired" width="50%" height="50%">
 
 ❓**How to install our game**❓
 1.  Ensure that you are at the directory of the game folder in cmd. 
@@ -58,4 +58,4 @@ The player loses all of their health bars.
 3. Pattern movement - The enemy2 moves in a pattern, which is based on our predefined list of control points.
 4. Challenging boss - Our boss has the ability to dodge player’s bullets and the ability to attack faster during low health.
 
-Please check out our [documentation](https://github.com/mich0292/Game_Physics/blob/6957b9effd1935083e4262de4c4bd5b76ef51d75/(1171100973_1171101517)%20WrittenReport.pdf) for more details! 😀
+Please check out our [documentation](https://github.com/mich0292/Game_Algorithm/blob/c4bc46e7d496711917a0ee01d8e7e60706344cc7/Documentation%20&%20Presentation/SpaceBattle_1171101517_1171100973.pdf) for more details! 😀
