@@ -40,17 +40,9 @@ The player loses all of their health bars.
 
 <img src="https://github.com/mich0292/Game_Algorithm/blob/5ee7216a022f8474914778f57e973fc6eb218859/Screenshots/manual/missiles.png" alt="Missile fired" width="50%" height="50%">
 
-❓**How to install our game**❓
-1.  Ensure that you are at the directory of the game folder in cmd. 
-	
-2.  To compile our game and generate an executable file, please copy the following line and paste it to your cmd:
-    ```
-    compile Main.cpp Planet.cpp Strength.cpp Player.cpp Wall.cpp MyContactListener.cpp
-    ```
-
-3.  Type a in the cmd to run our game
-
-![How to Install](https://github.com/mich0292/Game_Physics/blob/d3a4ca847372713c0c5966ee6d178bff7fcfcb6f/Screenshots/How%20to%20Install.png)
+## ❓How to install our game❓
+1.  Open the Project.sln file with Microsoft Visual Studio.
+2.  Press Start
 
 ## Features
 1. Powerup - This powerup can change the bullet pattern of the player.
